@@ -10,4 +10,9 @@
 
 // Your CSS partials
 @import "components/index";
+@import "components/card";
 @import "pages/index";
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
