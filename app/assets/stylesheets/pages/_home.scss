@@ -103,3 +103,57 @@
 body {
   overflow: hidden;
 }
+
+@include media-breakpoint-up(md) {
+  .action {
+    > ul {
+      width: 50%!important;
+    }
+    .text-right.arrow {
+      margin-right: 7rem!important;
+    }
+    .text-left.arrow {
+      margin-left: 7rem!important;
+    }
+  }
+ }
+
+@media (max-width: 330px) {
+  .action {
+    .arrow {
+      display: none!important;
+    }
+  }
+ }
+
+ @media (orientation:landscape) {
+  .action {
+    >ul {
+      >li {
+        justify-content: center!important;
+        margin-bottom: 0 !important;
+      }
+    }
+    .arrow {
+      display: none!important;
+    }
+    img {
+      width: 50px;
+    }
+
+    .description {
+      order: 1;
+    }
+
+    .icon {
+      order: 0;
+      margin-right: 1rem;
+    }
+  }
+
+  #home-cuisines {
+    .next-button {
+      margin-top: 5rem!important;
+    }
+  }
+ }
