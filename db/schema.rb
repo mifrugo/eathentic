@@ -21,6 +21,17 @@ ActiveRecord::Schema.define(version: 2021_03_15_150921) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+
+  create_table "dish_ingredients", force: :cascade do |t|
+    t.bigint "dish_id", null: false
+    t.bigint "ingredient_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["dish_id"], name: "index_dish_ingredients_on_dish_id"
+    t.index ["ingredient_id"], name: "index_dish_ingredients_on_ingredient_id"
+  end
+
+
   create_table "dish_requests", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -109,6 +120,15 @@ ActiveRecord::Schema.define(version: 2021_03_15_150921) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "menu_dishes", force: :cascade do |t|
+    t.bigint "dish_id", null: false
+    t.bigint "menu_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["dish_id"], name: "index_menu_dishes_on_dish_id"
+    t.index ["menu_id"], name: "index_menu_dishes_on_menu_id"
+  end
+
   create_table "menu_requests", force: :cascade do |t|
     t.string "name"
     t.bigint "menu_id", null: false
@@ -121,7 +141,7 @@ ActiveRecord::Schema.define(version: 2021_03_15_150921) do
 
   create_table "menus", force: :cascade do |t|
     t.string "name"
-    t.string "order"
+    t.integer "order"
     t.bigint "restaurant_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -226,6 +246,9 @@ ActiveRecord::Schema.define(version: 2021_03_15_150921) do
   add_foreign_key "ingredient_requests", "users"
   add_foreign_key "ingredients", "dishes"
   add_foreign_key "ingredients", "users"
+  add_foreign_key "ingredients", "users"
+  add_foreign_key "menu_dishes", "dishes"
+  add_foreign_key "menu_dishes", "menus"
   add_foreign_key "menu_requests", "menus"
   add_foreign_key "menu_requests", "users"
   add_foreign_key "menus", "restaurants"
