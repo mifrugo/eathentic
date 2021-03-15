@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_15_144001) do
+ActiveRecord::Schema.define(version: 2021_03_15_164544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(version: 2021_03_15_144001) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "dish_ingredients", force: :cascade do |t|
+    t.bigint "dish_id", null: false
+    t.bigint "ingredient_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["dish_id"], name: "index_dish_ingredients_on_dish_id"
+    t.index ["ingredient_id"], name: "index_dish_ingredients_on_ingredient_id"
   end
 
   create_table "dish_requests", force: :cascade do |t|
@@ -35,11 +44,9 @@ ActiveRecord::Schema.define(version: 2021_03_15_144001) do
   create_table "dishes", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.bigint "menu_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["menu_id"], name: "index_dishes_on_menu_id"
     t.index ["user_id"], name: "index_dishes_on_user_id"
   end
 
@@ -93,11 +100,9 @@ ActiveRecord::Schema.define(version: 2021_03_15_144001) do
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.bigint "dish_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["dish_id"], name: "index_ingredients_on_dish_id"
     t.index ["user_id"], name: "index_ingredients_on_user_id"
   end
 
@@ -107,6 +112,15 @@ ActiveRecord::Schema.define(version: 2021_03_15_144001) do
     t.float "longitude"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "menu_dishes", force: :cascade do |t|
+    t.bigint "dish_id", null: false
+    t.bigint "menu_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["dish_id"], name: "index_menu_dishes_on_dish_id"
+    t.index ["menu_id"], name: "index_menu_dishes_on_menu_id"
   end
 
   create_table "menu_requests", force: :cascade do |t|
@@ -121,7 +135,7 @@ ActiveRecord::Schema.define(version: 2021_03_15_144001) do
 
   create_table "menus", force: :cascade do |t|
     t.string "name"
-    t.string "order"
+    t.integer "order"
     t.bigint "restaurant_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -208,9 +222,10 @@ ActiveRecord::Schema.define(version: 2021_03_15_144001) do
     t.index ["user_id"], name: "index_views_on_user_id"
   end
 
+  add_foreign_key "dish_ingredients", "dishes"
+  add_foreign_key "dish_ingredients", "ingredients"
   add_foreign_key "dish_requests", "dishes"
   add_foreign_key "dish_requests", "users"
-  add_foreign_key "dishes", "menus"
   add_foreign_key "dishes", "users"
   add_foreign_key "favorite_cuisines", "cuisines"
   add_foreign_key "favorite_cuisines", "users"
@@ -222,8 +237,9 @@ ActiveRecord::Schema.define(version: 2021_03_15_144001) do
   add_foreign_key "favorite_restaurants", "users"
   add_foreign_key "ingredient_requests", "ingredients"
   add_foreign_key "ingredient_requests", "users"
-  add_foreign_key "ingredients", "dishes"
   add_foreign_key "ingredients", "users"
+  add_foreign_key "menu_dishes", "dishes"
+  add_foreign_key "menu_dishes", "menus"
   add_foreign_key "menu_requests", "menus"
   add_foreign_key "menu_requests", "users"
   add_foreign_key "menus", "restaurants"
