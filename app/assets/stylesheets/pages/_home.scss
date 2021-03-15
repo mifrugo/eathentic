@@ -157,3 +157,14 @@ body {
     }
   }
  }
+
+ @include media-breakpoint-up(md) {
+   .action {
+     h5 {
+       font-size: 2rem;
+     }
+     .text-small {
+       font-size: 1.2rem;
+     }
+   }
+ }
