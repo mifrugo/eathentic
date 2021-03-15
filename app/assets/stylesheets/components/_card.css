@@ -1,0 +1,33 @@
+#home-cuisines {
+  background-color: #f2c73c;
+  border-radius: 0;
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+#home-cuisines .card img {
+  height: 50px;
+}
+
+#home-cuisines .card {
+  padding: 1em;
+  border-radius: 15px;
+  /* box-shadow: 0px 3px 6px rgb(57 57 57 / 10%); */
+  border: none;
+}
+
+#home-cuisines .card h4 {
+  margin-top: .6em;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+#home-cuisines .card {
+  background: none;
+}
+
+#home-cuisines img {
+  width: 80px;
+  height: auto;
+}
