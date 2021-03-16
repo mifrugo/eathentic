@@ -8,6 +8,8 @@ class RestaurantsController < ApplicationController
   end
 
   def show
+    @review = Review.new
+    authorize @review
   end
 
   def new
@@ -21,5 +23,5 @@ class RestaurantsController < ApplicationController
 
   def set_restaurants
     @restaurant = Restaurant.find(params[:id])
-  end  
+  end
 end
