@@ -1,2 +1,79 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+  <div class="pages">
+
+    <section id="header" data-section="head" class="page active d-flex align-items-center flex-column justify-content-end">
+      <div class="text">
+        Stop eating lies.
+      </div>
+
+      <div class="next-button" data-controller="home" data-action="click->home#click" data-target="page">
+        <span class="arrow-down"></span>
+        <span class="discover">Learn more</span>
+      </div>
+    </section>
+
+    <section data-section="page" class="page">
+      <div class="action card mx-auto border-0"> <!-- action-->
+        <ul class="p-0 d-flex justify-content-between flex-column text-center m-auto w-75">
+          <li class="d-flex justify-content-center align-items-center justify-content-around mb-3">
+            <div class="description">
+              <h5>Discover real food.</h5>
+              <div class="text-small">Our reviews are genuine.</div>
+            </div>
+            <div class="icon">
+              <%= image_tag 'location.svg' %>
+            </div>
+            </li>
+            <li class="text-right mr-3 arrow">
+              <%= image_tag 'arrow_yellow.svg' %>
+            </li>
+          <li class="d-flex justify-content-center align-items-center justify-content-around mb-3">
+            <div class="icon"><%= image_tag 'healthy-eating.svg' %></div>
+            <div class="description">
+              <h5>Eat authentic.</h5>
+              <div class="text-small">No more bad experiences.</div>
+            </div>
+          </li>
+          <li class="text-left ml-3 arrow">
+            <%= image_tag 'arrow_yellow_right.svg' %>
+          </li>
+          <li class="d-flex justify-content-center align-items-center justify-content-around">
+            <div class="description">
+              <h5>Help others.</h5>
+              <div class="text-small">Leave authentic reviews.</div>
+            </div>
+            <div class="icon">
+              <%= image_tag 'authentic.svg' %>
+            </div>
+          </li>
+        </ul>
+        <div class="next-button" data-controller="home" data-action="click->home#click" data-target="search">
+          <span class="arrow-down"></span>
+          <span class="discover">Start your journey</span>
+        </div>
+      </div> <!-- Action / end -->
+      </section>
+
+      <section data-section="search" class="page">
+        <div id="home-cuisines" class="jumbotron d-flex align-items-center flex-column justify-content-center text-center">
+          <div class="mt-auto">
+            <%= image_tag 'catering.svg' %>
+            <h4 class="mb-4">
+              <div>Don't miss out!</div>
+              <div>Start your new food life now.</div>
+            </h4>
+
+            <div id="autocomplete" class="autocomplete">
+              <input class="autocomplete-input" placeholder="Start your research">
+              <ul class="autocomplete-result-list"></ul>
+            </div>
+          </div>
+          <div class="next-button mt-auto" data-controller="home" data-action="click->home#click" data-target="head">
+            <span class="arrow-top"></span>
+            <span class="discover">Back to the top</span>
+          </div>
+        </div>
+
+      </section>
+
+  </div>
