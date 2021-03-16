@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :get_cuisines
   before_action :authenticate_user!
   include Pundit
 
@@ -10,4 +11,10 @@ class ApplicationController < ActionController::Base
 
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
+  end
+  
+  private 
+  def get_cuisines
+    @cuisines = Cuisine.all
+  end  
 end
