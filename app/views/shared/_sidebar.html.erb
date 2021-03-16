@@ -1,0 +1,57 @@
+<nav id="sidebar">
+  <div class="p-4 pt-5 mt-4">
+
+    <% if user_signed_in? %>
+      <a href="#" class="img logo rounded-circle mb-5" style="background-image: url(https://res.cloudinary.com/frugo/image/upload/oy1ftz4zoowlh483tu4aekpq46t4); background-size: contain"></a>
+    <% else %>
+      <div class="text-center">
+        <%= link_to 'Login', new_user_session_path, class: 'btn btn-primary' %>
+        <%= link_to 'Register', new_user_registration_path, class: 'btn btn-secondary' %>
+      </div>
+    <% end %>
+
+    <ul class="list-unstyled components mb-5">
+      <li>
+        <%= link_to 'Home', root_path %>
+      </li>
+      <li>
+        <a href="#" data-toggle="modal" data-target="#userLocationModal" data-controller="sidebar" data-action="click->sidebar#click">Set location</a>
+      </li>
+      <!--<li>
+        <a href="#locationSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Location</a>
+        <ul class="collapse list-unstyled" id="locationSubMenu">
+          <li>
+            <a>Current location</a>
+          </li>
+          <li>
+            <a href="#">Choose location</a>
+          </li>
+        </ul>
+      </li>-->
+    </ul>
+
+    <div class="footer">
+      <small>©<%= Date.today.year %> Eathentic</small>
+    </div>
+
+  </div>
+</nav>
+
+<div class="modal fade" id="userLocationModal" tabindex="-1" aria-labelledby="userLocationModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="userLocationModalLabel">Set location</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="modal-body">
+          <div id="geocoder" class="geocoder"></div>
+          <div style="height: 30vh" class="mb-4 position-relative">
+            <div id="userMap" data-apikey="<%= ENV['MAPBOX_KEY'] %>" style="height: 100%"></div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

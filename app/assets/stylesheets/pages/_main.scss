@@ -1,0 +1,12 @@
+body {
+  &:not(.pages-home) {
+    #content {
+      margin-top: 60px;
+      padding: 0 15px;
+    }
+  }
+}
+
+.modal-content {
+  border-radius: 10px;
+}

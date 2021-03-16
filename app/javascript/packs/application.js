@@ -32,9 +32,17 @@ import "controllers"
 import { setVH } from '../components/init_vh';
 // import { homeButton } from '../components/init_home'
 import { autoComplete } from '../components/init_autocomplete'
+import { getLocation } from '../components/init_geolocal'
+import { slideout } from '../components/init_menu'
+import { renderMap } from '../components/init_userMap'
 
 document.addEventListener('turbolinks:load', () => {
   setVH();
+
+  getLocation();
+
+  document.querySelector('#userMap') && renderMap();
+
 
   if(document.body.classList.contains('pages-home')) {
     //  homeButton();
