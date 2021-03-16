@@ -2,6 +2,10 @@
 
     <div id="nav-brand"> <!-- brand -->
       <a href="#" class="nav-back d-none">&lt;</a>
+       <span type="button" id="sidebarCollapse"  data-controller="sidebar" data-action="click->sidebar#click" class="mr-3 mb-2 align-middle">
+          <i class="fa fa-bars"></i>
+          <span class="sr-only">Toggle Menu</span>
+        </span>
       <%= link_to 'Eathentic.', root_path, class: 'nav-brand' %>
     </div> <!-- brand/end -->
 
@@ -11,31 +15,6 @@
       </form>
     </div> <!-- search/end -->
 
-    <div id="nav-user" class="d-none"> <!-- user -->
-      <a href="#" data-toggle="dropdown" id="navbarDropdown">
-        <img class="avatar" src="./images/user.svg"/>
-      </a>
-      <div id="user-dropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-        <div class="dropdown-top text-center">
-          <img class="avatar" src="http://res.cloudinary.com/frugo/image/upload/oy1ftz4zoowlh483tu4aekpq46t4" />
-          <div class="d-block mt-2">
-            <div>Simonne Crist</div>
-            <a class="small" data-toggle="modal" data-target="#editUserModal" href="#">update profile</a>
-          </div>
-        </div>
-        <a class="dropdown-item" href="#">
-          Something
-        </a>
-        <a class="dropdown-item" href="#">
-          Something
-        </a>
-        <a class="dropdown-item" href="#">
-          Something
-        </a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" rel="nofollow" data-method="delete" href="/users/sign_out">
-          Log out
-        </a>
-      </div>
-    </div> <!-- user/end -->
   </nav>
+
+<%= render 'shared/sidebar' %>

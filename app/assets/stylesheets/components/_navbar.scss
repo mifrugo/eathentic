@@ -15,4 +15,103 @@ nav {
   font-weight: bold;
   color: $white!important;
   text-decoration: none!important;
+  z-index: 10;
+}
+
+#sidebarCollapse i {
+  font-size: 1.3em;
+}
+
+
+#sidebar {
+  position: fixed;
+  z-index: 9;
+  height: calc(var(--vh, 1vh) * 100);
+  min-width: 300px;
+  max-width: 300px;
+  background: #1d1919;
+  color: #fff;
+  transition: all 0.3s;
+
+  &.active {
+    margin-left: -300px;
+   }
+
+  .logo {
+    display: block;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+
+    span {
+      display: block;
+    }
+  }
+
+  ul.components {
+    padding: 0;
+  }
+
+  ul {
+    > li {
+    font-size: 16px;
+    > ul {
+      margin-left: 10px;
+      li {
+        font-size: 14px;
+      }
+    }
+   }
+   li {
+     a {
+      padding: 10px 0;
+      display: block;
+      color: rgba(255, 255, 255, 0.8);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+      &:hover {
+        color: $yellow-home;
+      }
+     }
+   }
+
+   li.active {
+     > a {
+      background: transparent;
+      color: $yellow-home;
+     }
+   }
+  }
+}
+
+@media (max-width: 991.98px) {
+  #sidebar {
+    margin-left: -300px;
+    &.active {
+      margin-left: 0;
+    }
+  }
+}
+
+a[data-toggle="collapse"] {
+  position: relative;
+}
+
+.dropdown-toggle::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+@media (max-width: 991.98px) {
+  #sidebarCollapse span {
+    display: none;
+  }
+}
+
+.mapboxgl-ctrl-geocoder {
+  width: 100%!important;
+  margin-bottom: 1rem;
 }
