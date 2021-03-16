@@ -30,14 +30,14 @@ import "controllers"
 // import { initSelect2 } from '../components/init_select2';
 
 import { setVH } from '../components/init_vh';
-import { homeButton } from '../components/init_home'
+// import { homeButton } from '../components/init_home'
 import { autoComplete } from '../components/init_autocomplete'
 
 document.addEventListener('turbolinks:load', () => {
   setVH();
 
   if(document.body.classList.contains('pages-home')) {
-     homeButton();
+    //  homeButton();
      autoComplete();
   }
 });
