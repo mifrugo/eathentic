@@ -1,24 +1,22 @@
 class ReviewsController < ApplicationController
-  before_action :set_restaurant
+  before_action :set_restaurant, only: [:create]
   def create
-    if current_user.cuisine_id == @restaurant.cuisine_id
-      @review = Review.new(review_params)
-      @review.user = current_user
-      @review.restaurant = @restaurant
-      if @review.save
-        redirect_to restaurant_path(@restarant)
-      else
-        render :error
-      end    
+    @review = Review.new(review_params)
+    @review.restaurant = @restaurant
+    @review.user = current_user
+    authorize @review
+    if @review.save
+      redirect_to restaurant_path(@restaurant), notice: "Review succesfully created!"
     else
-    render :error
-    end 
+      render :show
+    end    
   end
 
   private
   
   def set_restaurant
-    @restaurant = Resaurant.find(params[:id])
+    @restaurant = Restaurant.find(params[:id])
+    
   end
 
   def review_params

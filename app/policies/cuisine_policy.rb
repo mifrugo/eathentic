@@ -1,4 +1,4 @@
-class RestaurantPolicy < ApplicationPolicy
+class CuisinePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
@@ -6,10 +6,6 @@ class RestaurantPolicy < ApplicationPolicy
   end
 
   def show?
-    true
-  end
-
-  def list?
     true
   end  
 end

@@ -3,9 +3,8 @@ class ReviewPolicy < ApplicationPolicy
     def resolve
       scope.all
     end
-
-    def create?
-      true
-    end
+  end
+  def create?
+    user.cuisine_id == record.restaurant.cuisine_id
   end
 end
