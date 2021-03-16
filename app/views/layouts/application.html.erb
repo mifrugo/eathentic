@@ -10,12 +10,15 @@
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
     <%= stylesheet_pack_tag 'application' %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
   </head>
 
   <body class="<%= controller_name %>-<%= action_name %>">
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
 
-    <%= yield %>
+    <div id="content" data-controller="sidebar" data-action="click->sidebar#close">
+      <%= yield %>
+    </div>
   </body>
 </html>
