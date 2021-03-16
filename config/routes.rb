@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   get  '/search',                 to: 'searches#find'                      # search in models
   get  '/restaurants/:id',        to: 'restaurants#show', as: 'restaurant' # one restaurant's show and its reviews
   get  '/restaurants/new',        to: 'restaurants#new'                    # create a new restaurant
-  post '/restaurants/:id/review', to: 'reviews#create', as: 'new_review'   # add a review
+  post '/restaurants/:id/review', to: 'reviews#create', as: 'new'                     # add a review
   put  '/restaurants/:id/review', to: 'reviews#react'                      # react to one review
 end

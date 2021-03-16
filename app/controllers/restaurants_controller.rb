@@ -1,5 +1,4 @@
 class RestaurantsController < ApplicationController
-  before_action :set_restaurants, only: [:show]
   def map
   end
 
@@ -8,8 +7,6 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-    @review = Review.new
-    authorize @review
   end
 
   def new
