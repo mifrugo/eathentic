@@ -1,4 +1,5 @@
 class RestaurantsController < ApplicationController
+  before_action :set_restaurants, only: [:show]
   def map
   end
 
@@ -7,7 +8,6 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-    
   end
 
   def new
@@ -20,6 +20,6 @@ class RestaurantsController < ApplicationController
   private
 
   def set_restaurants
-    @restaurants = Restaurant.find(params[:id])
+    @restaurant = Restaurant.find(params[:id])
   end  
 end
