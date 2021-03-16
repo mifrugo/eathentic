@@ -4,9 +4,9 @@
     <% if user_signed_in? %>
       <a href="#" class="img logo rounded-circle mb-5" style="background-image: url(https://res.cloudinary.com/frugo/image/upload/oy1ftz4zoowlh483tu4aekpq46t4); background-size: contain"></a>
     <% else %>
-      <div class="text-center">
-        <%= link_to 'Login', new_user_session_path, class: 'btn btn-primary' %>
-        <%= link_to 'Register', new_user_registration_path, class: 'btn btn-secondary' %>
+      <div class="text-center mx-auto mb-2 w-75">
+        <%= link_to "Login", "#", class: 'btn btn-outline-primary btn-rounded d-block', data: { toggle: 'modal', target: '#loginModal', controller: "sidebar", action: "click->sidebar#click" } %>
+        <%= link_to 'Register', new_user_registration_path, class: 'btn btn-outline-secondary btn-rounded d-block mt-2' %>
       </div>
     <% end %>
 
@@ -15,7 +15,17 @@
         <%= link_to 'Home', root_path %>
       </li>
       <li>
-        <a href="#" data-toggle="modal" data-target="#userLocationModal" data-controller="sidebar" data-action="click->sidebar#click">Set location</a>
+        <a href="#cuisineSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Discover a Cuisine</a>
+        <ul class="collapse list-unstyled" id="cuisineSubMenu">
+          <% @cuisines.each do |cuisine| %>
+            <li>
+              <%= link_to cuisine.name, cuisine_path(cuisine) %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+      <li>
+        <a href="#" data-toggle="modal" data-target="#userLocationModal" data-controller="sidebar" data-action="click->sidebar#click">Change location</a>
       </li>
       <!--<li>
         <a href="#locationSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Location</a>
@@ -55,3 +65,7 @@
     </div>
   </div>
 </div>
+
+<% unless user_signed_in? %>
+  <%= render 'devise/sessions/modal' %>
+<% end %>

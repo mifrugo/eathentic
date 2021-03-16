@@ -25,16 +25,22 @@ nav {
 
 #sidebar {
   position: fixed;
+  top: 0;
   z-index: 9;
   height: calc(var(--vh, 1vh) * 100);
-  min-width: 300px;
-  max-width: 300px;
-  background: #1d1919;
+  min-width: $sidebar;
+  max-width: $sidebar;
+  background: $side-back;
   color: #fff;
   transition: all 0.3s;
 
   &.active {
-    margin-left: -300px;
+    margin-left: -$sidebar;
+   }
+
+   .footer {
+     position: fixed;
+     bottom: 1rem;
    }
 
   .logo {
@@ -56,9 +62,9 @@ nav {
     > li {
     font-size: 16px;
     > ul {
-      margin-left: 10px;
       li {
         font-size: 14px;
+        text-align: center;
       }
     }
    }
@@ -86,7 +92,7 @@ nav {
 
 @media (max-width: 991.98px) {
   #sidebar {
-    margin-left: -300px;
+    margin-left: -$sidebar;
     &.active {
       margin-left: 0;
     }
@@ -103,6 +109,11 @@ a[data-toggle="collapse"] {
   top: 50%;
   right: 0;
   transform: translateY(-50%);
+  transition: transform .3s ease;
+}
+
+.dropdown-toggle[aria-expanded="false"]:after {
+  transform: rotate(90deg);
 }
 
 @media (max-width: 991.98px) {
@@ -114,4 +125,18 @@ a[data-toggle="collapse"] {
 .mapboxgl-ctrl-geocoder {
   width: 100%!important;
   margin-bottom: 1rem;
+}
+
+body.device-lg, body.device-xl {
+  #content {
+    width: calc(100% - $sidebar);
+    margin-left: $sidebar;
+  }
+
+  #sidebarCollapse {
+    display: none;
+  }
+  #sidebar.active {
+    margin-left: 0!important;
+  }
 }

@@ -11,6 +11,7 @@ require 'faker'
 
   MenuDish.destroy_all
   Menu.destroy_all
+  DishIngredient.destroy_all
   Dish.destroy_all
   Restaurant.destroy_all
   Ingredient.destroy_all
@@ -19,13 +20,12 @@ require 'faker'
   Location.destroy_all
 
 
-  DishIngredient.destroy_all
 
 
 
 
   ["italian", "chinese", "japanese","french", "indian", "thai"].each do |cuisine|
-    Cuisine.create(name: cuisine)
+    Cuisine.create(name: cuisine.capitalize)
   end
 
   10.times do
