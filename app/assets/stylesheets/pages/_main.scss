@@ -13,3 +13,14 @@ body {
 .modal-content {
   border-radius: 10px;
 }
+
+[class*=btn-outline-] {
+    border-width: .125rem;
+    border-style: solid;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    padding: .5rem 1.375rem .375rem;
+}
+.btn-rounded {
+    border-radius: 10rem;
+}

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
   get  '/cuisines',               to: 'cuisines#index'   # cuisines' index
-  get  '/cuisines/:id',           to: 'cuisines#show'    # one cuisine's show
+  get  '/cuisines/:id',           to: 'cuisines#show', as: :cuisine    # one cuisine's show
   get  '/restaurants/map',        to: 'restaurants#map'  # restaurants' map
   get  '/restaurants/list',       to: 'restaurant#list'  # restaurants' list
   get  '/search',                 to: 'searches#find'    # search in models

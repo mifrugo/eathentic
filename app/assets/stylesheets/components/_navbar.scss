@@ -62,9 +62,9 @@ nav {
     > li {
     font-size: 16px;
     > ul {
-      margin-left: 10px;
       li {
         font-size: 14px;
+        text-align: center;
       }
     }
    }
@@ -109,6 +109,11 @@ a[data-toggle="collapse"] {
   top: 50%;
   right: 0;
   transform: translateY(-50%);
+  transition: transform .3s ease;
+}
+
+.dropdown-toggle[aria-expanded="false"]:after {
+  transform: rotate(90deg);
 }
 
 @media (max-width: 991.98px) {
