@@ -9,5 +9,5 @@ class Restaurant < ApplicationRecord
   has_many :menu_dishes, through: :menus
   has_many :reviews
   has_many :views
-
+  has_many_attached :photos
 end
