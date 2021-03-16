@@ -9,11 +9,17 @@ require 'faker'
   { name: 'Milano', longitude: ' 45.464664', latitude: '9.188540' },
 ]
 
-
-  User.destroy_all
-  Cuisine.destroy_all
+  MenuDish.destroy_all
+  Menu.destroy_all
   Dish.destroy_all
   Restaurant.destroy_all
+  Ingredient.destroy_all
+  User.destroy_all
+  Cuisine.destroy_all
+  Location.destroy_all
+
+
+  DishIngredient.destroy_all
 
 
 
@@ -30,8 +36,6 @@ require 'faker'
       password: 'helloworld',
       cuisine_id: Cuisine.all.sample.id
     )
-
-
 
     Dish.create!(
       name: Faker::Food.dish,
@@ -57,5 +61,30 @@ require 'faker'
       latitude: location[:latitude],
       longitude: location[:longitude]
     )
+
+    Menu.create!(
+      user_id: User.all.sample.id,
+      restaurant_id: Restaurant.all.sample.id,
+      name: Faker::Artist.name,
+      order: rand(1..10)
+    )
+
+    MenuDish.create!(
+      dish_id: Dish.all.sample.id,
+      menu_id: Menu.all.sample.id
+    )
+
+    Ingredient.create!(
+      name: Faker::Food.vegetables,
+      description: Faker::Food.description,
+      user_id: User.all.sample.id
+    )
+
+    DishIngredient.create!(
+      dish_id: Dish.all.sample.id,
+      ingredient_id: Ingredient.all.sample.id
+
+    )
+
   end
 
