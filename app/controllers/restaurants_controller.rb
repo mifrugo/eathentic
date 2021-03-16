@@ -1,6 +1,4 @@
 class RestaurantsController < ApplicationController
-  def map
-  end
 
   def list
   end
@@ -12,6 +10,9 @@ class RestaurantsController < ApplicationController
   end
 
   def edit
+  end
+
+  def map
   end
 
 end

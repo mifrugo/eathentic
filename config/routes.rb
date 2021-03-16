@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get  '/restaurants/list',       to: 'restaurant#list'  # restaurants' list
   get  '/search',                 to: 'searches#find'    # search in models
   get  '/restaurants/:id',        to: 'restaurants#show' # one restaurant's show and its reviews
-  get  '/restaurants/new',        to: 'restaurants/new'  # create a new restaurant
-  post '/restaurants/:id/review', to: 'reviews/create'   # add a review
-  put  '/restaurants/:id/review', to: 'reviews/react'    # react to one review
+  get  '/restaurants/new',        to: 'restaurants#new'  # create a new restaurant
+  post '/restaurants/:id/review', to: 'reviews#create'   # add a review
+  put  '/restaurants/:id/review', to: 'reviews#react'    # react to one review
 end
