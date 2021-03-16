@@ -11,6 +11,12 @@ class ReviewsController < ApplicationController
       render :show
     end    
   end
+  
+  def create
+  end
+
+  def react
+  end
 
   private
   

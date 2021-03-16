@@ -3,6 +3,7 @@ class RestaurantsController < ApplicationController
   def map
   end
 
+
   def list
     @restaurants = Restaurant.all
     authorize @restaurants

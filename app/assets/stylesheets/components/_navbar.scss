@@ -15,4 +15,128 @@ nav {
   font-weight: bold;
   color: $white!important;
   text-decoration: none!important;
+  z-index: 10;
+}
+
+#sidebarCollapse i {
+  font-size: 1.3em;
+}
+
+
+#sidebar {
+  position: fixed;
+  top: 0;
+  z-index: 9;
+  height: calc(var(--vh, 1vh) * 100);
+  min-width: $sidebar;
+  max-width: $sidebar;
+  background: $side-back;
+  color: #fff;
+  transition: all 0.3s;
+
+  &.active {
+    margin-left: -$sidebar;
+   }
+
+   .footer {
+     position: fixed;
+     bottom: 1rem;
+   }
+
+  .logo {
+    display: block;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+
+    span {
+      display: block;
+    }
+  }
+
+  ul.components {
+    padding: 0;
+  }
+
+  ul {
+    > li {
+    font-size: 16px;
+    > ul {
+      li {
+        font-size: 14px;
+        text-align: center;
+      }
+    }
+   }
+   li {
+     a {
+      padding: 10px 0;
+      display: block;
+      color: rgba(255, 255, 255, 0.8);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+      &:hover {
+        color: $yellow-home;
+      }
+     }
+   }
+
+   li.active {
+     > a {
+      background: transparent;
+      color: $yellow-home;
+     }
+   }
+  }
+}
+
+@media (max-width: 991.98px) {
+  #sidebar {
+    margin-left: -$sidebar;
+    &.active {
+      margin-left: 0;
+    }
+  }
+}
+
+a[data-toggle="collapse"] {
+  position: relative;
+}
+
+.dropdown-toggle::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  transition: transform .3s ease;
+}
+
+.dropdown-toggle[aria-expanded="false"]:after {
+  transform: rotate(90deg);
+}
+
+@media (max-width: 991.98px) {
+  #sidebarCollapse span {
+    display: none;
+  }
+}
+
+.mapboxgl-ctrl-geocoder {
+  width: 100%!important;
+  margin-bottom: 1rem;
+}
+
+body.device-lg, body.device-xl {
+  #content {
+    width: calc(100% - $sidebar);
+    margin-left: $sidebar;
+  }
+
+  #sidebarCollapse {
+    display: none;
+  }
+  #sidebar.active {
+    margin-left: 0!important;
+  }
 }

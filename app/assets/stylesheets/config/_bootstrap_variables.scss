@@ -11,7 +11,8 @@ $font-size-base: 1rem;
 
 // Colors
 $body-color: $gray;
-$primary:    $blue;
+$primary:  $yellow-home;
+$secondary:    $green-home;
 $success:    $green;
 $info:       $yellow;
 $danger:     $red;
@@ -23,3 +24,6 @@ $border-radius-lg: 2px;
 $border-radius-sm: 2px;
 
 // Override other variables below!
+
+$sidebar: 300px;
+$side-back: #1d1919;
