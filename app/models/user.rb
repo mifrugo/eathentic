@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :dishes
   has_many :ingredients
   has_many :views
+  belongs_to :cuisine
 
   has_one_attached :avatar
 end

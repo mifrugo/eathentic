@@ -11,5 +11,9 @@ class RestaurantPolicy < ApplicationPolicy
 
   def list?
     true
-  end  
+  end
+
+  def list_per_dish?
+    true
+  end
 end

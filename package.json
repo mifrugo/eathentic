@@ -9,6 +9,7 @@
     "@trevoreyre/autocomplete-js": "^2.2.0",
     "bootstrap": "^4.6.0",
     "jquery": "^3.6.0",
+    "js-cookie": "^2.2.1",
     "mapbox-gl": "^2.1.1",
     "mapbox-gl-geocoder": "^2.0.1",
     "popper.js": "^1.16.1",

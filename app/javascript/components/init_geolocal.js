@@ -1,6 +1,10 @@
+import Cookies from 'js-cookie'
+
 const setLocation = (position) => {
   const data = {'latitude': position.coords.latitude, 'longitude': position.coords.longitude}
-  sessionStorage.setItem('geo', JSON.stringify(data))
+  Cookies.set('latitude', position.coords.latitude)
+  Cookies.set('longitude', position.coords.longitude)
+
   return data
 }
 
@@ -16,10 +20,11 @@ const browserLocation = () => {
 
 
 const getLocation = () => {
-  const geoStorage = sessionStorage.getItem('geo')
+  const latitude = Cookies.get('latitude')
+  const longitude = Cookies.get('longitude')
 
-  if( geoStorage ) {
-    return geoStorage
+  if( typeof latitude !== 'undefined' && typeof longitude !== 'undefined' ) {
+    return { 'latitude': latitude, 'longitude': longitude }
   }
 
   return browserLocation();
