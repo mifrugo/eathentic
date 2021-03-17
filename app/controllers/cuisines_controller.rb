@@ -5,8 +5,14 @@ class CuisinesController < ApplicationController
 
   def show
     @cuisine = Cuisine.find(params[:id])
-    @restaurants = Restaurant.where(cuisine_id:  @cuisine.id)
     authorize @cuisine
+  end
+
+  def search
+    @cuisine = Cuisine.find(params[:id])
+    authorize @cuisine
+
+    render :show
   end
 
 end

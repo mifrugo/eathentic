@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   get  '/cuisines',               to: 'cuisines#index'                           # cuisines' index
   get  '/cuisines/:id',           to: 'cuisines#show', as: 'cuisine'             # one cuisine's show
+  get  '/cuisines/:id/search',    to: 'cuisines#search', as: :cuisine_search
   get  '/restaurants/map',        to: 'restaurants#map'                          # restaurants' map
   get  '/restaurants/list',       to: 'restaurants#list'                         # restaurants' list
   get  '/search',                 to: 'searches#find'                            # search in models
