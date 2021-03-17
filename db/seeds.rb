@@ -33,8 +33,6 @@ require 'faker'
     Location.create!(location)
   end
 
-  exit
-
   restaurants = [
       {name: "Mizio's Street Food",
       description: "Italian street food",
@@ -217,6 +215,16 @@ require 'faker'
       }
     ]
 
+
+  10.times do
+    User.create!(
+      first_name: Faker::Name.first_name,
+      last_name: Faker::Name.last_name,
+      email: Faker::Internet.email,
+      password: 'helloworld',
+      cuisine_id: Cuisine.all.sample.id
+    )
+  end
     restaurants.each do |restaurant|
 
       Restaurant.create!(
@@ -236,13 +244,6 @@ require 'faker'
     end
 
   10.times do
-    User.create!(
-      first_name: Faker::Name.first_name,
-      last_name: Faker::Name.last_name,
-      email: Faker::Internet.email,
-      password: 'helloworld',
-      cuisine_id: Cuisine.all.sample.id
-    )
 
     Dish.create!(
       name: Faker::Food.dish,
