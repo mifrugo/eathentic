@@ -9,6 +9,14 @@ body {
   }
 }
 
+body {
+  &:not([class^="cuisines-"]):not([class^="restaurants-"]):not(.pages-home) {
+    #content {
+      padding: 2rem;
+    }
+  }
+}
+
 .modal-content {
   border-radius: 10px;
 }

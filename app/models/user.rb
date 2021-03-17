@@ -1,7 +1,4 @@
 class User < ApplicationRecord
-  before_validation :foo
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :restaurants
@@ -13,7 +10,13 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
-  def foo
-    cuisine_id = 12
-  end  
+  def navbar_avatar(size: 40)
+    # if avatar.attached?
+    #   cl_image_tag(avatar.key, class: 'avatar')
+    # else
+    #   lavatar_tag(email[0] << ' ' << email[1], size, { class: 'avatar' })
+    # end
+    ""
+  end
+
 end
