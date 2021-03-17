@@ -5,6 +5,6 @@ class ReviewPolicy < ApplicationPolicy
     end
   end
   def create?
-    user.cuisine_id == record.restaurant.cuisine_id
+    user.cuisine_id == record.restaurant.cuisine_id && record.reviewers.where((id: user.id).size < 1 %>
   end
 end

@@ -12,4 +12,8 @@ class RestaurantPolicy < ApplicationPolicy
   def list?
     true
   end  
+
+  def review?
+    user.cuisine_id == record.cuisine_id 
+  end  
 end
