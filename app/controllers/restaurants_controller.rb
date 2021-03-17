@@ -1,10 +1,10 @@
 class RestaurantsController < ApplicationController
-  before_action :set_restaurant, only: [:show]
+  skip_before_action :authenticate_user!
+  before_action :set_restaurant, only: %i[show]
   before_action :geolocalize, only: %i[list map list_per_dish]
   before_action :set_restaurants, only: %i[list map list_per_dish]
 
-  def map
-  end
+  def map; end
 
   def list; end
 
@@ -20,11 +20,9 @@ class RestaurantsController < ApplicationController
     @review = Review.new
   end
 
-  def new
-  end
+  def new; end
 
-  def edit
-  end
+  def edit; end
 
   private
 

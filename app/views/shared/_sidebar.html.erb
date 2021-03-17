@@ -1,8 +1,8 @@
 <nav id="sidebar">
   <div class="p-4 pt-5 mt-4">
-
     <% if user_signed_in? %>
-      <a href="#" class="img logo rounded-circle mb-5" style="background-image: url(https://res.cloudinary.com/frugo/image/upload/oy1ftz4zoowlh483tu4aekpq46t4); background-size: contain"></a>
+      <a href="#" class="img logo rounded-circle" style="background-image: url(https://res.cloudinary.com/frugo/image/upload/oy1ftz4zoowlh483tu4aekpq46t4); background-size: contain"></a>
+      <%= link_to "update profile", "#", class: "small text-center d-block mx-auto my-2", data: { toggle: 'modal', target: '#editUserModal', controller: "sidebar", action: "click->sidebar#click" } %>
     <% else %>
       <div class="text-center mx-auto mb-2 w-75">
         <%= link_to "Login", "#", class: 'btn btn-outline-primary btn-rounded d-block', data: { toggle: 'modal', target: '#loginModal', controller: "sidebar", action: "click->sidebar#click" } %>
@@ -40,8 +40,11 @@
       </li>-->
     </ul>
 
-    <div class="footer">
+    <div class="footer w-75">
       <small>©<%= Date.today.year %> Eathentic</small>
+      <% if user_signed_in? %>
+        <%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'text-warning text-small float-right' %>
+    <% end %>
     </div>
 
   </div>
@@ -68,4 +71,6 @@
 
 <% unless user_signed_in? %>
   <%= render 'devise/sessions/modal' %>
+<% else %>
+  <%= render 'devise/sessions/update' %>
 <% end %>

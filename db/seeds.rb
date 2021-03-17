@@ -1,14 +1,5 @@
 require 'faker'
 
-    LOCATIONS =  [
-  { name: 'Bari', longitude: '41.117142', latitude: '16.871872' },
-  { name: 'Roma', longitude: '41.902782', latitude: '12.496366' },
-  { name: 'Bergamo', longitude: '45.695000', latitude: '9.670000' },
-  { name: 'Monza', longitude: ' 45.583332', latitude: '9.266667' },
-  { name: 'Verona', longitude: ' 45.433334', latitude: '10.983333' },
-  { name: 'Milano', longitude: ' 45.464664', latitude: '9.188540' },
-]
-
   MenuDish.destroy_all
   Menu.destroy_all
   DishIngredient.destroy_all
@@ -20,15 +11,34 @@ require 'faker'
   Cuisine.destroy_all
   Location.destroy_all
 
+  puts "Resetting the tables..."
+  ActiveRecord::Base.connection.reset_pk_sequence!('users')
+  ActiveRecord::Base.connection.reset_pk_sequence!('menu_dishes')
+  ActiveRecord::Base.connection.reset_pk_sequence!('dishes')
+  ActiveRecord::Base.connection.reset_pk_sequence!('ingredients')
+  ActiveRecord::Base.connection.reset_pk_sequence!('cuisines')
+  ActiveRecord::Base.connection.reset_pk_sequence!('locations')
+  ActiveRecord::Base.connection.reset_pk_sequence!('dish_ingredients')
+  ActiveRecord::Base.connection.reset_pk_sequence!('reviews')
+  ActiveRecord::Base.connection.reset_pk_sequence!('menus')
+  ActiveRecord::Base.connection.reset_pk_sequence!('restaurants')
 
 
-
-
-
+  puts "Creating cuisines ..."
   ["italian", "chinese", "japanese","french", "indian", "thai"].each do |cuisine|
     Cuisine.create(name: cuisine.capitalize)
   end
 
+  LOCATIONS =  [
+    { name: 'Bari', longitude: '41.117142', latitude: '16.871872' },
+    { name: 'Roma', longitude: '41.902782', latitude: '12.496366' },
+    { name: 'Bergamo', longitude: '45.695000', latitude: '9.670000' },
+    { name: 'Monza', longitude: ' 45.583332', latitude: '9.266667' },
+    { name: 'Verona', longitude: ' 45.433334', latitude: '10.983333' },
+    { name: 'Milano', longitude: ' 45.464664', latitude: '9.188540' },
+  ]
+
+  puts "Creating locations..."
   LOCATIONS.each do |location|
     Location.create!(location)
   end
@@ -215,7 +225,7 @@ require 'faker'
       }
     ]
 
-
+  puts "Creating users..."
   10.times do
     User.create!(
       first_name: Faker::Name.first_name,
@@ -225,26 +235,28 @@ require 'faker'
       cuisine_id: Cuisine.all.sample.id
     )
   end
-    restaurants.each do |restaurant|
 
-      Restaurant.create!(
-      cuisine_id: Cuisine.all.sample.id,
+  puts "Creating restaurants..."
+  restaurants.each do |restaurant|
+    rest = Restaurant.create!(
+      cuisine_id: Cuisine.where(name: 'Italian').first.id,
       user_id: User.all.sample.id,
       location_id: Location.where(name: "Roma").first.id,
       name: restaurant[:name],
       description: restaurant[:description],
       latitude: restaurant[:latitude],
       longitude: restaurant[:longitude]
-      #name: Faker::Restaurant.name,
-      #description: Faker::Restaurant.type,
-      #latitude: location[:latitude],
-      #longitude: location[:longitude]
     )
 
-    end
+    Menu.create!(
+      restaurant_id: rest.id,
+      user_id: User.all.sample.id,
+      name: 'Main'
+    )
+  end
 
+  puts "Creating other stuff..."
   10.times do
-
     Dish.create!(
       name: Faker::Food.dish,
       description: Faker::Food.description,
@@ -272,7 +284,5 @@ require 'faker'
     DishIngredient.create!(
       dish_id: Dish.all.sample.id,
       ingredient_id: Ingredient.all.sample.id
-
     )
-
   end

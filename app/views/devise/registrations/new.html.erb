@@ -1,36 +1,50 @@
-<h2>Sign up</h2>
+<h2 class="text-center mb-4">Create an account</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-                          
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :first_name,
-                required: true,
-                input_html: { autocomplete: "First name" } %>
-    <%= f.input :last_name,
-                required: true,
-                input_html: { autocomplete: "Last name" } %>
-    <%= f.input :nickname,
-                required: true,
-                input_html: { autocomplete: "Username" } %>                                                 
-    <%= f.association :cuisine, collection: Cuisine.all, as: :radio_buttons %>              
+    <div class="form-label-group">
+      <%= f.input :nickname, autofocus: true,
+                  required: true, label: false, wrapper: false,
+                  input_html: { autocomplete: "nickname", placeholder: "Nickname" } %>
+      <%= f.label :nickname %>
+    </div>
+
+    <div class="form-label-group">
+      <%= f.input :email,
+                  required: true, label: false, wrapper: false,
+                  autofocus: true,
+                  input_html: { autocomplete: "email", placeholder: "Email" }%>
+      <%= f.label :email %>
+    </div>
+
+    <div class="form-label-group">
+      <%= f.input :password,
+                  required: true, label: false, wrapper: false,
+                  hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                  input_html: { autocomplete: "new-password", placeholder: "Password" } %>
+      <%= f.label :password %>
+    </div>
+
+    <div class="form-label-group">
+      <%= f.input :password_confirmation,
+                required: true, label: false, wrapper: false,
+                input_html: { autocomplete: "new-password", placeholder: "Password confirmation" } %>
+      <%= f.label :password_confirmation %>
+    </div>
+
+    <h5 class="text-center mt-3">Choose a type of cuisine</h5>
+    <h6 class="description">You will be able to review only the restaurants of the same cuisine.</h6>
+
+    <%= f.association :cuisine, collection: Cuisine.all, as: :radio_buttons,
+            collection_wrapper_tag: 'div',
+            collection_wrapper_class: 'category-wrapper',
+            item_wrapper_class: 'category-item',
+            input_html: {class: 'category-selector'} %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+    <%= f.button :submit, "Sign up", class: 'btn btn btn btn-secondary btn-rounded d-block w-75 mx-auto' %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>

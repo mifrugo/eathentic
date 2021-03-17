@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
+
+  devise_scope :user do
+    put '/users/avatar', to: 'update_users#update_avatar'
+    put '/users/email', to: 'update_users#update_email'
+    put '/users/password', to: 'update_users#update_password'
+  end
+
   devise_for :users
+
   root to: 'pages#home'
   get  '/cuisines',               to: 'cuisines#index'                           # cuisines' index
   get  '/cuisines/:id',           to: 'cuisines#show', as: 'cuisine'             # one cuisine's show

@@ -1,4 +1,3 @@
 class SearchesController < ApplicationController
-  def find
-  end
+  def find; end
 end
