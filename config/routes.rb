@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :sers
   devise_for :users
   root to: 'pages#home'
   get  '/cuisines',               to: 'cuisines#index'                           # cuisines' index
