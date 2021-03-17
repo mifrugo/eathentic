@@ -1,6 +1,27 @@
-<h1><%= @cuisine.name %></h1>
+<header class="d-flex justify-content-center align-items-center flex-column" style="background-image: url(<%= image_path('cuisines/italian.jpg') %>)">
+  <h1 class="mt-auto"><%= @cuisine.name %></h1>
+  <%= form_tag cuisine_search_path, method: :get , class: 'form-inline form-search mt-auto w-100' do %>
+      <div class="form-group m-auto w-75">
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control mx-sm-3 w-100",
+          placeholder: "Search dishes in #{@cuisine.name} cuisine"
+        %>
+        <i class="fa fa-search"></i>
+      </div>
+    <% end %>
+</header>
 
-<% @restaurants.each do |restaurant| %>
-  <li><%= link_to restaurant.name, restaurant_path(restaurant.id) %></li>
-<% end %>
-  </ul>
+<div class="mt-5">
+  <% if action_name == 'search' && params[:query].present? %>
+    <h4 class="text-center mb-3"><span><%= pluralize(@dishes.count, 'result') %></span> for <span class="badge badge-primary align-middle"><%= params[:query] %></span></h4>
+
+    <% if @dishes.count === 0 %>
+      <p class="text-center">Try a more generic search 😉</p>
+    <% end %>
+  <% end %>
+
+  <% @dishes.each do |dish| %>
+    <%= render 'dish_card', dish: dish %>
+  <% end %>
+</div>

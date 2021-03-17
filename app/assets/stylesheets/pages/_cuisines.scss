@@ -1,0 +1,49 @@
+.cuisines-show, .cuisines-search {
+
+  header {
+    height: 30vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+      h1 {
+        color: $white;
+        text-shadow: $shadow-header;
+      }
+
+    .form-search {
+      margin-bottom: -1.2rem;
+
+      .form-group {
+        position: relative;
+
+        input {
+          padding-left: 2rem;
+          border-radius: 15px;
+        }
+
+        i {
+          position: absolute;
+          left: .5rem;
+          top: .65rem;
+          color: #495057;
+        }
+      }
+    }
+
+  }
+
+  .card {
+    margin-bottom: 1rem!important;
+    border-radius: 10px;
+    width: 90%;
+
+    .card-header {
+      border-radius: 10px 10px 0 0;
+      height: 20vh;
+      background-size: cover;
+      background-position: center bottom;
+      color: $white;
+      text-shadow: $shadow-header;
+    }
+  }
+}

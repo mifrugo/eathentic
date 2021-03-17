@@ -7,5 +7,9 @@ class CuisinePolicy < ApplicationPolicy
 
   def show?
     true
-  end  
+  end
+
+  def search?
+    true
+  end
 end
