@@ -13,6 +13,7 @@ require 'faker'
   Menu.destroy_all
   DishIngredient.destroy_all
   Dish.destroy_all
+  Review.destroy_all
   Restaurant.destroy_all
   Ingredient.destroy_all
   User.destroy_all
