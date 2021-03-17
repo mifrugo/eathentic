@@ -8,11 +8,8 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to restaurant_path(@restaurant), notice: "Review succesfully created!"
     else
-      render :show
-    end    
-  end
-  
-  def create
+      render 'restaurants/show', notice: "Invalid input"
+    end      
   end
 
   def react

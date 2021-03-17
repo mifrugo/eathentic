@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  before_validation :foo
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -11,4 +12,8 @@ class User < ApplicationRecord
   belongs_to :cuisine
 
   has_one_attached :avatar
+
+  def foo
+    cuisine_id = 12
+  end  
 end
