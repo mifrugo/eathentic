@@ -2,6 +2,7 @@ import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
 import MapboxGeocoder from 'mapbox-gl-geocoder/dist/mapbox-gl-geocoder.min.js'
 import 'mapbox-gl/dist/mapbox-gl.css';
 import 'mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css'
+import Cookies from 'js-cookie'
 
 let markers = []
 var map;
@@ -22,12 +23,10 @@ const setMarker = () => {
 };
 
 const getLocation = () => {
-  const storage = sessionStorage.getItem('geo')
-  if( storage ) {
-    return JSON.parse(storage)
-  }
+  const latitude = Cookies.get('latitude') || 41.89306
+  const longitude = Cookies.get('longitude') || 12.48278
 
-  return { "latitude": 41.89306, "longitude": 12.48278 }
+  return { "latitude": latitude, "longitude": longitude }
 }
 
 const renderMap = () => {
@@ -55,11 +54,9 @@ const renderMap = () => {
 
   geolocate.on('geolocate', function (ev) {
 
-    const data = {
-      latitude: ev.coords.latitude,
-      longitude: ev.coords.longitude
-    }
-    sessionStorage.setItem('geo', JSON.stringify(data))
+    console.log('Geolocate');
+    Cookies.set('latitude', ev.coords.latitude)
+    Cookies.set('longitude', ev.coords.longitude)
 
   });
 
@@ -81,11 +78,9 @@ const setGeocoder = () => {
 
   geocoder.on('result', function (ev) {
     const styleSpec = ev.result;
-    const data = {
-      latitude: styleSpec.center[1],
-      longitude: styleSpec.center[0]
-    }
-    sessionStorage.setItem('geo', JSON.stringify(data))
+    console.log('Geocoder done')
+    Cookies.set('latitude', styleSpec.center[1])
+    Cookies.set('longitude', styleSpec.center[0])
   });
 
 

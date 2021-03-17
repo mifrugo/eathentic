@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get  '/cuisines/:id/search',    to: 'cuisines#search', as: :cuisine_search
   get  '/restaurants/map',        to: 'restaurants#map'                          # restaurants' map
   get  '/restaurants/list',       to: 'restaurants#list'                         # restaurants' list
+  get '/restaurants/list/dish/:id', to: 'restaurants#list_per_dish', as: :restaurant_dish
   get  '/search',                 to: 'searches#find'                            # search in models
   get  '/restaurants/:id',        to: 'restaurants#show', as: 'restaurant'       # one restaurant's show and its reviews
   get  '/restaurants/new',        to: 'restaurants#new'                          # create a new restaurant
