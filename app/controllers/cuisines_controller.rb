@@ -1,4 +1,5 @@
 class CuisinesController < ApplicationController
+  skip_before_action :authenticate_user!
   before_action :single_cuisine, only: %i[show search]
 
   def index
