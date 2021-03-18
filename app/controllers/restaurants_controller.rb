@@ -1,10 +1,12 @@
 class RestaurantsController < ApplicationController
   skip_before_action :authenticate_user!
+
+  before_action :set_location, only: %i[location_list search_location]
   before_action :set_restaurant, only: %i[show]
   before_action :geolocalize, only: %i[list map list_per_dish search_list search_dish]
-  before_action :set_restaurants, only: %i[list map search_list]
+  before_action :set_restaurants, only: %i[list map search_list location_list search_location]
   before_action :restaurants_per_dish, only: %i[list_per_dish search_dish]
-  before_action :restaurants_search, only: %i[search_list search_dish]
+  before_action :restaurants_search, only: %i[search_list search_dish search_location]
   before_action :dish, only: %i[list_per_dish search_dish]
 
   def map; end
@@ -34,6 +36,16 @@ class RestaurantsController < ApplicationController
     render :list
   end
 
+  def location_list
+    @path = location_search_path
+    render :list
+  end
+
+  def search_location
+    @path = location_search_path
+    render :list
+  end
+
   def new; end
 
   def edit; end
@@ -48,6 +60,12 @@ class RestaurantsController < ApplicationController
   def set_restaurants
     @restaurants = Restaurant.near([@latitude, @longitude], 15)
     authorize @restaurants
+  end
+
+  def set_location
+    @location = Location.find(params[:id])
+    @latitude = @location.longitude
+    @longitude = @location.latitude
   end
 
   def dish
