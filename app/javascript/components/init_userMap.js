@@ -8,6 +8,10 @@ const displaySearching = (text) => {
 document.getElementById("userLocationModalLabel").innerHTML = text
 };
 
+const displayRestaurants = (redirect) => {
+document.getElementById("userMap").insertAdjacentHTML = redirect
+};
+
 let markers = []
 var map;
 
