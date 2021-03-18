@@ -6,7 +6,7 @@ class Dish < ApplicationRecord
   has_many :menu_dishes
   has_many :menus, through: :menu_dishes
 
-  has_one_attached :photo
+  has_many_attached :photos
 
   pg_search_scope :search_complex,
                   against: %i[name description],
