@@ -23,6 +23,8 @@ require("channels")
 // ----------------------------------------------------
 
 // External imports
+import $ from 'jquery';
+window.$ = $ = jQuery;
 import "bootstrap";
 import "controllers"
 
@@ -35,7 +37,6 @@ window.$ = $ = jQuery;
 import { setVH } from '../components/init_vh';
 import { autoComplete } from '../components/init_autocomplete'
 import { getLocation } from '../components/init_geolocal'
-import { slideout } from '../components/init_menu'
 import { renderMap } from '../components/init_userMap'
 import { setBodyClass } from '../components/init_body'
 
