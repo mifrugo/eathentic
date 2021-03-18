@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :get_cuisines
+  before_action :get_locations
   before_action :authenticate_user!
   include Pundit
 
@@ -22,4 +23,8 @@ class ApplicationController < ActionController::Base
   def get_cuisines
     @cuisines = Cuisine.all
   end
+
+  def get_locations
+    @locations = Location.all
+  end  
 end

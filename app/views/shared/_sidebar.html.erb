@@ -43,6 +43,16 @@
         </ul>
       </li>
       <li>
+        <a href="#locationSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Browse Locations</a>
+        <ul class="collapse list-unstyled" id="locationSubMenu">
+          <% @locations.each do |location| %>
+            <li>
+              <%= link_to location.name, location_path(location) %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+      <li>
         <a href="#" data-toggle="modal" data-target="#userLocationModal" data-controller="sidebar" data-action="click->sidebar#click">Change location</a>
       </li>
       <!--<li>
