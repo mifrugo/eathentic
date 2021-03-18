@@ -9,7 +9,7 @@ const setLocation = (position) => {
 }
 
 const errorLocation = () => {
-  alert('Error in establishing your current position.')
+  $('#userLocationModal').modal('show')
 }
 
 const browserLocation = () => {

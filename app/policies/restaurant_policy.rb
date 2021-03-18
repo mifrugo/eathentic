@@ -20,4 +20,12 @@ class RestaurantPolicy < ApplicationPolicy
   def review?
     user && (user.cuisine_id == record.cuisine_id && Review.where(user_id: user.id, restaurant_id: record.id).empty?)
   end
+
+  def search_list?
+    true
+  end
+
+  def search_dish?
+    true
+  end
 end
