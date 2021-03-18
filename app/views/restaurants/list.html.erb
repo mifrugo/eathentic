@@ -2,6 +2,9 @@
   <h1 class="mt-auto text-center">
   <% if @dish %>
     <em><%= @dish.name %></em>'s restaurants
+  <% elsif @location %>
+    <% where = @location.name %>
+    <em><%= @location.name %></em>'s restaurants
   <% else %>
     Restaurants
   <% end %>
@@ -11,7 +14,7 @@
         <%= text_field_tag :query,
           params[:query],
           class: "form-control mx-sm-3 w-100",
-          placeholder: "Search restaurants near you"
+          placeholder: "Search restaurants near #{where || 'you'}"
         %>
         <i class="fa fa-search"></i>
       </div>

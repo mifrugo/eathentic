@@ -10,6 +10,8 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
+  validates :nickname, presence: true
+
   def navbar_avatar(size: 40)
     # if avatar.attached?
     #   cl_image_tag(avatar.key, class: 'avatar')
