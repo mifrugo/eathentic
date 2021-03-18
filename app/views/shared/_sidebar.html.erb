@@ -43,8 +43,8 @@
         </ul>
       </li>
       <li>
-        <a href="#cuisineSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Browse Locations</a>
-        <ul class="collapse list-unstyled" id="cuisineSubMenu">
+        <a href="#locationSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Browse Locations</a>
+        <ul class="collapse list-unstyled" id="locationSubMenu">
           <% @locations.each do |location| %>
             <li>
               <%= link_to location.name, location_path(location) %>
