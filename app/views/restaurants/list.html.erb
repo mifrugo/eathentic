@@ -1,4 +1,6 @@
-<header class="d-flex justify-content-center align-items-center flex-column" style="background-image: url(<%= image_path('cuisines/italian.jpg') %>)">
+<% background = @location && @location.photos.attached? ? cl_image_path(@location.photos.first.key) : image_path("cuisines/italian.jpg") %>
+
+<header class="d-flex justify-content-center align-items-center flex-column" style="background-image: url(<%= background %>)">
   <h1 class="mt-auto text-center">
   <% if @dish %>
     <em><%= @dish.name %></em>'s restaurants
