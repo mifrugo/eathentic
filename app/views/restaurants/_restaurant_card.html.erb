@@ -1,9 +1,30 @@
-<% background = restaurant.photos.attached? ? cl_image_path(restaurant.photos.first.key) : image_path('dishes/margherita.jpg') %>
-<div class="card mb-2 mx-auto text-center" onclick=window.location="/restaurants/<%= restaurant.id %>">
+<%
+background =
+  if restaurant.class.name == 'GooglePlaces::Spot'
+    if restaurant.photos[0]
+      background = restaurant.photos[0].fetch_url(800)
+    end
+  elsif restaurant.photos.attached?
+    cl_image_path(restaurant.photos.first.key)
+  end || image_path('dishes/margherita.jpg')
+
+  link = "onclick=window.location=\"/restaurants/#{restaurant.id}\"" if restaurant.class.name != 'GooglePlaces::Spot'
+
+%>
+
+<div class="card mb-2 mx-auto text-center" <%= link %>>
   <div style="background-image: url(<%= background %>)" class="card-header d-flex align-items-center justify-content-center">
     <h3><%= restaurant.name %></h3>
   </div>
   <div class="card-body">
-    <p class="card-text"><%= restaurant.description %></p>
+    <% if restaurant.class.name != 'GooglePlaces::Spot' %>
+      <p class="card-text"><%= restaurant.description  %></p>
+    <% else %>
+      <p class="card-text">
+        <span class="text-center small mb-3 d-block"><%= restaurant.vicinity %></span>
+        <a href="https://www.google.com/maps/place/?q=place_id:<%= restaurant.place_id %>" target="_blank" class="btn btn-outline-primary btn-rounded mb-2 align-top">Show on Maps</a>
+        <a href="#" class="btn btn-outline-secondary btn-rounded">Add on Eathentic</a>
+      </p>
+    <% end %>
   </div>
 </div>

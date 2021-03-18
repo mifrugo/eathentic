@@ -37,6 +37,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise'
 gem 'pundit'
 gem 'pg_search'
+gem 'google_places'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
