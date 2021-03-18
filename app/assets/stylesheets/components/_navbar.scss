@@ -38,6 +38,17 @@ nav {
     margin-left: -$sidebar;
    }
 
+  #user-info {
+    > a {
+
+      &:after {
+        display: none;
+      }
+
+      border: none;
+    }
+  }
+
    .footer {
      position: fixed;
      bottom: 1rem;

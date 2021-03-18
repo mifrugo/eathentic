@@ -1,4 +1,6 @@
 class Restaurant < ApplicationRecord
+  include PgSearch::Model
+
   belongs_to :user
   belongs_to :location
 
@@ -14,4 +16,10 @@ class Restaurant < ApplicationRecord
   has_many :views
   has_many :reviewers, through: :reviews, source: :user
   has_many_attached :photos
+
+  pg_search_scope :search_complex,
+                  against: %i[name description],
+                  using: {
+                    tsearch: { prefix: true }
+                  }
 end

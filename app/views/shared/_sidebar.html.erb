@@ -1,8 +1,7 @@
 <nav id="sidebar">
   <div class="p-4 pt-5 mt-4">
     <% if user_signed_in? %>
-      <a href="#" class="img logo rounded-circle" style="background-image: url(https://res.cloudinary.com/frugo/image/upload/oy1ftz4zoowlh483tu4aekpq46t4); background-size: contain"></a>
-      <%= link_to "update profile", "#", class: "small text-center d-block mx-auto my-2", data: { toggle: 'modal', target: '#editUserModal', controller: "sidebar", action: "click->sidebar#click" } %>
+      <a href="#userSubMenu" data-toggle="collapse" aria-expanded="false" class="img logo rounded-circle" style="background-image: url(https://res.cloudinary.com/frugo/image/upload/oy1ftz4zoowlh483tu4aekpq46t4); background-size: contain"></a>
     <% else %>
       <div class="text-center mx-auto mb-2 w-75">
         <%= link_to "Login", "#", class: 'btn btn-outline-primary btn-rounded d-block', data: { toggle: 'modal', target: '#loginModal', controller: "sidebar", action: "click->sidebar#click" } %>
@@ -11,6 +10,25 @@
     <% end %>
 
     <ul class="list-unstyled components mb-5">
+    <% if user_signed_in? %>
+        <li id="user-info" class="mb-4 text-center">
+          <a href="#userSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><%= current_user.nickname %></a>
+          <ul class="collapse list-unstyled" id="userSubMenu">
+            <li>
+              <a>update avatar</a>
+            </li>
+            <li>
+              <a>update password</a>
+            </li>
+            <li>
+              <a>change email</a>
+            </li>
+            <li>
+              <a>logout</a>
+            </li>
+          </ul>
+        </li>
+      <% end %>
       <li>
         <%= link_to 'Home', root_path %>
       </li>
@@ -42,9 +60,6 @@
 
     <div class="footer w-75">
       <small>©<%= Date.today.year %> Eathentic</small>
-      <% if user_signed_in? %>
-        <%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'text-warning text-small float-right' %>
-    <% end %>
     </div>
 
   </div>
@@ -60,6 +75,9 @@
         </button>
       </div>
         <div class="modal-body">
+          <% if cookies[:latitude].nil? %>
+              <small>Please set your location</small>
+          <% end %>
           <div id="geocoder" class="geocoder"></div>
           <div style="height: 30vh" class="mb-4 position-relative">
             <div id="userMap" data-apikey="<%= ENV['MAPBOX_KEY'] %>" style="height: 100%"></div>

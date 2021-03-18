@@ -1,6 +1,37 @@
-<h1>Restaurants</h1>
-<ul>
-<% @restaurants.each do |restaurant| %>
-  <li><%= link_to restaurant.name, restaurant_path(restaurant.id) %></li>
-<% end %>
-  </ul>
+<header class="d-flex justify-content-center align-items-center flex-column" style="background-image: url(<%= image_path('cuisines/italian.jpg') %>)">
+  <h1 class="mt-auto text-center">
+  <% if @dish %>
+    <em><%= @dish.name %></em>'s restaurants
+  <% else %>
+    Restaurants
+  <% end %>
+  </h1>
+  <%= form_tag @path, method: :get , class: 'form-inline form-search mt-auto w-100' do %>
+      <div class="form-group m-auto w-75">
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control mx-sm-3 w-100",
+          placeholder: "Search restaurants near you"
+        %>
+        <i class="fa fa-search"></i>
+      </div>
+    <% end %>
+</header>
+
+<div class="mt-5">
+  <% if %w[search_list search_dish].include? action_name %>
+    <% unless @restaurants.empty? || params[:query].nil? %>
+      <h4 class="text-center mb-3"><span><%= pluralize(@restaurants.length, 'result') %></span> for <span class="badge badge-primary align-middle"><%= params[:query] %></span></h4>
+    <% else %>
+        <h4 class="text-center mb-3"><span>No results</span> for <span class="badge badge-primary align-middle"><%= params[:query] %></span></h4>
+        <p class="text-center w-75 m-auto">Try a more generic search or <a href="#" data-toggle="modal" data-target="#userLocationModal">change your location</a> 😉</p>
+    <% end %>
+  <% elsif @restaurants.empty? %>
+    <h4 class="text-center mb-3"><span>No restaurants near you.</span></h4>
+    <p class="text-center w-75 m-auto">Try to <a href="#" data-toggle="modal" data-target="#userLocationModal">change your location</a> 😉</p>
+  <% end %>
+
+  <% @restaurants.each do |restaurant| %>
+    <%= render 'restaurant_card', restaurant: restaurant %>
+  <% end %>
+</div>
