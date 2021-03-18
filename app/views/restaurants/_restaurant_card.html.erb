@@ -1,5 +1,6 @@
+<% background = restaurant.photos.attached? ? cl_image_path(restaurant.photos.first.key) : image_path('dishes/margherita.jpg') %>
 <div class="card mb-2 mx-auto text-center" onclick=window.location="/restaurants/<%= restaurant.id %>">
-  <div style="background-image: url(<%= image_path('dishes/margherita.jpg') %>)" class="card-header d-flex align-items-center justify-content-center">
+  <div style="background-image: url(<%= background %>)" class="card-header d-flex align-items-center justify-content-center">
     <h3><%= restaurant.name %></h3>
   </div>
   <div class="card-body">

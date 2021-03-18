@@ -7,11 +7,11 @@ class CuisinesController < ApplicationController
   end
 
   def show
-    @dishes = @cuisine.dishes
+    @dishes = @cuisine.dishes.uniq
   end
 
   def search
-    @dishes = params[:query].present? ? @cuisine.dishes.search_complex(params[:query]) : @cuisine.dishes
+    @dishes = params[:query].present? ? @cuisine.dishes.search_complex(params[:query]).uniq : @cuisine.dishes
     render :show
   end
 
