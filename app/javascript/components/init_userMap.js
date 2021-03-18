@@ -8,8 +8,10 @@ const displaySearching = (text) => {
 document.getElementById("userLocationModalLabel").innerHTML = text
 };
 
-const displayRestaurants = (redirect) => {
-document.getElementById("userMap").insertAdjacentHTML = redirect
+const displayRestaurants = () => {
+const button = document.querySelector("#modal-button").classList
+button.add("d-block")
+button.remove("d-none")
 };
 
 let markers = []
@@ -68,7 +70,7 @@ const renderMap = () => {
     setTimeout(() => {
       displaySearching(`<span class="text-success"> Location updated </span>`);
     }, 1000 )
-    
+    displayRestaurants();
   });
 
   setMarker();
@@ -96,7 +98,7 @@ const setGeocoder = () => {
     setTimeout(() => {
       displaySearching(`<span class="text-success"> Location updated </span>`);
     }, 1000 )
-    
+    displayRestaurants();
   });
 
 

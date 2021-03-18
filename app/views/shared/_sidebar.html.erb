@@ -64,6 +64,9 @@
           <div style="height: 30vh" class="mb-4 position-relative">
             <div id="userMap" data-apikey="<%= ENV['MAPBOX_KEY'] %>" style="height: 100%"></div>
           </div>
+          <div>
+          <%= link_to "See restaurants in this location", restaurants_list_path, class: "btn btn-outline-primary btn-rounded d-none m-auto", id: "modal-button" %>
+          </div>
       </div>
     </div>
   </div>
