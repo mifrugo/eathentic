@@ -1,8 +1,12 @@
 import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
-import MapboxGeocoder from 'mapbox-gl-geocoder/dist/mapbox-gl-geocoder.min.js'
+import MapboxGeocoder from 'mapbox-gl-geocoder/dist/mapbox-gl-geocoder.min.js';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import 'mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css'
-import Cookies from 'js-cookie'
+import 'mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+import Cookies from 'js-cookie';
+
+const displaySearching = (text) => {
+document.getElementById("userLocationModalLabel").innerHTML = text
+};
 
 let markers = []
 var map;
@@ -43,7 +47,7 @@ const renderMap = () => {
     zoom: 13,
   });
 
-  var geolocate = new mapboxgl.GeolocateControl({
+  const geolocate = new mapboxgl.GeolocateControl({
     positionOptions: {
       enableHighAccuracy: true
     },
@@ -53,11 +57,14 @@ const renderMap = () => {
   map.addControl(geolocate);
 
   geolocate.on('geolocate', function (ev) {
-
+    displaySearching(`<i class="fas fa-sync fa-spin"></i> Changing location...`);
     console.log('Geolocate');
     Cookies.set('latitude', ev.coords.latitude)
     Cookies.set('longitude', ev.coords.longitude)
-
+    setTimeout(() => {
+      displaySearching(`<span class="text-success"> Location updated </span>`);
+    }, 1000 )
+    
   });
 
   setMarker();
@@ -77,10 +84,15 @@ const setGeocoder = () => {
   document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
 
   geocoder.on('result', function (ev) {
+    displaySearching(`<i class="fas fa-sync fa-spin"></i> Changing location...`);
     const styleSpec = ev.result;
     console.log('Geocoder done')
     Cookies.set('latitude', styleSpec.center[1])
     Cookies.set('longitude', styleSpec.center[0])
+    setTimeout(() => {
+      displaySearching(`<span class="text-success"> Location updated </span>`);
+    }, 1000 )
+    
   });
 
 
