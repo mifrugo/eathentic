@@ -28,6 +28,8 @@ class RestaurantsController < ApplicationController
 
   def search_list
     @path = restaurant_search_path
+    @google_restaurants = search_google if @restaurants.empty? && user_signed_in?
+
     render :list
   end
 
@@ -79,6 +81,12 @@ class RestaurantsController < ApplicationController
                     .near([@latitude, @longitude], 15)
                     .where('menu_dishes.dish_id=?', params[:id])
     authorize @restaurants
+  end
+
+  def search_google
+    client = GooglePlaces::Client.new(ENV['GOOGLEAPI'])
+    @searched_restaurants =
+      client.spots(@latitude, @longitude, name: params[:query], radius: 40_00, types: 'restaurant')
   end
 
   def restaurants_search

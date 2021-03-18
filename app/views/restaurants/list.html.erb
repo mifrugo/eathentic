@@ -39,4 +39,13 @@
   <% @restaurants.each do |restaurant| %>
     <%= render 'restaurant_card', restaurant: restaurant %>
   <% end %>
+
+  <% if @searched_restaurants %>
+    <hr>
+    <h4 class="text-center mb-3">Results from the web</h4>
+    <% @searched_restaurants.each do |restaurant| %>
+      <%= render 'restaurant_card', restaurant: restaurant %>
+    <% end %>
+  <% end %>
+
 </div>
