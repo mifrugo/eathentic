@@ -112,7 +112,14 @@ require 'faker'
 
   puts "Creating locations..."
   LOCATIONS.each do |location|
-    Location.create!(location)
+
+    new_location = Location.create!(
+      name: location[:name],
+      latitude: location[:latitude],
+      longitude: location[:longitude]
+    )
+
+    new_location.photos.attach(io: File.open(Rails.root.join('public', 'images', 'cities', "#{location[:name].downcase}.jpeg")), filename:"#{location[:name].downcase}.jpeg")
   end
 
   restaurants = [
