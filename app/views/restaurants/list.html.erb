@@ -1,5 +1,11 @@
 <header class="d-flex justify-content-center align-items-center flex-column" style="background-image: url(<%= image_path('cuisines/italian.jpg') %>)">
-  <h1 class="mt-auto">Restaurants</h1>
+  <h1 class="mt-auto text-center">
+  <% if @dish %>
+    <em><%= @dish.name %></em>'s restaurants
+  <% else %>
+    Restaurants
+  <% end %>
+  </h1>
   <%= form_tag @path, method: :get , class: 'form-inline form-search mt-auto w-100' do %>
       <div class="form-group m-auto w-75">
         <%= text_field_tag :query,
@@ -13,8 +19,8 @@
 </header>
 
 <div class="mt-5">
-  <% if %w[search_list search_dish].include? action_name && params[:query].present? %>
-    <% unless @restaurants.empty? %>
+  <% if %w[search_list search_dish].include? action_name %>
+    <% unless @restaurants.empty? || params[:query].nil? %>
       <h4 class="text-center mb-3"><span><%= pluralize(@restaurants.length, 'result') %></span> for <span class="badge badge-primary align-middle"><%= params[:query] %></span></h4>
     <% else %>
         <h4 class="text-center mb-3"><span>No results</span> for <span class="badge badge-primary align-middle"><%= params[:query] %></span></h4>

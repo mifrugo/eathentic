@@ -5,6 +5,7 @@ class RestaurantsController < ApplicationController
   before_action :set_restaurants, only: %i[list map search_list]
   before_action :restaurants_per_dish, only: %i[list_per_dish search_dish]
   before_action :restaurants_search, only: %i[search_list search_dish]
+  before_action :dish, only: %i[list_per_dish search_dish]
 
   def map; end
 
@@ -14,7 +15,7 @@ class RestaurantsController < ApplicationController
 
   def list_per_dish
     @path = restaurant_dish_search_path
-        @restaurants= @restaurants.uniq
+    @restaurants = @restaurants.uniq
 
     render :list
   end
@@ -25,13 +26,11 @@ class RestaurantsController < ApplicationController
 
   def search_list
     @path = restaurant_search_path
-    @restaurants= @restaurants.uniq
     render :list
   end
 
   def search_dish
     @path = restaurant_dish_search_path
-    @restaurants= @restaurants.uniq
     render :list
   end
 
@@ -51,6 +50,10 @@ class RestaurantsController < ApplicationController
     authorize @restaurants
   end
 
+  def dish
+    @dish = Dish.find(params[:id])
+  end
+
   def restaurants_per_dish
     @restaurants =  Restaurant
                     .joins(:menus)
@@ -61,7 +64,7 @@ class RestaurantsController < ApplicationController
   end
 
   def restaurants_search
-    @restaurants = @restaurants.search_complex(params[:query]) if params[:query].present?
+    @restaurants = @restaurants.search_complex(params[:query]).uniq if params[:query].present?
   end
 
   def geolocalize
