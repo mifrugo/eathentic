@@ -28,4 +28,12 @@ class RestaurantPolicy < ApplicationPolicy
   def search_dish?
     true
   end
+
+  def search_location?
+    true
+  end
+
+  def location_list?
+    true
+  end
 end

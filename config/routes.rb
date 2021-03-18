@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   get '/restaurants/list/dish/:id', to: 'restaurants#list_per_dish', as: :restaurant_dish
   get '/restaurants/list/dish/:id/search', to: 'restaurants#search_dish', as: :restaurant_dish_search
 
+  get '/location/:id', to: 'restaurants#location_list', as: :location
+  get '/location/:id/search', to: 'restaurants#search_location', as: :location_search
+
   get  '/search',                 to: 'searches#find'                            # search in models
   get  '/restaurants/:id',        to: 'restaurants#show', as: 'restaurant'       # one restaurant's show and its reviews
   get  '/restaurants/new',        to: 'restaurants#new'                          # create a new restaurant
