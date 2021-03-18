@@ -28,9 +28,6 @@ window.$ = $ = jQuery;
 import "bootstrap";
 import "controllers"
 
-import $ from 'jquery';
-window.$ = $ = jQuery;
-
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
