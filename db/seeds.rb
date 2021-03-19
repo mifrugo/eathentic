@@ -35,7 +35,7 @@ require 'faker'
     { name: 'Venice', longitude: '45.4408', latitude: '12.3155' },
     { name: 'Naples', longitude: ' 40.8518', latitude: '14.2681' },
     { name: 'Verona', longitude: ' 45.433334', latitude: '10.983333' },
-    { name: 'Milano', longitude: ' 45.464664', latitude: '9.188540' },
+    { name: 'Milan', longitude: ' 45.464664', latitude: '9.188540' },
   ]
 
   puts "Creating users..."
@@ -393,37 +393,28 @@ require 'faker'
   client = GooglePlaces::Client.new(ENV['GOOGLEAPI'])
   milan_restaurants = client.spots(45.464664, 9.18854, radius: 40_00, types: 'restaurant')
     
-    puts "Creating restaurants in Milan ..."
-    milan_restaurants.first(100).each do |restaurant|
-      milan_rest = Restaurant.create!(
-        cuisine_id: Cuisine.where(name: 'Italian').first.id,
-        user_id: User.all.sample.id,
-        location_id: Location.where(name: "Milan").first.id,
-        name: restaurant[:name],
-        latitude: restaurant.lng,
-        longitude: restaurant.lat,
-        address: restaurant.vicinity
-      )
+  puts "Creating restaurants in Milan ..."
+  milan_restaurants.first(100).each do |restaurant|
+    milan_rest = Restaurant.create!(
+      cuisine_id: Cuisine.where(name: 'Italian').first.id,
+      user_id: User.all.sample.id,
+      location_id: Location.where(name: "Milan").first.id,
+      name: restaurant[:name],
+      latitude: restaurant.lng,
+      longitude: restaurant.lat,
+      address: restaurant.vicinity
+    )
   
-      milan_rest.photos.attach(io: File.open(Rails.root.join('public', 'images',
-      'restaurant-img', restaurant[:photo])), filename: restaurant[:photo])
+    milan_rest.photos.attach(io: URI.open(restaurant.photos[0].fetch_url(800)), filename: "milan")
   
-      menu = Menu.create!(
-        restaurant_id: milan_rest.id,
-        user_id: User.all.sample.id,
-        name: 'Main'
-      )
-      if restaurant[:dish].present?
-        restaurant[:dish].each do |dish|
-          dish = Dish.find_by("lower(name) = ?", dish.downcase)
-          if dish
-          MenuDish.create!(menu_id: menu.id, dish_id: dish.id)
-          end
-        end
-      end
-    end
-
-
+    menu_mi = Menu.create!(
+      restaurant_id: milan_rest.id,
+      user_id: User.all.sample.id,
+      name: 'Main'
+    )
+    dish_mi = Dish.all.sample
+    MenuDish.create!(menu_id: menu_mi.id, dish_id: dish_mi.id)
+   end
 
   # puts "Creating other stuff..."
   # 10.times do
