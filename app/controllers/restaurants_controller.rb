@@ -65,13 +65,15 @@ class RestaurantsController < ApplicationController
     if params[:gid].present?
       from_google
 
-      @restaurant = Restaurant.create!(
+      loc = Location.near([@scraped.lng, @scraped.lat], 20)
+
+      @restaurant = Restaurant.create(
         name: @scraped.name,
         address: @scraped.vicinity,
         latitude: @scraped.lat,
         longitude: @scraped.lng,
         cuisine_id: current_user.cuisine_id,
-        location_id: 1,
+        location_id: loc.id,
         user_id: current_user.id
       )
 
@@ -85,7 +87,7 @@ class RestaurantsController < ApplicationController
         name: 'Main'
       )
 
-      redirect_to restaurant_path(@restaurant), notice: "Restaurant added!"
+      redirect_to restaurant_path(@restaurant), notice: "Restaurant created!"
     else
       render :list
     end
