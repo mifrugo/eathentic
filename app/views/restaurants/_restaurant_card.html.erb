@@ -23,7 +23,7 @@ background =
       <p class="card-text">
         <span class="text-center small mb-3 d-block"><%= restaurant.vicinity %></span>
         <a href="https://www.google.com/maps/place/?q=place_id:<%= restaurant.place_id %>" target="_blank" class="btn btn-outline-primary btn-rounded mb-2 align-top">Show on Maps</a>
-        <a href="#" class="btn btn-outline-secondary btn-rounded">Add on Eathentic</a>
+        <%= link_to 'Add on Eathentic', restaurant_scrape_path(gid: restaurant.place_id, location: params[:id]), method: :post, class: 'btn btn-outline-secondary btn-rounded' %>
       </p>
     <% end %>
   </div>
