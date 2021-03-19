@@ -37,6 +37,7 @@ import { getLocation } from '../components/init_geolocal'
 import { renderMap } from '../components/init_userMap'
 import { setBodyClass } from '../components/init_body'
 import { alerts } from '../components/init_alerts'
+import { initTimeAgo } from '../components/init_timeago'
 
 document.addEventListener('turbolinks:load', () => {
   setVH();
@@ -44,6 +45,7 @@ document.addEventListener('turbolinks:load', () => {
 
   getLocation();
   alerts();
+  initTimeAgo();
 
   document.querySelector('#userMap') && renderMap();
 

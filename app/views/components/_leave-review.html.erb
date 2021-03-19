@@ -1,20 +1,20 @@
-<a href="#" data-toggle="modal" data-target="#leaveReviewModal">Rate this restaurant!</a>
+<a href="#" class="btn btn-secondary btn-rounded d-block mx-auto mb-4 w-50" data-toggle="modal" data-target="#leaveReviewModal">Leave a review</a>
 
 <div class="modal fade" id="leaveReviewModal" tabindex="-1" aria-labelledby="leaveReviewModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="leaveReviewModalLabel">Review <%= @restaurant.name %></h5>
+        <h5 class="modal-title" id="leaveReviewModalLabel">Review <strong><%= @restaurant.name %></strong></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
         <div class="modal-body">
           <%= simple_form_for([@restaurant, @review], remote: true) do |f| %>
-            <%= f.input :content, label: 'Review' %>
+            <%= f.input :content, label: 'How was your experience?' %>
             <%= f.input :rating, input_html: { class: 'd-none'}, label: false %>
             <div class="review-stars text-center my-2">
-              <label>Review the <strong>authenticity</strong></label>
+              <label>How much <strong>authentic</strong> was it?</label>
               <p>
                 <% 5.times do |i| %>
                   <i data-controller="review" data-action="click->review#change" class="far fa-star review-<%= i + 1 %>" data-star="<%= i + 1 %>"></i>

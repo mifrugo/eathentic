@@ -12,38 +12,83 @@
     <% end %>
 </header>
 
-<div class="mt-5">
+<div class="mt-4 w-100">
+  <div class="m-auto w-100 text-center">
+    <div class="btn-group btn-group-toggle my-2 mx-auto" data-toggle="buttons">
+      <label data-controller="review" data-action="click->review#show_dishes" class="btn btn-primary text-white active" style="border-radius: 10px 0 0 10px">
+        <input type="radio" name="options" id="option1" autocomplete="off" checked> Dishes
+           <% unless @dishes.empty? %>
+            (<%= @dishes.count %>)
+          <% end %>
+      </label>
+      <label data-controller="review" data-action="click->review#show_reviews" class="btn btn-primary text-white" style="border-radius: 0 10px 10px 0">
+        <input type="radio" name="options" id="option2" autocomplete="off"> Reviews
+        <% unless @restaurant.reviews.empty? %>
+          (<%= @restaurant.reviews.count %>)
+        <% end %>
+      </label>
+    </div>
+  </div>
+
+  <div id="dishes">
+    <% if @restaurant.dishes.empty? %>
+
+      <h4 class="text-center mt-3">Ops!</h4>
+      <p class="text-center">No dishes for this restaurant are available 😢</p>
+
+    <% else %>
+
+      <% if action_name == 'search' && params[:query].present? %>
+        <h4 class="text-center mb-3"><span><%= pluralize(@dishes.count, 'result') %></span> for <span class="badge badge-primary align-middle"><%= params[:query] %></span></h4>
+
+        <% if @dishes.count === 0 %>
+          <p class="text-center">Try a more generic search 😉</p>
+        <% end %>
+      <% end %>
+
+    <% end %>
+
+    <% @dishes.each do |dish| %>
+      <%= render 'dish_card', dish: dish %>
+    <% end %>
+
+    <a href="#" class="btn btn-primary btn-rounded mx-auto mb-2 d-block w-50">Add a dish</a>
+
+  </div>
+</div>
+
+<div id="reviews" style="display: none">
+  <% if @restaurant.reviews.empty? %>
+    <h4 class="text-center mt-3">Ops!</h4>
+    <p class="text-center">No authentic reviews yet 😢</p>
+  <% end %>
 
   <% if policy(@restaurant).review? %>
     <%= render 'components/leave-review' %>
   <% end %>
 
-  <% if @restaurant.dishes.empty? %>
-    <h4 class="text-center">Ops!</h4>
-    <p class="text-center">No dishes for this restaurant are available 😢</p>
-    <a href="#" class="btn btn-outline-primary btn-rounded m-auto d-block w-50 text-warning"><i class="fas fa-utensils mr-2"></i> Add a dish</a>
-  <% else %>
+    <% @restaurant.reviews.each do |review| %>
+      <div class="row mt-3 comments-container mx-3">
 
-    <% if action_name == 'search' && params[:query].present? %>
-      <h4 class="text-center mb-3"><span><%= pluralize(@dishes.count, 'result') %></span> for <span class="badge badge-primary align-middle"><%= params[:query] %></span></h4>
-
-      <% if @dishes.count === 0 %>
-        <p class="text-center">Try a more generic search 😉</p>
-      <% end %>
+        <div class="col-12 content-comments d-flex flex-column">
+          <div class="position-absolute" style="top: -15%; left: 5px">
+            <div class="row avatar-comments">
+              <%= review.user.navbar_avatar(size: 40) %>
+            </div>
+          </div>
+          <div class="position-absolute" style="right: 1em; top: 5%;  font-size: .9rem">
+            <%= '<i class="fas fa-star text-warning"></i>'.html_safe * (review.rating || 0) %>
+          </div>
+          <p class="mt-4 "><%= review.content %></p>
+          <div class="d-flex flex-row comment-bottom">
+            <div>
+              <%= review.user.nickname %>
+            </div>
+            <div class="comments-date flex-grow-1 text-right">
+              <time class="timeago" datetime="<%= review.created_at.iso8601 %>"></time>
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
-
-  <% end %>
-
-  <% @dishes.each do |dish| %>
-    <%= render 'dish_card', dish: dish %>
-  <% end %>
 </div>
-
-<ul>
-  <% @restaurant.reviews.each do |review| %>
-    <li>
-      <%= review.rating %>
-      <%= review.content %>
-    </li>
-  <% end %>
-</ul>

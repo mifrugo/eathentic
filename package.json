@@ -15,6 +15,7 @@
     "popper.js": "^1.16.1",
     "slideout": "^1.0.1",
     "stimulus": "^2.0.0",
+    "timeago": "^1.6.7",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",

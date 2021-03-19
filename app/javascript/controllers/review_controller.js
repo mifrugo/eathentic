@@ -16,4 +16,14 @@ export default class extends Controller {
     })
   }
 
+  show_reviews() {
+    $('#dishes').slideUp();
+    $('#reviews').slideDown();
+  }
+
+  show_dishes() {
+    $('#dishes').slideDown();
+    $('#reviews').slideUp();
+  }
+
 }
