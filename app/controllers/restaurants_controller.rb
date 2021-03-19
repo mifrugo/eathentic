@@ -1,4 +1,7 @@
 class RestaurantsController < ApplicationController
+
+  require 'open-uri'
+
   skip_before_action :authenticate_user!
 
   before_action :set_location, only: %i[location_list search_location]
@@ -58,6 +61,36 @@ class RestaurantsController < ApplicationController
 
   def edit; end
 
+  def scrape
+    if params[:gid].present?
+      from_google
+
+      @restaurant = Restaurant.create!(
+        name: @scraped.name,
+        address: @scraped.vicinity,
+        latitude: @scraped.lat,
+        longitude: @scraped.lng,
+        cuisine_id: current_user.cuisine_id,
+        location_id: 1,
+        user_id: current_user.id
+      )
+
+      authorize @restaurant
+
+      @restaurant.photos.attach(io: URI.open(@scraped.photos[0].fetch_url(800)), filename: @scraped.name)
+
+      Menu.create!(
+        restaurant_id: @restaurant.id,
+        user_id: current_user.id,
+        name: 'Main'
+      )
+
+      redirect_to restaurant_path(@restaurant), notice: "Restaurant added!"
+    else
+      render :list
+    end
+  end
+
   private
 
   def set_restaurant
@@ -99,6 +132,11 @@ class RestaurantsController < ApplicationController
     name = "#{params[:query]} #{current_user.cuisine.name}"
     @searched_restaurants =
       client.spots(@latitude, @longitude, name: name, radius: 40_00, types: 'restaurant')
+  end
+
+  def from_google
+    client = GooglePlaces::Client.new(ENV['GOOGLEAPI'])
+    @scraped = client.spot(params[:gid])
   end
 
   def restaurants_search

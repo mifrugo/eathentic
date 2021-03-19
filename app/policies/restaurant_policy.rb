@@ -13,6 +13,10 @@ class RestaurantPolicy < ApplicationPolicy
     show?
   end
 
+  def scrape?
+    true
+  end
+
   def list?
     true
   end

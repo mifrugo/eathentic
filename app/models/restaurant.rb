@@ -9,7 +9,7 @@ class Restaurant < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 
-  has_many :menus
+  has_many :menus, dependent: :destroy
   has_many :menu_dishes, through: :menus
   has_many :dishes, through: :menu_dishes
   has_many :reviews
