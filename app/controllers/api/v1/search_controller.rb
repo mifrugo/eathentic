@@ -6,6 +6,8 @@ module Api
       before_action :set_restaurants
 
       def index
+        error if params[:q].nil? || params[:q].length < 3
+
         @restaurants = policy_scope(@restaurants.search_complex(params[:q]))
         @cuisines = Cuisine.search_complex(params[:q])
         @dishes = Dish.search_complex(params[:q])

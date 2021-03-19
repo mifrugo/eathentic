@@ -17,13 +17,16 @@ const autoComplete = () => {
           fetch(url)
             .then(response => response.json())
             .then(data => {
-              resolve(data.restaurants)
+              console.log(data)
+              resolve(data)
             })
         })
       },
 
 
-      getResultValue: result => result.name,
+      getResultValue: result => {
+        console.log(result)
+      },
       onSubmit: result => {
         window.open(`${wikiUrl}/wiki/${encodeURI(result.title)
           }`)
