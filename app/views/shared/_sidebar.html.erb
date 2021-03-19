@@ -5,7 +5,7 @@
     <% else %>
       <div class="text-center mx-auto mb-2 w-75">
         <%= link_to "Login", "#", class: 'btn btn-outline-primary btn-rounded d-block', data: { toggle: 'modal', target: '#loginModal', controller: "sidebar", action: "click->sidebar#click" } %>
-        <%= link_to 'Register', new_user_registration_path, class: 'btn btn-outline-secondary btn-rounded d-block mt-2' %>
+        <%= link_to 'Register', new_user_registration_path, class: 'btn btn-outline-secondary btn-rounded d-block mt-2 mb-4' %>
       </div>
     <% end %>
 
@@ -15,7 +15,7 @@
           <a href="#userSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><%= current_user.nickname %></a>
           <ul class="collapse list-unstyled" id="userSubMenu">
             <li>
-              <a>update avatar</a>
+              <a class="small">update avatar</a>
             </li>
             <li>
               <a>update password</a>
@@ -30,7 +30,7 @@
         </li>
       <% end %>
       <li>
-        <%= link_to 'Home', root_path %>
+        <%= link_to 'Restaurants near you', restaurants_list_path %>
       </li>
       <li>
         <a href="#cuisineSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Discover a Cuisine</a>
