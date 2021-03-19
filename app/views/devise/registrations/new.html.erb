@@ -35,7 +35,7 @@
     </div>
 
     <h5 class="text-center mt-3">Choose a type of cuisine</h5>
-    <h6 class="description">You will be able to review only the restaurants of the same cuisine.</h6>
+    <h6 class="description">You will be able to review only restaurants of the same cuisine.</h6>
 
     <%= f.association :cuisine, collection: Cuisine.all, as: :radio_buttons,
             collection_wrapper_tag: 'div',
