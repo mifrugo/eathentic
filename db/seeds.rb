@@ -363,7 +363,7 @@ require 'faker'
     rest = Restaurant.create!(
       cuisine_id: Cuisine.where(name: 'Italian').first.id,
       user_id: User.all.sample.id,
-      location_id: Location.where(name: "Roma").first.id,
+      location_id: Location.where(name: "Rome").first.id,
       name: restaurant[:name],
       description: restaurant[:description],
       latitude: restaurant[:latitude],
@@ -389,6 +389,39 @@ require 'faker'
     end
   end
 
+  puts "Setting request ..."
+  client = GooglePlaces::Client.new(ENV['GOOGLEAPI'])
+  milan_restaurants = client.spots(45.464664, 9.18854, radius: 40_00, types: 'restaurant')
+    
+    puts "Creating restaurants in Milan ..."
+    milan_restaurants.first(100).each do |restaurant|
+      milan_rest = Restaurant.create!(
+        cuisine_id: Cuisine.where(name: 'Italian').first.id,
+        user_id: User.all.sample.id,
+        location_id: Location.where(name: "Milan").first.id,
+        name: restaurant[:name],
+        latitude: restaurant.lng,
+        longitude: restaurant.lat,
+        address: restaurant.vicinity
+      )
+  
+      milan_rest.photos.attach(io: File.open(Rails.root.join('public', 'images',
+      'restaurant-img', restaurant[:photo])), filename: restaurant[:photo])
+  
+      menu = Menu.create!(
+        restaurant_id: milan_rest.id,
+        user_id: User.all.sample.id,
+        name: 'Main'
+      )
+      if restaurant[:dish].present?
+        restaurant[:dish].each do |dish|
+          dish = Dish.find_by("lower(name) = ?", dish.downcase)
+          if dish
+          MenuDish.create!(menu_id: menu.id, dish_id: dish.id)
+          end
+        end
+      end
+    end
 
 
 
