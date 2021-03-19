@@ -1,4 +1,4 @@
-import timeago from 'timeago';
+import * as timeago from 'timeago';
 
 const initTimeAgo = () => {
   $("time.timeago").timeago();
