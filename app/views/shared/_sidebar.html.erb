@@ -27,7 +27,9 @@
               <%= link_to 'logout', destroy_user_session_path, method: :delete, class: "small border-0" %>
             </li>
           </ul>
+          <small class="d-block">Cuisine mastered</small> <span class="badge badge-primary"><%= current_user.cuisine.name %></span>
         </li>
+
       <% end %>
       <li>
         <%= link_to 'Restaurants near you', restaurants_list_path %>
