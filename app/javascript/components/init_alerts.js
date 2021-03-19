@@ -2,7 +2,7 @@ const alerts = () => {
 
   document.querySelectorAll('.alert').forEach((element) => {
     setTimeout(() => {
-      $(element).fadeOut().remove();
+      $(element).slideUp()
     }, 3000);
   })
 

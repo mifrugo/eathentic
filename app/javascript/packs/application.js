@@ -59,5 +59,6 @@ document.addEventListener('turbolinks:load', () => {
 
 window.addEventListener('resize', () => {
   setVH();
+  setBodyClass();
 });
 
