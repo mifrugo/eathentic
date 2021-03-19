@@ -1,4 +1,4 @@
-.cuisines-show, .cuisines-search, .restaurants-list, .restaurants-search_list, .restaurants-list_per_dish, .restaurants-search_dish, .restaurants-search_location, .restaurants-location_list {
+.cuisines-show, .cuisines-search, .restaurants-list, .restaurants-search_list, .restaurants-list_per_dish, .restaurants-search_dish, .restaurants-search_location, .restaurants-location_list, .restaurants-show, .restaurants-search {
 
   header {
     height: 30vh;
@@ -45,6 +45,7 @@
       background-position: center bottom;
       color: $white;
       text-shadow: $shadow-header;
+      border: none;
     }
   }
 }

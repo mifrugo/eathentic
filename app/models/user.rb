@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
-  validates :nickname, presence: true
+  validates :nickname, presence: true, uniqueness: true, length: { minimum: 3 }
 
   def navbar_avatar(size: 40)
     # if avatar.attached?

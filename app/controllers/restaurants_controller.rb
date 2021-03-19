@@ -2,7 +2,8 @@ class RestaurantsController < ApplicationController
   skip_before_action :authenticate_user!
 
   before_action :set_location, only: %i[location_list search_location]
-  before_action :set_restaurant, only: %i[show]
+  before_action :set_restaurant, only: %i[show search]
+  before_action :search_in_restaurant, only: :search
   before_action :geolocalize, only: %i[list map list_per_dish search_list search_dish]
   before_action :set_restaurants, only: %i[list map search_list location_list search_location]
   before_action :restaurants_per_dish, only: %i[list_per_dish search_dish]
@@ -23,7 +24,10 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-    @review = Review.new
+  end
+
+  def search
+    render :show
   end
 
   def search_list
@@ -58,6 +62,9 @@ class RestaurantsController < ApplicationController
 
   def set_restaurant
     @restaurant = Restaurant.find(params[:id])
+    @dishes = @restaurant.dishes
+    @review = Review.new
+
     authorize @restaurant
   end
 
@@ -96,6 +103,10 @@ class RestaurantsController < ApplicationController
 
   def restaurants_search
     @restaurants = @restaurants.search_complex(params[:query]).uniq if params[:query].present?
+  end
+
+  def search_in_restaurant
+    @dishes = @restaurant.dishes.search_complex(params[:query]) if params[:query].present?
   end
 
   def geolocalize

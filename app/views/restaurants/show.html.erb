@@ -1,9 +1,44 @@
-<h1><%= @restaurant.name %></h1>
-<p><%= @restaurant.description %></p>
+<header class="d-flex justify-content-center align-items-center flex-column" style="background-image: url(<%= cl_image_path(@restaurant.photos.first.key) %>)">
+  <h1 class="mt-auto"><%= @restaurant.name %></h1>
+  <%= form_tag restaurant_show_search_path, method: :get , class: 'form-inline form-search mt-auto w-100' do %>
+      <div class="form-group m-auto w-75">
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control mx-sm-3 w-100",
+          placeholder: "Search in #{@restaurant.name}"
+        %>
+        <i class="fa fa-search"></i>
+      </div>
+    <% end %>
+</header>
 
-<% if policy(@restaurant).review? %> 
-  <%= render 'components/leave-review' %>
-<% end %>
+<div class="mt-5">
+
+  <% if policy(@restaurant).review? %>
+    <%= render 'components/leave-review' %>
+  <% end %>
+
+  <% if @restaurant.dishes.empty? %>
+    <h4 class="text-center">Ops!</h4>
+    <p class="text-center">No dishes for this restaurant are available 😢</p>
+    <a href="#" class="btn btn-outline-primary btn-rounded m-auto d-block w-50 text-warning"><i class="fas fa-utensils mr-2"></i> Add a dish</a>
+  <% else %>
+
+    <% if action_name == 'search' && params[:query].present? %>
+      <h4 class="text-center mb-3"><span><%= pluralize(@dishes.count, 'result') %></span> for <span class="badge badge-primary align-middle"><%= params[:query] %></span></h4>
+
+      <% if @dishes.count === 0 %>
+        <p class="text-center">Try a more generic search 😉</p>
+      <% end %>
+    <% end %>
+
+  <% end %>
+
+  <% @dishes.each do |dish| %>
+    <%= render 'dish_card', dish: dish %>
+  <% end %>
+</div>
+
 <ul>
   <% @restaurant.reviews.each do |review| %>
     <li>
@@ -11,4 +46,4 @@
       <%= review.content %>
     </li>
   <% end %>
- </ul>
+</ul>
