@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   private
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[cuisine_id])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[cuisine_id nickname])
   end
 
   def skip_pundit?
@@ -26,5 +26,5 @@ class ApplicationController < ActionController::Base
 
   def get_locations
     @locations = Location.all
-  end  
+  end
 end

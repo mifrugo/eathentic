@@ -1,0 +1,9 @@
+<% background = dish.photos.attached? ? cl_image_path(dish.photos.first.key) : image_path('dishes/margherita.jpg') %>
+<div class="card mb-2 mx-auto text-center">
+  <div style="background-image: url(<%= background %>)" class="card-header d-flex align-items-center justify-content-center">
+    <h3><%= dish.name %></h3>
+  </div>
+  <div class="card-body">
+    <p class="card-text"><%= dish.description %></p>
+  </div>
+</div>

@@ -9,6 +9,10 @@ class RestaurantPolicy < ApplicationPolicy
     true
   end
 
+  def search?
+    show?
+  end
+
   def list?
     true
   end

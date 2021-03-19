@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  include CloudinaryHelper
+  include Lavatar::Helpers
+  include ActionView::Context
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :restaurants
@@ -10,15 +14,14 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
-  validates :nickname, presence: true
+  validates :nickname, presence: true, uniqueness: true, length: { minimum: 3 }
 
   def navbar_avatar(size: 40)
-    # if avatar.attached?
-    #   cl_image_tag(avatar.key, class: 'avatar')
-    # else
-    #   lavatar_tag(email[0] << ' ' << email[1], size, { class: 'avatar' })
-    # end
-    ""
+    if avatar.attached?
+      cl_image_tag(avatar.key, class: 'avatar')
+    else
+      lavatar_tag(nickname[0], size, { class: 'avatar' })
+    end
   end
 
 end
