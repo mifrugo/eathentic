@@ -1,5 +1,5 @@
 <header class="d-flex justify-content-center align-items-center flex-column" style="background-image: url(<%= cl_image_path(@restaurant.photos.first.key) %>)">
-  <h1 class="mt-auto"><%= @restaurant.name %></h1>
+  <h1 class="mt-auto text-center"><%= @restaurant.name %></h1>
   <%= form_tag restaurant_show_search_path, method: :get , class: 'form-inline form-search mt-auto w-100', data: {controller: 'search', action: 'submit->search#spinner'} do %>
       <div class="form-group m-auto w-75">
         <%= text_field_tag :query,

@@ -23,6 +23,8 @@ const getLocation = () => {
   const latitude = Cookies.get('latitude')
   const longitude = Cookies.get('longitude')
 
+  console.log(latitude)
+
   if( typeof latitude !== 'undefined' && typeof longitude !== 'undefined' ) {
     return { 'latitude': latitude, 'longitude': longitude }
   }

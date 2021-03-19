@@ -138,7 +138,7 @@ require 'faker'
       photo: "nannarella.jpeg"
       },
 
-      {name: "Tonarello",
+      {name: "Tonnarello",
       description: "Pasta homemade",
       latitude: 41.889622,
       longitude: 12.468848,
@@ -392,7 +392,7 @@ require 'faker'
   puts "Setting request ..."
   client = GooglePlaces::Client.new(ENV['GOOGLEAPI'])
   milan_restaurants = client.spots(45.464664, 9.18854, radius: 40_00, types: 'restaurant')
-    
+
   puts "Creating restaurants in Milan ..."
   milan_restaurants.first(100).each do |restaurant|
     milan_rest = Restaurant.create!(
@@ -404,9 +404,9 @@ require 'faker'
       longitude: restaurant.lat,
       address: restaurant.vicinity
     )
-  
+
     milan_rest.photos.attach(io: URI.open(restaurant.photos[0].fetch_url(800)), filename: "milan")
-  
+
     menu_mi = Menu.create!(
       restaurant_id: milan_rest.id,
       user_id: User.all.sample.id,
