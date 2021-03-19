@@ -110,7 +110,7 @@ class RestaurantsController < ApplicationController
   end
 
   def geolocalize
-    @latitude = cookies[:latitude].to_f || 41.89306
-    @longitude = cookies[:longitude].to_f || 12.48278
+    @latitude = cookies[:latitude] || 41.89306
+    @longitude = cookies[:longitude] || 12.48278
   end
 end

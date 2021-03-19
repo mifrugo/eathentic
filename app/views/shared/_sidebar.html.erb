@@ -15,10 +15,10 @@
           <a href="#userSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><%= current_user.nickname %></a>
           <ul class="collapse list-unstyled mb-3" id="userSubMenu">
             <li>
-              <a href="#" data-toggle="modal" data-target="#editUserModal" class="small border-0 text-warning" data-controller="sidebar" data-action="click->sidebar#click">update profile</a>
+              <a href="#" data-toggle="modal" data-target="#editUserModal" class="small border-0" data-controller="sidebar" data-action="click->sidebar#click">update profile</a>
             </li>
             <li>
-              <%= link_to 'logout', destroy_user_session_path, method: :delete, class: "small border-0 text-danger" %>
+              <%= link_to 'logout', destroy_user_session_path, method: :delete, class: "small border-0" %>
             </li>
           </ul>
           <small class="d-block">Cuisine mastered</small> <span class="badge badge-primary"><%= current_user.cuisine.name %></span>
