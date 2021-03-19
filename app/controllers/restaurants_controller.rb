@@ -86,11 +86,11 @@ class RestaurantsController < ApplicationController
   end
 
   def search_google
-    if user_signed_in?
-      client = GooglePlaces::Client.new(ENV['GOOGLEAPI'])
-      @searched_restaurants =
-        client.spots(@latitude, @longitude, name: params[:query], radius: 40_00, types: 'restaurant')
-    end
+    return unless user_signed_in?
+
+    client = GooglePlaces::Client.new(ENV['GOOGLEAPI'])
+    @searched_restaurants =
+      client.spots(@latitude, @longitude, name: params[:query], radius: 40_00, types: 'restaurant')
   end
 
   def restaurants_search
