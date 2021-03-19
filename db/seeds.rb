@@ -30,10 +30,10 @@ require 'faker'
   end
 
   LOCATIONS =  [
-    { name: 'Bari', longitude: '41.117142', latitude: '16.871872' },
-    { name: 'Roma', longitude: '41.902782', latitude: '12.496366' },
-    { name: 'Bergamo', longitude: '45.695000', latitude: '9.670000' },
-    { name: 'Monza', longitude: ' 45.583332', latitude: '9.266667' },
+    { name: 'Florence', longitude: '43.7696', latitude: '11.2558' },
+    { name: 'Rome', longitude: '41.902782', latitude: '12.496366' },
+    { name: 'Venice', longitude: '45.4408', latitude: '12.3155' },
+    { name: 'Naples', longitude: ' 40.8518', latitude: '14.2681' },
     { name: 'Verona', longitude: ' 45.433334', latitude: '10.983333' },
     { name: 'Milano', longitude: ' 45.464664', latitude: '9.188540' },
   ]
@@ -363,7 +363,7 @@ require 'faker'
     rest = Restaurant.create!(
       cuisine_id: Cuisine.where(name: 'Italian').first.id,
       user_id: User.all.sample.id,
-      location_id: Location.where(name: "Roma").first.id,
+      location_id: Location.where(name: "Rome").first.id,
       name: restaurant[:name],
       description: restaurant[:description],
       latitude: restaurant[:latitude],
