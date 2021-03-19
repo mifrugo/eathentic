@@ -36,12 +36,14 @@ import { autoComplete } from '../components/init_autocomplete'
 import { getLocation } from '../components/init_geolocal'
 import { renderMap } from '../components/init_userMap'
 import { setBodyClass } from '../components/init_body'
+import { alerts } from '../components/init_alerts'
 
 document.addEventListener('turbolinks:load', () => {
   setVH();
   setBodyClass();
 
   getLocation();
+  alerts();
 
   document.querySelector('#userMap') && renderMap();
 

@@ -15,16 +15,16 @@
           <a href="#userSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><%= current_user.nickname %></a>
           <ul class="collapse list-unstyled" id="userSubMenu">
             <li>
-              <a class="small">update avatar</a>
+              <a class="small border-0">update avatar</a>
             </li>
             <li>
-              <a>update password</a>
+              <a class="small border-0">update password</a>
             </li>
             <li>
-              <a>change email</a>
+              <a class="small border-0">change email</a>
             </li>
             <li>
-              <a>logout</a>
+              <%= link_to 'logout', destroy_user_session_path, method: :delete, class: "small border-0" %>
             </li>
           </ul>
         </li>
