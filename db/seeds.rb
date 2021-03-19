@@ -363,7 +363,7 @@ require 'faker'
     rest = Restaurant.create!(
       cuisine_id: Cuisine.where(name: 'Italian').first.id,
       user_id: User.all.sample.id,
-      location_id: Location.where(name: "Roma").first.id,
+      location_id: Location.where(name: "Rome").first.id,
       name: restaurant[:name],
       description: restaurant[:description],
       latitude: restaurant[:latitude],

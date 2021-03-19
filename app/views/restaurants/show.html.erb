@@ -1,7 +1,7 @@
 <h1><%= @restaurant.name %></h1>
 <p><%= @restaurant.description %></p>
 
-<% if policy(@restaurant).review? %> 
+<% if policy(@restaurant).review? %>
   <%= render 'components/leave-review' %>
 <% end %>
 <ul>
@@ -12,3 +12,6 @@
     </li>
   <% end %>
  </ul>
+
+
+
