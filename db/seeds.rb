@@ -414,7 +414,172 @@ require 'faker'
     )
     dish_mi = Dish.all.sample
     MenuDish.create!(menu_id: menu_mi.id, dish_id: dish_mi.id)
-   end
+  end
+   
+   thai_rm_restaurants = [
+      {name: "Siam Cuisine",
+      description: "Try our original dishes, you won't regret 😉",
+      latitude: 41.908727,
+      longitude: 12.491607,
+      photo: "siamc.jpg",
+      dish: []
+      },
+
+      {name: "Kisa Cuisine",
+      description: "If you're looking for a Thai restaurant in Rome there's nowhere else to go!",
+      latitude: 41.937918,
+      longitude: 12.5290832,
+      photo: "kisa.jpg",
+      dish: []
+      },
+
+      {name: "Tora Sushi & Asian Cuisine",
+      description: "Discover Thai cuisine",
+      latitude: 41.8997,
+      longitude: 12.473897,
+      photo: "tora.jpg",
+      dish: []
+      },
+
+      {name: "GO Thai",
+      description: "Come try our amazing dishes 🍜 ",
+      latitude: 41.870986,
+      longitude: 12.51806,
+      photo: "gothai.jpg",
+      dish: []
+      },
+
+      {name: "CheKiang Royal Thai",
+      description: "Come find us in our elegant location",
+      latitude: 41.8845422,
+      longitude: 12.5223382,
+      photo: "chekiang.jpg",
+      dish: []
+      },
+
+      {name: "Isola Puket",
+      description: "One of the best in Rome!",
+      latitude: 41.9343346,
+      longitude: 12.514232,
+      photo: "puket.jpg",
+      dish: []
+      },
+
+      {name: "Sukhothai",
+      description: "Where real Thai food is",
+      latitude: 41.8689654,
+      longitude: 12.4612272,
+      photo: "suko.jpg",
+      dish: []
+      },
+
+      {name: "Tuk Tuk Ride",
+      description: "Best Pad Kra Prao in town",
+      latitude: 41.8593857,
+      longitude: 12.4814724,
+      photo: "tuk.jpg",
+      dish: []
+      },
+
+      {name: "Bali Bar",
+      description: "Thai restaurant in Trastevere",
+      latitude: 41.8904841,
+      longitude: 12.4673209,
+      photo: "balibar.jpg",
+      dish: []
+      },
+
+      {name: "Han Thai",
+      description: "Your local Thai restaurant 😋",
+      latitude: 41.7569845,
+      longitude: 12.3668536,
+      photo: "hanthai.jpg",
+      dish: []
+      },
+
+      {name: "L'Oasi del Gusto",
+      description: "Thai cuisine as we see it!",
+      latitude: 41.8917016,
+      longitude: 12.5617941,
+      photo: "oasi.jpg",
+      dish: []
+      },
+
+      {name: "Taste East",
+      description: "You won't regret 😉",
+      latitude: 41.8732174,
+      longitude: 12.4408623,
+      photo: "tastethai.jpg",
+      dish: []
+      },
+
+      {name: "Thai J",
+      description: "Discover authentc Thai cuisine",
+      latitude: 41.9118548,
+      longitude: 12.449925,
+      photo: "tjay.jpg",
+      dish: []
+      },
+
+      {name: "Ya Yuan",
+      description: "We are waiting for you!",
+      latitude: 41.980654,
+      longitude: 12.5080232,
+      photo: "yayuan.jpg",
+      dish: []
+      },
+
+      {name: "Thai Inn",
+      description: "Your new favorite Thai restaurant!",
+      latitude: 41.8792114,
+      longitude: 12.5082463,
+      photo: "inn.jpg",
+      dish: []
+      },
+
+      {name: "Kishi",
+      description: "Elegant location, fine cuisine",
+      latitude: 41.8961589,
+      longitude: 12.4307924,
+      photo: "kishi.jpg",
+      dish: []
+      },
+
+      {name: "Kung Fu",
+      description: "",
+      latitude: 45.6947423,
+      longitude: 9.0403104,
+      photo: "kungfu.jpg",
+      dish: []
+      },
+
+      {name: "Sandokan",
+      description: "Our amazing dishes will make you fall in love 💘",
+      latitude: 41.8601919,
+      longitude: 12.5577868,
+      photo: "sandokan.jpg",
+      dish: []
+      }
+
+   ]
+
+   puts "Creating Thai restaurants..."
+   thai_rm_restaurants.each do |restaurant|
+    rest = Restaurant.create!(
+      cuisine_id: Cuisine.where(name: 'Thai').first.id,
+      user_id: User.all.sample.id,
+      location_id: Location.where(name: "Rome").first.id,
+      name: restaurant[:name],
+      description: restaurant[:description],
+      latitude: restaurant[:latitude],
+      longitude: restaurant[:longitude]
+    )
+
+     rest.photos.attach(io: File.open(Rails.root.join('public', 'images',
+    'restaurant-img', restaurant[:photo])), filename: restaurant[:photo])
+
+   end  
+
 
   # puts "Creating other stuff..."
   # 10.times do
