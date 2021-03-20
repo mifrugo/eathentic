@@ -38,6 +38,7 @@ gem 'devise'
 gem 'pundit'
 gem 'pg_search'
 gem 'google_places'
+gem 'shareable'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
