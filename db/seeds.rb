@@ -414,9 +414,8 @@ require 'faker'
     )
     dish_mi = Dish.all.sample
     MenuDish.create!(menu_id: menu_mi.id, dish_id: dish_mi.id)
-   end
-
-
+  end
+   
    thai_rm_restaurants = [
       {name: "Siam Cuisine",
       description: "Try our original dishes, you won't regret 😉",
@@ -438,7 +437,7 @@ require 'faker'
       description: "Discover Thai cuisine",
       latitude: 41.8997,
       longitude: 12.473897,
-      photo: "tora.jpeg",
+      photo: "tora.jpg",
       dish: []
       },
 
@@ -562,7 +561,25 @@ require 'faker'
       dish: []
       }
 
-   ]  
+   ]
+
+   puts "Creating Thai restaurants..."
+   thai_rm_restaurants.each do |restaurant|
+    rest = Restaurant.create!(
+      cuisine_id: Cuisine.where(name: 'Thai').first.id,
+      user_id: User.all.sample.id,
+      location_id: Location.where(name: "Rome").first.id,
+      name: restaurant[:name],
+      description: restaurant[:description],
+      latitude: restaurant[:latitude],
+      longitude: restaurant[:longitude]
+    )
+
+     rest.photos.attach(io: File.open(Rails.root.join('public', 'images',
+    'restaurant-img', restaurant[:photo])), filename: restaurant[:photo])
+
+   end  
+
 
   # puts "Creating other stuff..."
   # 10.times do
