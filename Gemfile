@@ -38,7 +38,7 @@ gem 'devise'
 gem 'pundit'
 gem 'pg_search'
 gem 'google_places'
-gem 'shareable'
+gem 'social-share-button'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
