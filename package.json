@@ -17,7 +17,8 @@
     "social-share-button": "^2.2.0",
     "stimulus": "^2.0.0",
     "timeago": "^1.6.7",
-    "turbolinks": "^5.2.0"
+    "turbolinks": "^5.2.0",
+    "webpacker-pwa": "^0.1.2"
   },
   "version": "0.1.0",
   "devDependencies": {
