@@ -27,7 +27,6 @@ import $ from 'jquery';
 window.$ = $ = jQuery;
 import "bootstrap";
 import "controllers";
-import "social-share-button"
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -39,6 +38,7 @@ import { renderMap } from '../components/init_userMap'
 import { setBodyClass } from '../components/init_body'
 import { alerts } from '../components/init_alerts'
 import { initTimeAgo } from '../components/init_timeago'
+import { share } from '../components/init_share'
 
 document.addEventListener('turbolinks:load', () => {
   setVH();
@@ -47,7 +47,8 @@ document.addEventListener('turbolinks:load', () => {
   getLocation();
   alerts();
   initTimeAgo();
-
+  share();
+  
   document.querySelector('#userMap') && renderMap();
 
   autoComplete();
