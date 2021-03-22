@@ -10,7 +10,7 @@ export default class extends Controller {
     try {
       navigator.share(shareData)
     } catch(err) {
-      resultPara.textContent = 'Error: ' + err
+      window.open(`https://addthis.com/bookmark.php?url=${window.location.href}`)
     }
   }
 }

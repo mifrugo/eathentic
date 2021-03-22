@@ -8,6 +8,7 @@ body {
   &:not(.pages-home){
     .btn-share{
       width: 25px;
+      cursor: pointer;
     }
   }
 }
