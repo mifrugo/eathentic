@@ -6,12 +6,6 @@
       "src": "/images/icons/logo192.png",
       "sizes": "192x192",
       "type": "image\/png"
-    },
-    {
-      "src": "/images/icons/logo512.png",
-      "sizes": "512x512",
-      "type": "image\/png",
-      "density": "4.0"
     }
   ],
   "start_url": "/",
