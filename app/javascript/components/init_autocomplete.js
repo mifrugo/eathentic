@@ -23,13 +23,22 @@ const autoComplete = () => {
         })
       },
 
+      renderResult: (result, props) => `
+        <li ${props}>
+          <div class="search-name">
+            ${result.name}
+          </div>
+          <div class="search-type">
+            ${result.type[0].toUpperCase() + result.type.slice(1)}
+          </div>
+        </li>
+      `,
 
-      getResultValue: result => {
-        console.log(result)
-      },
+      getResultValue: result => result.name,
+
       onSubmit: result => {
-        window.open(`${wikiUrl}/wiki/${encodeURI(result.title)
-          }`)
+        console.log(result)
+        window.location.href = `${result.url}/${result.id}`
       },
 
       onShow: event => {
