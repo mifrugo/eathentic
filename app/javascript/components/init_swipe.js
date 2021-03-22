@@ -3,7 +3,7 @@ const vibrate = () => {
 }
 
 const cardSwipe = () => {
-  document.querySelectorAll('.card').forEach(el => {
+  document.querySelectorAll('.card-restaurant').forEach(el => {
 
     let mc = new Hammer(el);
 
