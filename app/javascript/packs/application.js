@@ -62,5 +62,6 @@ window.addEventListener('load', () => {
       }
     })
 
-  document.querySelector('#sidebar').classList.remove('d-none')
+  document.querySelector('#sidebar').classList.remove('d-none');
+  setVH();
 });
