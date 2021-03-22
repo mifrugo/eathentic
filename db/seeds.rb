@@ -3,6 +3,12 @@ require_relative 'data/dishes'
 require_relative 'data/locations'
 require_relative 'data/restaurants'
 
+
+  puts "-----------------------"
+  puts "||| Eathentic Seeds |||"
+  puts "|||       v2        |||"
+  puts "-----------------------"
+
   MenuDish.destroy_all
   Menu.destroy_all
   DishIngredient.destroy_all
@@ -69,10 +75,10 @@ require_relative 'data/restaurants'
   puts "Creating restaurants..."
   RESTAURANTS.each do |restaurant|
 
-    type = restaurant["type"].present? ? restaurant["type"] : "italian"
+    type = restaurant[:type].present? ? restaurant[:type] : "italian"
 
     rest = Restaurant.create!(
-      cuisine_id: Cuisine.find_by("lower(name) = ?", type),
+      cuisine_id: Cuisine.find_by("lower(name) = ?", type).id,
       user_id: User.all.sample.id,
       location_id: Location.where(name: "Rome").first.id,
       name: restaurant[:name],
@@ -89,24 +95,28 @@ require_relative 'data/restaurants'
       user_id: User.all.sample.id,
       name: 'Main'
     )
+
     if restaurant[:dish].present?
       restaurant[:dish].each do |dish|
         dish = Dish.find_by("lower(name) = ?", dish.downcase)
         MenuDish.create!(menu_id: menu.id, dish_id: dish.id) if dish
       end
     end
+
   end
 
-  puts "Creating restaurants from Google Places"
+  puts "Creating restaurants from Google Places...."
   Dir.glob("#{Rails.root}/db/restaurants/*.json").map do |json_file|
-    puts json_file
+    city = json_file.split("/").last.gsub(/.json/, '')
+    puts "#{city.capitalize} seeds..."
+
     json = JSON.parse(File.read(json_file))
     json.each do |r|
 
       rest = Restaurant.create!(
         cuisine_id: Cuisine.where(name: 'Italian').first.id,
         user_id: User.all.sample.id,
-        location_id: Location.find_by("lower(name) = ?", json_file.gsub(/.json/, '')).id,
+        location_id: Location.find_by("lower(name) = ?", city).id,
         name: r["name"],
         latitude: r["latitude"],
         longitude: r["longitude"],
