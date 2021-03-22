@@ -8,7 +8,7 @@ const cardSwipe = () => {
     let mc = new Hammer(el);
 
     let Press = new Hammer.Press({
-      time: 500
+      time: 300
     });
 
     mc.on("swipeleft", function (ev) {
@@ -53,5 +53,36 @@ const bodySwipe = () => {
   })
 }
 
+const SwipeElement = (el) => el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-export { cardSwipe, bodySwipe }
+const homeSwipe = () => {
+  document.querySelectorAll('section').forEach(el => {
+    let mc = new Hammer(el);
+
+    mc.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
+
+    mc.on("swipeup", function (ev) {
+
+      if (el.nextElementSibling) {
+        SwipeElement(el.nextElementSibling)
+      } else {
+        SwipeElement(document.querySelectorAll('section')[0])
+      }
+
+    })
+
+    mc.on('swipedown', function() {
+
+      if (el.previousElementSibling) {
+        SwipeElement(el.previousElementSibling)
+      } else {
+        SwipeElement(document.querySelectorAll('section')[2])
+      }
+
+    })
+
+  });
+}
+
+
+export { cardSwipe, bodySwipe, homeSwipe }

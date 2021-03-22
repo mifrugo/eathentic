@@ -38,10 +38,9 @@ import { renderMap } from '../components/init_userMap'
 import { setBodyClass } from '../components/init_body'
 import { alerts } from '../components/init_alerts'
 import { initTimeAgo } from '../components/init_timeago'
-import { cardSwipe, bodySwipe } from '../components/init_swipe'
+import { cardSwipe, bodySwipe, homeSwipe } from '../components/init_swipe'
 
 document.addEventListener('turbolinks:load', () => {
-  setVH();
   setBodyClass();
 
   getLocation();
@@ -50,11 +49,17 @@ document.addEventListener('turbolinks:load', () => {
 
   cardSwipe();
   bodySwipe();
+  homeSwipe();
 
   document.querySelector('#userMap') && renderMap();
 
   autoComplete();
+  setVH();
 });
+
+document.addEventListener('turbolinks:request-end', () => {
+  setVH();
+})
 
 
 window.addEventListener('resize', () => {
