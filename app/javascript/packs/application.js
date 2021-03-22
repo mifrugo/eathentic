@@ -49,7 +49,8 @@ document.addEventListener('turbolinks:load', () => {
 
   cardSwipe();
   bodySwipe();
-  homeSwipe();
+
+  document.body.classList.contains('pages-home') && homeSwipe();
 
   document.querySelector('#userMap') && renderMap();
 
