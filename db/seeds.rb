@@ -30,12 +30,14 @@ require 'faker'
   end
 
   LOCATIONS =  [
-    { name: 'Florence', longitude: '43.7696', latitude: '11.2558' },
-    { name: 'Rome', longitude: '41.902782', latitude: '12.496366' },
-    { name: 'Venice', longitude: '45.4408', latitude: '12.3155' },
-    { name: 'Naples', longitude: ' 40.8518', latitude: '14.2681' },
-    { name: 'Verona', longitude: ' 45.433334', latitude: '10.983333' },
-    { name: 'Milan', longitude: ' 45.464664', latitude: '9.188540' },
+    { name: 'Florence', longitude: 43.7696, latitude: 11.2558 },
+    { name: 'Venice', longitude: 45.4408, latitude: 12.3155 },
+    { name: 'Naples', longitude: 40.8518, latitude: 14.2681 },
+    { name: 'Verona', longitude: 45.433334, latitude: 10.983333 },
+    { name: 'Madrid', latitude: 40.416775, longitude: -3.703790 },
+    { name: 'Berlin', latitude: 52.520008, longitude: 13.404954 },
+    { name: 'Milan', latitude: 45.464203, longitude: 9.189982 },
+    { name: 'Rome', latitude: 41.902782, longitude: 12.496365 }
   ]
 
   puts "Creating users..."
@@ -562,7 +564,7 @@ require 'faker'
       rest = Restaurant.create!(
         cuisine_id: Cuisine.where(name: 'Italian').first.id,
         user_id: User.all.sample.id,
-        location_id: Location.where(name: "Milan").first.id,
+        location_id: Location.find_by("lower(name) = ?", json_file.gsub(/.json/, '')).id,
         name: r["name"],
         latitude: r["latitude"],
         longitude: r["longitude"],
