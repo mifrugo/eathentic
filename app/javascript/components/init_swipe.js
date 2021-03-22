@@ -1,9 +1,9 @@
 const vibrate = () => {
-  window.navigator.vibrate(50);
+  window.navigator.vibrate(10);
 }
 
 const cardSwipe = () => {
-  document.querySelectorAll('.card-restaurant').forEach(el => {
+  document.querySelectorAll('.card-swipe').forEach(el => {
 
     let mc = new Hammer(el);
 
@@ -14,7 +14,7 @@ const cardSwipe = () => {
     mc.on("swipeleft", function (ev) {
       vibrate();
 
-      el.style.transform = `translateX(-2em)`
+      el.style.transform = `translateX(-1em)`
 
       setTimeout(() => {
 
@@ -28,7 +28,7 @@ const cardSwipe = () => {
 
         }
 
-      }, 200);
+      }, 100);
 
     });
 
