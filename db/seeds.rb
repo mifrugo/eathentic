@@ -389,36 +389,7 @@ require 'faker'
     end
   end
 
-<<<<<<< HEAD
-  puts "Setting request ..."
-  client = GooglePlaces::Client.new(ENV['GOOGLEAPI'])
-  milan_restaurants = client.spots(45.464664, 9.18854, radius: 40_00, types: 'restaurant')
 
-  puts "Creating restaurants in Milan ..."
-  milan_restaurants.first(100).each do |restaurant|
-    milan_rest = Restaurant.create!(
-      cuisine_id: Cuisine.where(name: 'Italian').first.id,
-      user_id: User.all.sample.id,
-      location_id: Location.where(name: "Milan").first.id,
-      name: restaurant[:name],
-      latitude: restaurant.lng,
-      longitude: restaurant.lat,
-      address: restaurant.vicinity
-    )
-
-    milan_rest.photos.attach(io: URI.open(restaurant.photos[0].fetch_url(800)), filename: "milan")
-
-    menu_mi = Menu.create!(
-      restaurant_id: milan_rest.id,
-      user_id: User.all.sample.id,
-      name: 'Main'
-    )
-    dish_mi = Dish.all.sample
-    MenuDish.create!(menu_id: menu_mi.id, dish_id: dish_mi.id)
-  end
-
-=======
->>>>>>> master
    thai_rm_restaurants = [
       {name: "Siam Cuisine",
       description: "Try our original dishes, you won't regret 😉",
