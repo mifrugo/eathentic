@@ -389,6 +389,7 @@ require 'faker'
     end
   end
 
+<<<<<<< HEAD
   puts "Setting request ..."
   client = GooglePlaces::Client.new(ENV['GOOGLEAPI'])
   milan_restaurants = client.spots(45.464664, 9.18854, radius: 40_00, types: 'restaurant')
@@ -416,6 +417,8 @@ require 'faker'
     MenuDish.create!(menu_id: menu_mi.id, dish_id: dish_mi.id)
   end
 
+=======
+>>>>>>> master
    thai_rm_restaurants = [
       {name: "Siam Cuisine",
       description: "Try our original dishes, you won't regret 😉",
@@ -600,4 +603,58 @@ require 'faker'
 
    end
 
+
+   puts "Creating restaurants from Google Places"
+   Dir.glob("#{Rails.root}/db/restaurants/*.json").map do |json_file|
+    puts json_file
+    json = JSON.parse(File.read(json_file))
+    json.each do |r|
+
+      rest = Restaurant.create!(
+        cuisine_id: Cuisine.where(name: 'Italian').first.id,
+        user_id: User.all.sample.id,
+        location_id: Location.where(name: "Milan").first.id,
+        name: r["name"],
+        latitude: r["latitude"],
+        longitude: r["longitude"],
+        address: r["address"]
+      )
+
+      rest.photos.attach(io: URI.open(r["photo"]), filename: r["name"]) if r["photo"]
+
+      menu = Menu.create!(
+        restaurant_id: rest.id,
+        user_id: User.all.sample.id,
+        name: 'Main'
+      )
+
+    end
+  end
+
+
+  # puts "Creating other stuff..."
+  # 10.times do
+  #   Menu.create!(
+  #     user_id: User.all.sample.id,
+  #     restaurant_id: Restaurant.all.sample.id,
+  #     name: Faker::Artist.name,
+  #     order: rand(1..10)
+  #   )
+
+  #   MenuDish.create!(
+  #     dish_id: Dish.all.sample.id,
+  #     menu_id: Menu.all.sample.id
+  #   )
+
+  #   Ingredient.create!(
+  #     name: Faker::Food.vegetables,
+  #     description: Faker::Food.description,
+  #     user_id: User.all.sample.id
+  #   )
+
+  #   DishIngredient.create!(
+  #     dish_id: Dish.all.sample.id,
+  #     ingredient_id: Ingredient.all.sample.id
+  #   )
+  # end
 
