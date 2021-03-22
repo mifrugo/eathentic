@@ -1,6 +1,6 @@
 {
   "short_name": "Eathentic",
-  "name": "Eathentic: stop eating lies",
+  "name": "Eathentic: Stop eating lies.",
   "icons": [
     {
       "src": "/images/icons/logo192.png",
@@ -15,7 +15,7 @@
   ],
   "start_url": "/",
   "background_color": "#29834a",
-  "display": "fullscreen",
+  "display": "standalone",
   "scope": "/",
   "theme_color": "#29834a"
 }
