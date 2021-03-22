@@ -17,6 +17,8 @@ class Restaurant < ApplicationRecord
   has_many :reviewers, through: :reviews, source: :user
   has_many_attached :photos
 
+  validates :name, :latitude, :longitude, presence: true
+
   pg_search_scope :search_complex,
                   against: %i[name description],
                   using: {
