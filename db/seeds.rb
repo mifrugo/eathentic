@@ -65,7 +65,7 @@ require_relative 'data/restaurants'
     new_dish = Dish.create!(
         name: dish[:name],
         description: dish[:description],
-        user_id: dish[:user_id]
+        user_id: 1
       )
 
     new_dish.photos.attach(io: File.open(Rails.root.join('public', 'images',
