@@ -8,8 +8,10 @@
         </span>
       <%= link_to 'Eathentic.', root_path, class: 'nav-brand' %>
     </div> <!-- brand/end -->
-
-
+  <div class="btn-share" data-controller="share" data-action="click->share#click" >
+    <%= image_tag("share.svg") %>
+  </div>
   </nav>
 
 <%= render 'shared/sidebar' %>
+

@@ -4,6 +4,14 @@
   border-radius: 100%;
 }
 
+body {
+  &:not(.pages-home){
+    .btn-share{
+      width: 25px;
+    }
+  }
+}
+
 nav {
   color: $white;
   z-index: 9999;
