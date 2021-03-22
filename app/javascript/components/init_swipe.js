@@ -72,13 +72,7 @@ const homeSwipe = () => {
     })
 
     mc.on('swipedown', function() {
-
-      if (el.previousElementSibling) {
-        SwipeElement(el.previousElementSibling)
-      } else {
-        SwipeElement(document.querySelectorAll('section')[2])
-      }
-
+      el.previousElementSibling && SwipeElement(el.previousElementSibling)
     })
 
   });
