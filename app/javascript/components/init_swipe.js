@@ -13,7 +13,12 @@ const cardSwipe = () => {
 
     mc.on("swipeleft", function (ev) {
       vibrate();
-      el.click();
+      el.style.transform = `translateX(-2em)`
+
+      setTimeout(() => {
+        el.click();
+      }, 500);
+
     });
 
     mc.add(Press)
