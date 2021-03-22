@@ -99,13 +99,13 @@
     { name: 'Tom Yum Prawn Noodle',
       description: 'Spicy thai soup served with prawns and noodles',
       user_id: User.all.sample.id,
-      photo: 'tomyum.jpeg'
+      photo: 'tomyum.jpg'
     },
 
     { name: 'Tom Yum Prawn Soup',
       description: 'Spicy thai soup served with prawns',
       user_id: User.all.sample.id,
-      photo: 'tomyum.jpeg'
+      photo: 'tomyum.jpg'
     },
 
     { name: 'Massaman Curry and Rice',
