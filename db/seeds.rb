@@ -415,14 +415,15 @@ require 'faker'
     dish_mi = Dish.all.sample
     MenuDish.create!(menu_id: menu_mi.id, dish_id: dish_mi.id)
   end
-   
+
    thai_rm_restaurants = [
       {name: "Siam Cuisine",
       description: "Try our original dishes, you won't regret 😉",
       latitude: 41.908727,
       longitude: 12.491607,
       photo: "siamc.jpg",
-      dish: []
+      dish: ["Grilled Chicken Asian Slaw", "Grilled Chicken Egg Noodle",
+             "Tom Yum Prawn Noodle", "Tom Yum Prawn Soup"]
       },
 
       {name: "Kisa Cuisine",
@@ -430,7 +431,7 @@ require 'faker'
       latitude: 41.937918,
       longitude: 12.5290832,
       photo: "kisa.jpg",
-      dish: []
+      dish: ["Ka-Pow and Rice", "Green Curry and Rice", "Tom Yum Prawn Soup"]
       },
 
       {name: "Tora Sushi & Asian Cuisine",
@@ -438,7 +439,8 @@ require 'faker'
       latitude: 41.8997,
       longitude: 12.473897,
       photo: "tora.jpg",
-      dish: []
+      dish: ["Roast Salmon Quinoa", "Sesame Chicken Salad",
+            "Somtam Salad Pot", "Massaman Curry and Rice"]
       },
 
       {name: "GO Thai",
@@ -446,7 +448,8 @@ require 'faker'
       latitude: 41.870986,
       longitude: 12.51806,
       photo: "gothai.jpg",
-      dish: []
+      dish: ["Grilled Chicken Asian Slaw", "Pad Thai", "Somtam Salad Pot",
+            "Grilled Chicken Egg Noodle", "Roast Salmon Quinoa"]
       },
 
       {name: "CheKiang Royal Thai",
@@ -454,7 +457,7 @@ require 'faker'
       latitude: 41.8845422,
       longitude: 12.5223382,
       photo: "chekiang.jpg",
-      dish: []
+      dish: ["Somtam Salad Pot", "Tom Yum Prawn Noodle", "Massaman Curry and Rice"]
       },
 
       {name: "Isola Puket",
@@ -462,7 +465,8 @@ require 'faker'
       latitude: 41.9343346,
       longitude: 12.514232,
       photo: "puket.jpg",
-      dish: []
+      dish: ["Ka-Pow and Rice", "Green Curry and Rice", "Roast Salmon Quinoa",
+             "Grilled Chicken Egg Noodle"]
       },
 
       {name: "Sukhothai",
@@ -470,7 +474,8 @@ require 'faker'
       latitude: 41.8689654,
       longitude: 12.4612272,
       photo: "suko.jpg",
-      dish: []
+      dish: ["Fried rice with shrimps", "Vegetable spring rolls",
+             "Ka-Pow and Rice", "Green Curry and Rice"]
       },
 
       {name: "Tuk Tuk Ride",
@@ -478,7 +483,8 @@ require 'faker'
       latitude: 41.8593857,
       longitude: 12.4814724,
       photo: "tuk.jpg",
-      dish: []
+      dish: ["Grilled Chicken Egg Noodle", "Roast Salmon Quinoa",
+                "Somtam Salad Pot", "Vegetable spring rolls"]
       },
 
       {name: "Bali Bar",
@@ -486,7 +492,7 @@ require 'faker'
       latitude: 41.8904841,
       longitude: 12.4673209,
       photo: "balibar.jpg",
-      dish: []
+      dish: ["Fried rice with shrimps", "Somtam Salad Pot", "Tom Yum Prawn Soup"]
       },
 
       {name: "Han Thai",
@@ -494,7 +500,10 @@ require 'faker'
       latitude: 41.7569845,
       longitude: 12.3668536,
       photo: "hanthai.jpg",
-      dish: []
+      dish: ["Grilled Chicken Asian Slaw", "Grilled Chicken Egg Noodle",
+            "Roast Salmon Quinoa", "Sesame Chicken Salad", "Somtam Salad Pot",
+            "Asian slaw", "Tom Yum Prawn Noodle", "Tom Yum Prawn Soup",
+            "Massaman Curry and Rice"]
       },
 
       {name: "L'Oasi del Gusto",
@@ -502,7 +511,8 @@ require 'faker'
       latitude: 41.8917016,
       longitude: 12.5617941,
       photo: "oasi.jpg",
-      dish: []
+      dish: ["Green Curry and Rice", "Ka-Pow and Rice", "Fried rice with shrimps",
+             "Vegetable spring rolls"]
       },
 
       {name: "Taste East",
@@ -510,7 +520,8 @@ require 'faker'
       latitude: 41.8732174,
       longitude: 12.4408623,
       photo: "tastethai.jpg",
-      dish: []
+      dish: ["Grilled Chicken Asian Slaw", "Grilled Chicken Egg Noodle",
+            "Fried rice with shrimps", "Vegetable spring rolls"]
       },
 
       {name: "Thai J",
@@ -518,7 +529,9 @@ require 'faker'
       latitude: 41.9118548,
       longitude: 12.449925,
       photo: "tjay.jpg",
-      dish: []
+      dish: ["Asian slaw", "Tom Yum Prawn Noodle", "Tom Yum Prawn Soup",
+            "Massaman Curry and Rice", "Fried rice with shrimps",
+            "Vegetable spring rolls"]
       },
 
       {name: "Ya Yuan",
@@ -526,7 +539,8 @@ require 'faker'
       latitude: 41.980654,
       longitude: 12.5080232,
       photo: "yayuan.jpg",
-      dish: []
+      dish: ["Grilled Chicken Asian Slaw", "Grilled Chicken Egg Noodle",
+            "Somtam Salad Pot", "Asian slaw", "Ka-Pow and Rice"]
       },
 
       {name: "Thai Inn",
@@ -534,7 +548,7 @@ require 'faker'
       latitude: 41.8792114,
       longitude: 12.5082463,
       photo: "inn.jpg",
-      dish: []
+      dish: ["Fried rice with shrimps", "Roast Salmon Quinoa", "Tom Yum Prawn Noodle", "Sesame Chicken Salad", "Green Curry and Rice"]
       },
 
       {name: "Kishi",
@@ -542,7 +556,8 @@ require 'faker'
       latitude: 41.8961589,
       longitude: 12.4307924,
       photo: "kishi.jpg",
-      dish: []
+      dish: ["Grilled Chicken Asian Slaw", "Roast Salmon Quinoa",
+             "Massaman Curry and Rice", "Vegetable spring rolls", "Ka-Pow and Rice"]
       },
 
       {name: "Kung Fu",
@@ -550,7 +565,8 @@ require 'faker'
       latitude: 45.6947423,
       longitude: 9.0403104,
       photo: "kungfu.jpg",
-      dish: []
+      dish: ["Sesame Chicken Salad", "Somtam Salad Pot", "Asian slaw",
+             "Fried rice with shrimps", "Vegetable spring rolls"]
       },
 
       {name: "Sandokan",
@@ -558,7 +574,11 @@ require 'faker'
       latitude: 41.8601919,
       longitude: 12.5577868,
       photo: "sandokan.jpg",
-      dish: []
+      dish: ["Grilled Chicken Asian Slaw", "Grilled Chicken Egg Noodle",
+             "Roast Salmon Quinoa", "Sesame Chicken Salad", "Somtam Salad Pot",
+             "Asian slaw", "Tom Yum Prawn Noodle", "Tom Yum Prawn Soup",
+             "Massaman Curry and Rice", "Green Curry and Rice", "Ka-Pow and Rice",
+             "Fried rice with shrimps", "Vegetable spring rolls"]
       }
 
    ]
@@ -578,31 +598,6 @@ require 'faker'
      rest.photos.attach(io: File.open(Rails.root.join('public', 'images',
     'restaurant-img', restaurant[:photo])), filename: restaurant[:photo])
 
-   end  
+   end
 
 
-  # puts "Creating other stuff..."
-  # 10.times do
-  #   Menu.create!(
-  #     user_id: User.all.sample.id,
-  #     restaurant_id: Restaurant.all.sample.id,
-  #     name: Faker::Artist.name,
-  #     order: rand(1..10)
-  #   )
-
-  #   MenuDish.create!(
-  #     dish_id: Dish.all.sample.id,
-  #     menu_id: Menu.all.sample.id
-  #   )
-
-  #   Ingredient.create!(
-  #     name: Faker::Food.vegetables,
-  #     description: Faker::Food.description,
-  #     user_id: User.all.sample.id
-  #   )
-
-  #   DishIngredient.create!(
-  #     dish_id: Dish.all.sample.id,
-  #     ingredient_id: Ingredient.all.sample.id
-  #   )
-  # end
