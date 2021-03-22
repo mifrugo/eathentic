@@ -34,6 +34,7 @@ document.addEventListener('turbolinks:load', () => {
 
   document.querySelector('#userMap') && renderMap();
 
+  document.querySelector('#sidebar').classList.remove('d-none');
   autoComplete();
   setVH();
 });
@@ -62,6 +63,5 @@ window.addEventListener('load', () => {
       }
     })
 
-  document.querySelector('#sidebar').classList.remove('d-none');
   setVH();
 });
