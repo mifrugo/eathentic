@@ -38,7 +38,7 @@ import { renderMap } from '../components/init_userMap'
 import { setBodyClass } from '../components/init_body'
 import { alerts } from '../components/init_alerts'
 import { initTimeAgo } from '../components/init_timeago'
-import { share } from '../components/init_share'
+import { cardSwipe, bodySwipe } from '../components/init_swipe'
 
 document.addEventListener('turbolinks:load', () => {
   setVH();
@@ -47,8 +47,10 @@ document.addEventListener('turbolinks:load', () => {
   getLocation();
   alerts();
   initTimeAgo();
-  share();
-  
+
+  cardSwipe();
+  bodySwipe();
+
   document.querySelector('#userMap') && renderMap();
 
   autoComplete();
