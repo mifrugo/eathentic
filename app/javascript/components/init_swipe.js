@@ -13,11 +13,22 @@ const cardSwipe = () => {
 
     mc.on("swipeleft", function (ev) {
       vibrate();
+
       el.style.transform = `translateX(-2em)`
 
       setTimeout(() => {
-        el.click();
-      }, 500);
+
+        if(ev.distance > 100 ) {
+
+          el.click();
+
+        } else {
+
+          el.style.transform = '';
+
+        }
+
+      }, 200);
 
     });
 
