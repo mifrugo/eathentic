@@ -3,7 +3,7 @@ import '@trevoreyre/autocomplete-js/dist/style.css'
 
 
 const autoComplete = () => {
-  new Promise((resolve, reject) => {
+  new Promise(() => {
     new Autocomplete('#autocomplete', {
 
       search: input => {
@@ -37,17 +37,10 @@ const autoComplete = () => {
       getResultValue: result => result.name,
 
       onSubmit: result => {
-        console.log(result)
         window.location.href = `${result.url}/${result.id}`
       },
 
-      onShow: event => {
-        console.log(event)
-      },
-
     })
-  }).then(() => {
-    console.log('kl')
   })
 }
 
