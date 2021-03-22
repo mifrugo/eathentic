@@ -49,11 +49,7 @@ document.addEventListener('turbolinks:load', () => {
 
   document.querySelector('#userMap') && renderMap();
 
-
-  if(document.body.classList.contains('pages-home')) {
-    //  homeButton();
-     autoComplete();
-  }
+  autoComplete();
 });
 
 

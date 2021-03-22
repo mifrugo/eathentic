@@ -3,7 +3,7 @@ import '@trevoreyre/autocomplete-js/dist/style.css'
 
 
 const autoComplete = () => {
-  new Promise(() => {
+  new Promise((resolve, reject) => {
     new Autocomplete('#autocomplete', {
 
       search: input => {
