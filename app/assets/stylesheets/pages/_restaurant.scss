@@ -57,3 +57,29 @@
 .reactions {
   font-size: 1.2em;
 }
+
+.add-to-favorite {
+  position: absolute;
+  top: -.5em;
+  left: -.5em;
+  padding: .3em .4em;
+  background: #fff;
+  border-radius: 100%;
+
+  img {
+    width: 1.3em;
+    transition: filter .3s ease;
+  }
+}
+
+.card {
+  &:not(.favorite) {
+    .add-to-favorite {
+      &:not(:hover) {
+        img {
+          filter: grayscale(100%);
+        }
+      }
+    }
+  }
+}

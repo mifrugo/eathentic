@@ -29,7 +29,7 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-  end  
+  end
 
   def search
     render :show
@@ -100,8 +100,24 @@ class RestaurantsController < ApplicationController
     @dish = Dish.find(params[:restaurant][:dishes])
     authorize @restaurant
     new_dish = MenuDish.create(menu_id: @restaurant.menus.first.id, dish_id: @dish.id)
-    redirect_to restaurant_path(@restaurant), notice: new_dish.id.present? ? "Dish created!" : "Dish already exists"  
-  end  
+    redirect_to restaurant_path(@restaurant), notice: new_dish.id.present? ? "Dish created!" : "Dish already exists"
+  end
+
+  def favorite
+    @favorite = FavoriteRestaurant.where(restaurant: Restaurant.find(params[:id]), user: current_user).first
+
+    if @favorite.nil?
+      @favorite = FavoriteRestaurant.create(restaurant: Restaurant.find(params[:id]), user: current_user)
+      action = { action: 'added' }
+      authorize @favorite
+    else
+      authorize @favorite
+      action = { action: 'removed' }
+      @favorite.destroy
+    end
+
+    render json: action.to_json
+  end
 
   private
 
@@ -165,6 +181,6 @@ class RestaurantsController < ApplicationController
   end
 
   def count_reactions
-    
-  end  
+
+  end
 end

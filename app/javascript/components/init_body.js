@@ -23,6 +23,7 @@ const iOS = ()  => {
 }
 
 const setBodyClass = () => {
+  ['device-xs', 'device-sm', 'device-md', 'device-lg', 'device-xl'].forEach(c => document.body.classList.remove(c))
   document.body.classList.add(`device-${getSize()}`)
   iOS() && document.body.classList.add('device-ios')
 }

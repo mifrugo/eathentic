@@ -28,4 +28,8 @@ class User < ApplicationRecord
     end
   end
 
+  def restaurant_favorite_ids
+    favorite_restaurants.map(&:restaurant_id)
+  end
+
 end
