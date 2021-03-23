@@ -1,1 +1,1 @@
-(Eathentic)[https://eathentic.herokuapp.com/] source code.
+[Eathentic](https://eathentic.herokuapp.com/) source code.
