@@ -3,7 +3,9 @@ const homeButton = () => {
 
     el.addEventListener('click', (event) => {
       const section = event.currentTarget.dataset['action']
-      document.querySelector(`section[data-section="${section}"]`).scrollIntoView({ behavior: 'smooth', block: 'start' });
+      $('html, body').animate({
+        scrollTop: $(`section[data-section="${element}"]`).offset().top
+      }, 800);
     });
 
   });
