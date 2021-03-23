@@ -5,11 +5,15 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  acts_as_token_authenticatable
+
   has_many :restaurants
   has_many :reviews
   has_many :dishes
   has_many :ingredients
   has_many :views
+  has_many :favorite_restaurants, dependent: :destroy
   belongs_to :cuisine
 
   has_one_attached :avatar

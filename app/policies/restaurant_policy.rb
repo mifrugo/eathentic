@@ -48,4 +48,8 @@ class RestaurantPolicy < ApplicationPolicy
   def location_list?
     true
   end
+
+  def map?
+    true
+  end
 end

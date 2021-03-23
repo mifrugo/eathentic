@@ -9,7 +9,24 @@ const setLocation = (position) => {
 }
 
 const errorLocation = () => {
-  $('#userLocationModal').modal('show')
+
+  if( !Cookies.get('alert-location') ) {
+
+    Cookies.set('alert-location', 1)
+
+    let alert = document.createElement("div");
+
+    alert.innerHTML = `To find restaurants, set your location`;
+    ['alert', 'alert-warning', 'text-center'].forEach(c => alert.classList.add(c))
+
+    document.body.appendChild(alert);
+
+    alert.addEventListener('click', (el) => {
+      $(el.currentTarget).slideUp()
+      $('#userLocationModal').modal()
+    })
+
+  }
 }
 
 const browserLocation = () => {
