@@ -7,7 +7,7 @@ export default class extends Controller {
 
     $('html, body').animate({
       scrollTop: $(`section[data-section="${element}"]`).offset().top
-    }, 1000);
+    }, 800);
   }
 
 }
