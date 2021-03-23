@@ -1,4 +1,13 @@
 body {
+
+  &.device-ios {
+    cursor: pointer;
+
+    * {
+      cursor: pointer;
+    }
+  }
+
   &:not(.pages-home) {
     #content {
       margin-top: 64px;
