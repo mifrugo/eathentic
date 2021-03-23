@@ -26,7 +26,11 @@
 
       <% end %>
       <li>
-        <%= link_to 'Restaurants near you', restaurants_list_path %>
+        <a href="#nearSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Restaurants near you</a>
+          <ul class="collapse list-unstyled" id="nearSubMenu">
+            <li><%= link_to 'Map view', restaurants_map_path %></li>
+            <li><%= link_to 'List view', restaurants_list_path %></li>
+          </ul>
       </li>
       <li>
         <a href="#cuisineSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Discover a Cuisine</a>

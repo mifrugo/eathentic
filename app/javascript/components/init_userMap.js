@@ -5,13 +5,13 @@ import 'mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import Cookies from 'js-cookie';
 
 const displaySearching = (text) => {
-document.getElementById("userLocationModalLabel").innerHTML = text
+  document.getElementById("userLocationModalLabel").innerHTML = text
 };
 
 const displayRestaurants = () => {
-const button = document.querySelector("#modal-button").classList
-button.add("d-block")
-button.remove("d-none")
+  const button = document.querySelector("#modal-button").classList
+  button.add("d-block")
+  button.remove("d-none")
 };
 
 let markers = []
@@ -48,7 +48,7 @@ const renderMap = () => {
 
   map = new mapboxgl.Map({
     container: 'userMap',
-    style: 'mapbox://styles/mapbox/streets-v9',
+    style: 'mapbox://styles/mapbox/streets-v11',
     center: [longitude, latitude],
     zoom: 13,
   });
@@ -68,7 +68,7 @@ const renderMap = () => {
     Cookies.set('latitude', ev.coords.latitude)
     Cookies.set('longitude', ev.coords.longitude)
     setTimeout(() => {
-      displaySearching(`<span class="text-success"> Location updated </span>`);
+      displaySearching(`<span class="text-success">Location updated</span>`);
     }, 1000 )
     displayRestaurants();
   });
