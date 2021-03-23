@@ -52,4 +52,8 @@ class RestaurantPolicy < ApplicationPolicy
   def map?
     true
   end
+
+  def add_dish?
+    user.cuisine_id == record.cuisine_id
+  end  
 end

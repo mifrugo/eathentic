@@ -95,6 +95,14 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  def add_dish
+    @restaurant = Restaurant.find(params[:id])
+    @dish = Dish.find(params[:restaurant][:dishes])
+    authorize @restaurant
+    new_dish = MenuDish.create(menu_id: @restaurant.menus.first.id, dish_id: @dish.id)
+    redirect_to restaurant_path(@restaurant), notice: new_dish.id.present? ? "Dish created!" : "Dish already exists"  
+  end  
+
   private
 
   def set_restaurant

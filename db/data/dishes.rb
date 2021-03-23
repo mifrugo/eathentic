@@ -1,61 +1,61 @@
 
   DISHES = [
     { name: 'Pizza Margherita',
-      description: 'Tomato sauce and mozarella',
+      description: 'Tomato sauce and mozzarella',
       user_id: User.all.sample.id,
       photo: 'margherita.jpeg'
     },
 
     { name: 'Pizza Napoli',
-      description: 'Tomato sauce, mozarella, anchovies',
+      description: 'Tomato sauce, mozzarella, anchovies',
       user_id: User.all.sample.id,
       photo: 'napoli.jpeg'
     },
 
     { name: 'Pizza Diavola',
-      description: 'Tomato sauce, mozarella, pepperoni(spicy salami)',
+      description: 'Tomato sauce, mozzarella, pepperoni(spicy salami)',
       user_id: User.all.sample.id,
       photo: 'diavola.jpeg'
     },
 
     { name: 'Pizza Capricciosa',
-      description: 'Tomato sauce, mozarella, parma-ham, olives, artichokes, egg',
+      description: 'Tomato sauce, mozzarella, parma-ham, olives, artichokes, egg',
       user_id: User.all.sample.id,
       photo: 'capricciosa.jpeg'
     },
 
     { name: 'Pizza 4 Cheese',
-      description: 'Gorgonzola, fontina, edamer, mozarella',
+      description: 'Gorgonzola, fontina, edamer, mozzarella',
       user_id: User.all.sample.id,
       photo: '4formagi.jpeg'
     },
 
     { name: 'Pizza with Salmon',
-      description: 'Mozarella and smoked Salmon',
+      description: 'Mozzarella and smoked Salmon',
       user_id: User.all.sample.id,
       photo: 'salmone.jpeg'
     },
 
     { name: 'Pizza Boscaiola',
-      description: 'Mozarella , champignion, sausage',
+      description: 'Mozzarella , champignion, sausage',
       user_id: User.all.sample.id,
       photo: 'boscaiola.jpeg'
     },
 
     { name: 'Pizza Fior di Zucca',
-      description: 'Mozarella , anchovies, courgette flowers',
+      description: 'Mozzarella , anchovies, courgette flowers',
       user_id: User.all.sample.id,
       photo: 'zucca.jpeg'
     },
 
     { name: 'Pizza Funghi',
-      description: 'Mozarella , anchovies, courgette flowers',
+      description: 'Mozzarella , anchovies, courgette flowers',
       user_id: User.all.sample.id,
       photo: 'funghi.jpeg'
     },
 
     { name: 'Pizza with Tuna',
-      description: 'Tomato sauce, mozarella, tuna',
+      description: 'Tomato sauce, mozzarella, tuna',
       user_id: User.all.sample.id,
       photo: 'tonno.jpeg'
     },
