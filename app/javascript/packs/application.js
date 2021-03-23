@@ -31,7 +31,7 @@ document.addEventListener('turbolinks:load', () => {
   cardSwipe();
   bodySwipe();
 
-  restaurantMap();
+  document.querySelector('#restaurantMap') && restaurantMap();
 
   document.body.classList.contains('pages-home') && homeSwipe();
 
