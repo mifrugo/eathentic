@@ -1,0 +1,7 @@
+ <div class="index-map">
+  <div style="height: 100vh" class="mb-2 position-relative">
+    <div id="restaurantMap" data-apikey="<%= ENV['MAPBOX_KEY'] %>" data-latitude="<%= @latitude %>"
+      data-longitude="<%= @longitude %>" data-markers="<%= @restaurants.to_json %>" style="height: 100vh">
+    </div>
+  </div>
+</div>

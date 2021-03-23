@@ -19,6 +19,7 @@ import { setBodyClass } from '../components/init_body'
 import { alerts } from '../components/init_alerts'
 import { initTimeAgo } from '../components/init_timeago'
 import { cardSwipe, bodySwipe, homeSwipe } from '../components/init_swipe'
+import { restaurantMap } from '../components/init_restaurantMap'
 
 document.addEventListener('turbolinks:load', () => {
   setBodyClass();
@@ -29,6 +30,8 @@ document.addEventListener('turbolinks:load', () => {
 
   cardSwipe();
   bodySwipe();
+
+  document.querySelector('#restaurantMap') && restaurantMap();
 
   document.body.classList.contains('pages-home') && homeSwipe();
 
