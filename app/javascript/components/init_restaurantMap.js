@@ -35,7 +35,7 @@ const setMarker = () => {
       let el = document.createElement('div');
       el.classList.add('marker')
 
-      let marker = new mapboxgl.Marker(el)
+      let marker = new mapboxgl.Marker({color: "#e4a502"})
         .setLngLat([value.longitude, value.latitude])
         .setPopup(popup)
         .addTo(map);
