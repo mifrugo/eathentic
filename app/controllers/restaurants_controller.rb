@@ -13,7 +13,9 @@ class RestaurantsController < ApplicationController
   before_action :restaurants_search, only: %i[search_list search_dish search_location]
   before_action :dish, only: %i[list_per_dish search_dish]
 
-  def map; end
+  def map
+
+  end
 
   def list
     @path = restaurant_search_path

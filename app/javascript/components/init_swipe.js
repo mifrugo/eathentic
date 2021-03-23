@@ -1,5 +1,5 @@
 const vibrate = () => {
-  window.navigator.vibrate(10);
+  window.navigator.vibrate(50);
 }
 
 const cardSwipe = () => {
@@ -45,6 +45,11 @@ const cardSwipe = () => {
 }
 
 const bodySwipe = () => {
+
+  if( document.body.classList.contains('restaurants-map')) {
+    return
+  }
+
   let mc = new Hammer(document.querySelector('body'))
 
   mc.on('swiperight', function() {
