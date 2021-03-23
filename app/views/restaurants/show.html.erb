@@ -70,11 +70,14 @@
     <% @restaurant.reviews.each do |review| %>
       <div class="row mt-3 comments-container mx-3">
 
-        <div class="col-12 content-comments d-flex flex-column">
+        <div class="col-12 content-comments d-flex flex-column" data-count="<%=@counter%>">
           <div class="position-absolute" style="top: -15%; left: 5px">
             <div class="row avatar-comments">
               <%= review.user.navbar_avatar(size: 40) %>
             </div>
+          </div>
+          <div class="text-center">
+            <i class="fas fa-plus"><%= review.counter %><p>vote(s)</p></i>
           </div>
           <div class="position-absolute" style="right: 1em; top: 5%;  font-size: .9rem">
             <%= '<i class="fas fa-star text-warning"></i>'.html_safe * (review.rating || 0) %>
@@ -86,6 +89,28 @@
             </div>
             <div class="comments-date flex-grow-1 text-right">
               <time class="timeago" datetime="<%= review.created_at.iso8601 %>"></time>
+            </div>
+            
+            <div class="heart">
+            <%= link_to reaction_path(review.id, 2), method: :post do %>
+              <i class="fas fa-heart" data-value = "2" data-controller="reaction" data-action="click->reaction#count"></i>
+            <% end %>
+            </div>
+            <div class="like">
+            <%= link_to reaction_path(review.id, 1), method: :post do %>
+              <i class="fas fa-thumbs-up" data-value = "1" data-controller="reaction" data-action="click->reaction#count"></i>
+            <% end %> 
+            </div>
+            <div class="dislike">
+            <%= link_to reaction_path(review.id, -1), method: :post do %>
+              <i class="fas fa-thumbs-down" data-value = "-1" data-controller="reaction" data-action="click->reaction#count"></i>
+            <% end %> 
+            </div>
+            <div class="angry">
+            <%= link_to reaction_path(review.id, -2), method: :post do %>
+              <i class="fas fa-angry" data-value = "-2" data-controller="reaction" data-action="click->reaction#count"></i>
+            <% end %> 
+            
             </div>
           </div>
         </div>

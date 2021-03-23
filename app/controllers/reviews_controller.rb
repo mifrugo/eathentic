@@ -12,10 +12,7 @@ class ReviewsController < ApplicationController
       render 'restaurants/show', notice: "Invalid input"
     end
   end
-
-  def react
-  end
-
+  
   private
 
   def set_restaurant

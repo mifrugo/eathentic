@@ -27,7 +27,7 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-  end
+  end  
 
   def search
     render :show
@@ -153,4 +153,8 @@ class RestaurantsController < ApplicationController
     @latitude = cookies[:latitude] || 41.89306
     @longitude = cookies[:longitude] || 12.48278
   end
+
+  def count_reactions
+    
+  end  
 end
