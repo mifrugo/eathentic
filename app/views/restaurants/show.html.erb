@@ -51,9 +51,11 @@
     <% @dishes.each do |dish| %>
       <%= render 'dish_card', dish: dish %>
     <% end %>
-
-    <a href="#" class="btn btn-primary btn-rounded mx-auto mb-2 d-block w-50">Add a dish</a>
-
+    <% if policy(@restaurant).add_dish? %>
+      <%= render 'components/add-dish' %>
+      <%= link_to "Add a dish", "#", data: { toggle: "modal", target: "#addDishModal" }, class: "btn btn-primary btn-rounded d-block my-2 mx-auto w-50" %>
+   <% end %>
+  
   </div>
 </div>
 

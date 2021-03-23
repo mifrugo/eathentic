@@ -25,10 +25,9 @@ Rails.application.routes.draw do
   get  '/restaurants/list/search', to: 'restaurants#search_list', as: :restaurant_search
   get '/restaurants/list/dish/:id', to: 'restaurants#list_per_dish', as: :restaurant_dish
   get '/restaurants/list/dish/:id/search', to: 'restaurants#search_dish', as: :restaurant_dish_search
-
+  post '/restaurants/:id/add_dish', to: 'restaurants#add_dish', as: :add_dish
   get '/location/:id', to: 'restaurants#location_list', as: :location
   get '/location/:id/search', to: 'restaurants#search_location', as: :location_search
-
   get  '/restaurants/:id',        to: 'restaurants#show', as: 'restaurant'       # one restaurant's show and its reviews
   post '/reviews/:id/reactions/:value',  to: 'reactions#create', as: :reaction    
   get  '/restaurants/:id/search', to: 'restaurants#search', as: :restaurant_show_search
