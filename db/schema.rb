@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_23_102154) do
+
+ActiveRecord::Schema.define(version: 2021_03_23_111800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -167,9 +168,13 @@ ActiveRecord::Schema.define(version: 2021_03_23_102154) do
   end
 
   create_table "reactions", force: :cascade do |t|
-    t.string "name"
+    t.integer "number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "review_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["review_id"], name: "index_reactions_on_review_id"
+    t.index ["user_id"], name: "index_reactions_on_user_id"
   end
 
   create_table "restaurant_requests", force: :cascade do |t|
@@ -217,6 +222,7 @@ ActiveRecord::Schema.define(version: 2021_03_23_102154) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "counter", default: 0
     t.index ["restaurant_id"], name: "index_reviews_on_restaurant_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
@@ -270,6 +276,8 @@ ActiveRecord::Schema.define(version: 2021_03_23_102154) do
   add_foreign_key "menu_requests", "users"
   add_foreign_key "menus", "restaurants"
   add_foreign_key "menus", "users"
+  add_foreign_key "reactions", "reviews"
+  add_foreign_key "reactions", "users"
   add_foreign_key "restaurant_requests", "restaurants"
   add_foreign_key "restaurant_requests", "users"
   add_foreign_key "restaurants", "cuisines"

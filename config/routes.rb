@@ -30,10 +30,9 @@ Rails.application.routes.draw do
   get '/location/:id/search', to: 'restaurants#search_location', as: :location_search
 
   get  '/restaurants/:id',        to: 'restaurants#show', as: 'restaurant'       # one restaurant's show and its reviews
+  post '/reviews/:id/reactions/:value',  to: 'reactions#create', as: :reaction    
   get  '/restaurants/:id/search', to: 'restaurants#search', as: :restaurant_show_search
   get  '/restaurants/new',        to: 'restaurants#new'                          # create a new restaurant
   post '/restaurants',            to: 'restaurants#scrape', as: :restaurant_scrape
   post '/restaurants/:id/review', to: 'reviews#create', as: 'restaurant_reviews' # add a review
-  put  '/restaurants/:id/review', to: 'reviews#react'                            # react to one review
-
 end
