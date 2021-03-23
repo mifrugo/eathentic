@@ -88,32 +88,27 @@
               <%= review.user.nickname %>
             </div>
             <div class="comments-date flex-grow-1 text-right">
-              <time class="timeago" datetime="<%= review.created_at.iso8601 %>"></time>
+              <time class="timeago d-none" datetime="<%= review.created_at.iso8601 %>"></time>
+
+              <div class="reactions">
+                <span class="heart">
+                  <i class="fas fa-heart" data-value="2" data-controller="reaction" data-action="click->reaction#count"></i>
+                </span>
+                <span class="like">
+                  <i class="fas fa-thumbs-up" data-value="1" data-controller="reaction" data-action="click->reaction#count"></i>
+                </span>
+                <span class="dislike">
+                  <i class="fas fa-thumbs-down" data-value="-1" data-controller="reaction" data-action="click->reaction#count"></i>
+                </span>
+                <span class="angry">
+                  <i class="fas fa-angry" data-value="-2" data-controller="reaction" data-action="click->reaction#count"></i>
+                </span>
+              </div>
+
             </div>
-            
-            <div class="heart">
-            <%= link_to reaction_path(review.id, 2), method: :post do %>
-              <i class="fas fa-heart" data-value = "2" data-controller="reaction" data-action="click->reaction#count"></i>
-            <% end %>
-            </div>
-            <div class="like">
-            <%= link_to reaction_path(review.id, 1), method: :post do %>
-              <i class="fas fa-thumbs-up" data-value = "1" data-controller="reaction" data-action="click->reaction#count"></i>
-            <% end %> 
-            </div>
-            <div class="dislike">
-            <%= link_to reaction_path(review.id, -1), method: :post do %>
-              <i class="fas fa-thumbs-down" data-value = "-1" data-controller="reaction" data-action="click->reaction#count"></i>
-            <% end %> 
-            </div>
-            <div class="angry">
-            <%= link_to reaction_path(review.id, -2), method: :post do %>
-              <i class="fas fa-angry" data-value = "-2" data-controller="reaction" data-action="click->reaction#count"></i>
-            <% end %> 
-            
-            </div>
+
           </div>
         </div>
       </div>
-    <% end %> 
+    <% end %>
 </div>
