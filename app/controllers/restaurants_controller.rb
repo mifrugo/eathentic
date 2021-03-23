@@ -112,8 +112,8 @@ class RestaurantsController < ApplicationController
 
   def set_location
     @location = Location.find(params[:id])
-    @latitude = @location.longitude
-    @longitude = @location.latitude
+    @longitude = @location.longitude
+    @latitude = @location.latitude
   end
 
   def dish
