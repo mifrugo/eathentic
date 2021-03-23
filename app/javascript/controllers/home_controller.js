@@ -4,7 +4,10 @@ export default class extends Controller {
 
   click() {
     const element = this.element.getAttribute('data-target')
-    document.querySelector(`section[data-section="${element}"]`).scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    $('html, body').animate({
+      scrollTop: $(`section[data-section="${element}"]`).offset().top
+    }, 1000);
   }
 
 }
