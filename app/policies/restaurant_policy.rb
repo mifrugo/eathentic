@@ -54,6 +54,6 @@ class RestaurantPolicy < ApplicationPolicy
   end
 
   def add_dish?
-    user.cuisine_id == record.cuisine_id
-  end  
+    user && user.cuisine_id == record.cuisine_id
+  end
 end
