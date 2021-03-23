@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :ingredients
   has_many :views
   has_many :favorite_restaurants, dependent: :destroy
+  has_many :favorite_dishes, dependent: :destroy
   belongs_to :cuisine
 
   has_one_attached :avatar
@@ -32,4 +33,7 @@ class User < ApplicationRecord
     favorite_restaurants.map(&:restaurant_id)
   end
 
+  def dishes_favorite_ids
+    favorite_dishes.map(&:dish_id)
+  end
 end

@@ -8,7 +8,7 @@ background =
     cl_image_path(restaurant.photos.first.key)
   end || image_path('dishes/margherita.jpg')
 
-  link = "onclick=window.location=\"/restaurants/#{restaurant.id}\" data-restaurant=#{restaurant.id}" if restaurant.class.name != 'GooglePlaces::Spot'
+  link = "onclick=window.location=\"/restaurants/#{restaurant.id}\" data-id=#{restaurant.id}" if restaurant.class.name != 'GooglePlaces::Spot'
 
 %>
 
@@ -20,7 +20,7 @@ background =
   <div class="card-body">
     <% if restaurant.class.name != 'GooglePlaces::Spot' %>
       <% if user_signed_in? %>
-          <div class="add-to-favorite" data-controller="favorite" data-action="click->favorite#toggle">
+          <div class="add-to-favorite" data-controller="favorite" data-action="click->favorite#toggle" data-type="restaurants">
             <%= image_tag 'icons/heart.svg' %>
           </div>
       <% end %>
