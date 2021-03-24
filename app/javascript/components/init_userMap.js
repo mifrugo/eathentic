@@ -14,23 +14,7 @@ const displayRestaurants = () => {
   button.remove("d-none")
 };
 
-let markers = []
-var map;
-
-const clearMarkers = () => {
-  markers.forEach((marker) => marker.remove());
-  markers = [];
-};
-
-const setMarker = () => {
-
-  const marker = new mapboxgl.Marker()
-    .setLngLat(map.getCenter())
-    .addTo(map);
-
-  markers.push(marker);
-
-};
+let map;
 
 const getLocation = () => {
   const latitude = Cookies.get('latitude') || 41.89306
@@ -45,37 +29,40 @@ const renderMap = () => {
   const {latitude, longitude} = getLocation();
 
   mapboxgl.accessToken = document.querySelector('#userMap').dataset['apikey']
+  $('#userLocationModal').on('show.bs.modal', function (e) {
+    if (document.querySelector('#userMap').innerHTML.length === 0 ) {
 
-  map = new mapboxgl.Map({
-    container: 'userMap',
-    style: 'mapbox://styles/mapbox/streets-v11',
-    center: [longitude, latitude],
-    zoom: 13,
-  });
+      map = new mapboxgl.Map({
+        container: 'userMap',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [longitude, latitude],
+        zoom: 13,
+      });
 
-  const geolocate = new mapboxgl.GeolocateControl({
-    positionOptions: {
-      enableHighAccuracy: true
-    },
-    trackUserLocation: true
-  });
+      const geolocate = new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true
+        },
+        trackUserLocation: true
+      });
 
-  map.addControl(geolocate);
+      map.addControl(geolocate);
 
-  geolocate.on('geolocate', function (ev) {
-    displaySearching(`<i class="fas fa-sync fa-spin"></i> Changing location...`);
-    console.log('Geolocate');
-    Cookies.set('latitude', ev.coords.latitude)
-    Cookies.set('longitude', ev.coords.longitude)
-    setTimeout(() => {
-      displaySearching(`<span class="text-success">Location updated</span>`);
-    }, 1000 )
-    displayRestaurants();
-  });
+      geolocate.on('geolocate', function (ev) {
+        displaySearching(`<i class="fas fa-sync fa-spin"></i> Changing location...`);
+        console.log('Geolocate');
+        Cookies.set('latitude', ev.coords.latitude)
+        Cookies.set('longitude', ev.coords.longitude)
+        setTimeout(() => {
+          displaySearching(`<span class="text-success">Location updated</span>`);
+        }, 1000)
+        displayRestaurants();
+      });
 
-  setMarker();
+      document.getElementById('geocoder') && setGeocoder();
+    }
+  })
 
-  document.getElementById('geocoder') && setGeocoder();
 };
 
 const setGeocoder = () => {

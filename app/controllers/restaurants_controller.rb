@@ -1,5 +1,4 @@
 class RestaurantsController < ApplicationController
-
   require 'open-uri'
 
   skip_before_action :authenticate_user!
@@ -13,9 +12,7 @@ class RestaurantsController < ApplicationController
   before_action :restaurants_search, only: %i[search_list search_dish search_location]
   before_action :dish, only: %i[list_per_dish search_dish]
 
-  def map
-
-  end
+  def map; end
 
   def list
     @path = restaurant_search_path
@@ -130,7 +127,13 @@ class RestaurantsController < ApplicationController
   end
 
   def set_restaurants
-    @restaurants = Restaurant.near([@latitude, @longitude], 15)
+
+    if action_name == 'list'
+      @restaurants = Restaurant.near([@latitude, @longitude], 15).limit(15)
+    else
+      @restaurants = Restaurant.near([@latitude, @longitude], 15)
+    end
+
     authorize @restaurants
   end
 
