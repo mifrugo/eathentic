@@ -8,8 +8,10 @@ export default class extends Controller {
   toggle(e) {
     e.stopPropagation()
     const card = this.element.closest('.card')
+    const id = Number(card.dataset['id'])
+    const type = this.element.dataset['type']
 
-    fetch(`/${this.element.dataset['type']}/${Number(card.dataset['id'])}/favorite`, {
+    fetch(`/${type}/${id}/favorite`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -22,14 +24,20 @@ export default class extends Controller {
       .then(response => response.json())
       .then(data => {
         if( data.action == 'removed') {
-          card.classList.remove(favorite)
-
-          if(this.element.closest('#favoriteModal')) {
-            $(card).slideUp()
-          }
+          $(`.card-${type}[data-id="${id}"]`).removeClass(favorite)
+          $(`#favoriteModal .card-${type}[data-id="${id}"]`).slideUp(500,
+            function () {
+              $(this).remove()
+              if ($(`#favoriteModal #pills-${type} .card`).length === 0) {
+                $(`#favoriteModal #pills-${type} .no-results`).slideDown()
+              }
+            }
+          )
 
         } else {
-          card.classList.add(favorite)
+          $(`#favoriteModal #pills-${type}`).prepend(card.outerHTML)
+          $(`.card-${type}[data-id="${id}"]`).addClass(favorite)
+          $(`#favoriteModal #pills-${type} .no-results`).slideUp()
         }
       })
   }

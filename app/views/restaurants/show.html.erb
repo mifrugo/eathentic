@@ -49,7 +49,7 @@
     <% end %>
 
     <% @dishes.each do |dish| %>
-      <%= render 'dish_card', dish: dish %>
+      <%= render 'cuisines/dish_card', dish: dish %>
     <% end %>
     <% if policy(@restaurant).add_dish? %>
       <%= render 'components/add-dish' %>

@@ -18,14 +18,21 @@
       </ul>
       <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-restaurants" role="tabpanel" aria-labelledby="pills-restaurants-tab">
-        <% Restaurant.where(id: current_user.restaurant_favorite_ids).each do |restaurant| %>
+        <% favorite_restaurants = Restaurant.where(id: current_user.restaurant_favorite_ids) %>
+        <% style = favorite_restaurants.empty? ? '' : 'style=display:none' %>
+        <div class="no-results text-center font-italic" <%= style %>>No favorite restaurants yet.</div>
+        <% favorite_restaurants.each do |restaurant| %>
           <%= render 'restaurants/restaurant_card', restaurant: restaurant %>
         <% end %>
         </div>
         <div class="tab-pane fade" id="pills-dishes" role="tabpanel" aria-labelledby="pills-dishes-tab">
-         <% Dish.where(id: current_user.dishes_favorite_ids).each do |dish| %>
-          <%= render 'cuisines/dish_card', dish: dish %>
-        <% end %>
+
+        <% favorite_dishes = Dish.where(id: current_user.dishes_favorite_ids) %>
+        <% style = favorite_dishes.empty? ? '' : 'style=display:none' %>
+        <div class="no-results text-center font-italic" <%= style %>>No favorite dishes yet.</div>
+          <% favorite_dishes.each do |dish| %>
+            <%= render 'cuisines/dish_card', dish: dish %>
+          <% end %>
         </div>
       </div>
       </div>

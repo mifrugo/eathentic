@@ -75,10 +75,8 @@
 .card {
   &:not(.favorite) {
     .add-to-favorite {
-      &:not(:hover) {
-        img {
-          filter: grayscale(100%);
-        }
+      img {
+        filter: grayscale(100%);
       }
     }
   }
