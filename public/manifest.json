@@ -41,7 +41,7 @@
   ],
   "start_url": "/",
   "background_color": "#E4A502",
-  "display": "fullscreen",
+  "display": "standalone",
   "scope": "/",
   "theme_color": "#E4A502"
 }
