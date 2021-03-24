@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   include Pundit
 
-
   def redirect_subdomain
     redirect_to "https://www.eathentic.app#{request.fullpath}", status: 301 if request.host == 'eathentic.app'
   end
