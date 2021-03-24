@@ -1,4 +1,4 @@
-<header class="d-flex justify-content-center align-items-center flex-column" style="background-image: url(<%= image_path("cuisines/#{@cuisine.name.downcase}.jpg") %>)">
+<header class="d-flex justify-content-center align-items-center flex-column" style="background-image: url(<%= image_path("cuisines/#{@cuisine.name.downcase}.png") %>)">
   <h1 class="mt-auto text-center"><%= @cuisine.name %></h1>
   <%= form_tag cuisine_search_path, method: :get , class: 'form-inline form-search mt-auto w-100',
   data: {controller: 'search', action: 'submit->search#spinner'} do %>
