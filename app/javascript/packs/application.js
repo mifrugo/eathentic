@@ -28,8 +28,8 @@ document.addEventListener('turbolinks:load', () => {
   alerts();
   initTimeAgo();
 
-  cardSwipe();
-  bodySwipe();
+  // cardSwipe();
+  // bodySwipe();
 
   document.querySelector('#restaurantMap') && restaurantMap();
 
