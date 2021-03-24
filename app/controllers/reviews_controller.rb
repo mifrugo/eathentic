@@ -7,12 +7,12 @@ class ReviewsController < ApplicationController
     @review.user = current_user
     authorize @review
     if @review.save
-      redirect_to restaurant_path(@restaurant), notice: "Review succesfully created!"
+      redirect_to restaurant_path(@restaurant, anchor: 'reviews'), notice: "Review succesfully created!"
     else
       render 'restaurants/show', notice: "Invalid input"
     end
   end
-  
+
   private
 
   def set_restaurant

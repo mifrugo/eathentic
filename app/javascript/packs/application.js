@@ -40,6 +40,12 @@ document.addEventListener('turbolinks:load', () => {
   document.querySelector('#sidebar').classList.remove('d-none');
   autoComplete();
   setVH();
+
+  if(window.location.hash == '#reviews') {
+    setTimeout(() => {
+      document.querySelector('.btn-reviews').click()
+    }, 0);
+  }
 });
 
 document.addEventListener('turbolinks:request-end', () => {
