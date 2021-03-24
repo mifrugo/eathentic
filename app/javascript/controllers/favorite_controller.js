@@ -9,7 +9,7 @@ export default class extends Controller {
     e.stopPropagation()
     const card = this.element.closest('.card')
 
-    fetch(`/restaurants/${Number(card.dataset['restaurant'])}/favorite`, {
+    fetch(`/${this.element.dataset['type']}/${Number(card.dataset['id'])}/favorite`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -23,10 +23,14 @@ export default class extends Controller {
       .then(data => {
         if( data.action == 'removed') {
           card.classList.remove(favorite)
+
+          if(this.element.closest('#favoriteModal')) {
+            $(card).slideUp()
+          }
+
         } else {
           card.classList.add(favorite)
         }
       })
   }
-
 }
