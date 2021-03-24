@@ -13,6 +13,9 @@
     <% end %>
 </header>
 
+<% content_for :meta_title, "#{@cuisine.name} | Eathentic" %>
+<% content_for :meta_image, image_path("cuisines/#{@cuisine.name.downcase}.jpg") %>
+
 <div class="mt-5">
   <% if action_name == 'search' && params[:query].present? %>
     <h4 class="text-center mb-3"><span><%= pluralize(@dishes.count, 'result') %></span> for <span class="badge badge-primary align-middle"><%= params[:query] %></span></h4>
