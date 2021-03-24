@@ -77,39 +77,41 @@
     <% @restaurant.reviews.each do |review| %>
       <div class="row mt-3 comments-container mx-3">
 
-        <div class="col-12 content-comments d-flex flex-column" data-count="<%=@counter%>">
-          <div class="position-absolute" style="top: -15%; left: 5px">
+        <div class="col-12 content-comments d-flex flex-column pt-1" data-count="<%=@counter%>">
+          <div class="position-absolute" style="top: -1em; left: 5px">
             <div class="row avatar-comments">
               <%= review.user.navbar_avatar(size: 40) %>
             </div>
           </div>
-          <div class="text-center">
-            <i class="fas fa-plus"><%= review.counter %><p>vote(s)</p></i>
+          <div class="reactions-counter d-flex justify-content-center">
+            <p><%= pluralize(review.counter, "vote" ) %></p>
           </div>
           <div class="position-absolute" style="right: 1em; top: 5%;  font-size: .9rem">
             <%= '<i class="fas fa-star text-warning"></i>'.html_safe * (review.rating || 0) %>
           </div>
-          <p class="mt-4 "><%= review.content %></p>
+          <p class="mt-0 "><%= review.content %></p>
           <div class="d-flex flex-row comment-bottom">
-            <div>
+            <div class="font-italic">
               <%= review.user.nickname %>
             </div>
             <div class="comments-date flex-grow-1 text-right">
               <time class="timeago d-none" datetime="<%= review.created_at.iso8601 %>"></time>
 
-              <div class="reactions">
-                <span class="heart">
-                  <i class="fas fa-heart" data-value="2" data-controller="reaction" data-action="click->reaction#count"></i>
+              <div class="reactions-icons d-flex justify-content-end badge badge-pill badge-secondary py-2">
+              <div class="justify-content-between" >
+                <span class="heart p-1" data-value="2">
+                  <%= image_tag("icons/hearts.svg") %>
                 </span>
-                <span class="like">
-                  <i class="fas fa-thumbs-up" data-value="1" data-controller="reaction" data-action="click->reaction#count"></i>
+                <span class="like p-1" data-value="1">
+                  <%= image_tag("icons/thumbup.svg") %>
                 </span>
-                <span class="dislike">
-                  <i class="fas fa-thumbs-down" data-value="-1" data-controller="reaction" data-action="click->reaction#count"></i>
+                <span class="dislike p-1" data-value="-1">
+                  <%= image_tag("icons/thumbdown.svg") %>
                 </span>
-                <span class="angry">
-                  <i class="fas fa-angry" data-value="-2" data-controller="reaction" data-action="click->reaction#count"></i>
+                <span class="angry p-1 mr-0" data-value="-2">
+                  <%= image_tag("icons/mad.svg") %>
                 </span>
+                </div>
               </div>
 
             </div>
