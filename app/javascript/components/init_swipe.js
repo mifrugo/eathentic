@@ -58,7 +58,7 @@ const bodySwipe = () => {
   })
 }
 
-const SwipeElement = (el) => el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+const SwipeElement = (el) => $('html, body').animate({ scrollTop: $(el).offset().top }, 800);
 
 const homeSwipe = () => {
   document.querySelectorAll('section').forEach(el => {
