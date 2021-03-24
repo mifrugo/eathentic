@@ -94,16 +94,16 @@
 
               <div class="reactions-icons d-flex justify-content-end badge badge-pill badge-secondary py-2">
               <div class="justify-content-between" >
-                <span class="heart p-1" data-value="2">
+                <span class="heart p-1" data-value="2" data-controller="reaction" data-action="click->reaction#count">
                   <%= image_tag("icons/hearts.svg") %>
                 </span>
-                <span class="like p-1" data-value="1">
+                <span class="like p-1" data-value="1" data-controller="reaction" data-action="click->reaction#count">
                   <%= image_tag("icons/thumbup.svg") %>
                 </span>
-                <span class="dislike p-1" data-value="-1">
+                <span class="dislike p-1" data-value="-1" data-controller="reaction" data-action="click->reaction#count">
                   <%= image_tag("icons/thumbdown.svg") %>
                 </span>
-                <span class="angry p-1 mr-0" data-value="-2">
+                <span class="angry p-1 mr-0" data-value="-2" data-controller="reaction" data-action="click->reaction#count">
                   <%= image_tag("icons/mad.svg") %>
                 </span>
                 </div>
