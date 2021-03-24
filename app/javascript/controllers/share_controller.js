@@ -3,8 +3,8 @@ import { Controller } from "stimulus";
 export default class extends Controller {
   click() {
     const shareData = {
-      title: 'Eathentic',
-      text: 'Share this page',
+      title: window._title,
+      text: window._title,
       url: window.location.href
     }
     try {
