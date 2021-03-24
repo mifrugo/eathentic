@@ -23,6 +23,11 @@ export default class extends Controller {
       .then(data => {
         if( data.action == 'removed') {
           card.classList.remove(favorite)
+
+          if(this.element.closest('#favoriteModal')) {
+            $(card).slideUp()
+          }
+
         } else {
           card.classList.add(favorite)
         }

@@ -24,6 +24,9 @@
           <small class="d-block">Cuisine mastered</small> <span class="badge badge-primary"><%= current_user.cuisine.name %></span>
         </li>
 
+      <li>
+        <a href="#" data-toggle="modal" data-target="#favoriteModal" data-controller="sidebar" data-action="click->sidebar#click">Your favorites</a>
+      </li>
       <% end %>
       <li>
         <a href="#nearSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Restaurants near you</a>
@@ -112,4 +115,5 @@
   <%= render 'devise/sessions/modal' %>
 <% else %>
   <%= render 'devise/sessions/update' %>
+  <%= render 'shared/favorite' %>
 <% end %>
