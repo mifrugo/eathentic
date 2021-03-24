@@ -26,7 +26,7 @@
             (<%= @dishes.count %>)
           <% end %>
       </label>
-      <label data-controller="review" data-action="click->review#show_reviews" class="btn btn-primary text-white" style="border-radius: 0 10px 10px 0">
+      <label data-controller="review" data-action="click->review#show_reviews" class="btn btn-primary text-white btn-reviews" style="border-radius: 0 10px 10px 0">
         <input type="radio" name="options" id="option2" autocomplete="off"> Reviews
         <% unless @restaurant.reviews.empty? %>
           (<%= @restaurant.reviews.count %>)
