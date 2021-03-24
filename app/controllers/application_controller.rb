@@ -1,8 +1,14 @@
 class ApplicationController < ActionController::Base
+  before_action :redirect_subdomain
   before_action :get_cuisines
   before_action :get_locations
   before_action :authenticate_user!
   include Pundit
+
+
+  def redirect_subdomain
+    redirect_to "https://www.eathentic.app#{request.fullpath}", status: 301 if request.host == 'eathentic.app'
+  end
 
   # Pundit: white-list approach.
   after_action :verify_authorized, except: :index, unless: :skip_pundit?
