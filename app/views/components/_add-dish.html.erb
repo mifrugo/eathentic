@@ -11,7 +11,7 @@
         <div class="form-inputs">
         <%= simple_form_for (@restaurant), url: add_dish_path, method: :post do |f| %>
           <div class="">
-            <%= f.input :dishes, collection: Dish.all, input_html: { multiple: false, class: 'selectpicker' }, include_hidden: false %>
+            <%= f.input :dishes, collection: Dish.all %>
           </div>
         <%= f.button :submit, "Add it", class: 'btn btn btn btn-secondary btn-rounded d-block w-50 mx-auto' %>
         </div>

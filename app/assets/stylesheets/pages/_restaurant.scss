@@ -83,3 +83,14 @@
     }
   }
 }
+
+.edit_restaurant {
+  .is-valid {
+    background-image: none;
+    border: 1px solid #ced4da;
+    &:focus {
+      border-color: $primary;
+      box-shadow: none;
+    }
+  }
+}
