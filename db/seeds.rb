@@ -9,6 +9,8 @@ require_relative 'data/restaurants'
   puts "|||       v2        |||"
   puts "-----------------------"
 
+  FavoriteDish.destroy_all
+  FavoriteRestaurant.destroy_all
   MenuDish.destroy_all
   Menu.destroy_all
   DishIngredient.destroy_all
@@ -31,6 +33,8 @@ require_relative 'data/restaurants'
   ActiveRecord::Base.connection.reset_pk_sequence!('reviews')
   ActiveRecord::Base.connection.reset_pk_sequence!('menus')
   ActiveRecord::Base.connection.reset_pk_sequence!('restaurants')
+  ActiveRecord::Base.connection.reset_pk_sequence!('favorite_dishes')
+  ActiveRecord::Base.connection.reset_pk_sequence!('favorite_restaurants')
 
 
   puts "Creating cuisines ..."
