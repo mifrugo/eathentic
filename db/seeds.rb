@@ -38,15 +38,14 @@ require_relative 'data/restaurants'
     Cuisine.create(name: cuisine.capitalize)
   end
 
-  puts "Creating users..."
-  10.times do
-    User.create!(
-      nickname: Faker::Internet.username,
-      email: Faker::Internet.email,
-      password: 'helloworld',
-      cuisine_id: Cuisine.all.sample.id
-    )
-  end
+
+  puts "Creating default user..."
+  User.create(
+    nickname: 'Eathentic',
+    email: 'info@eathentic.app',
+    password: '123456',
+    cuisine_id: 1
+  )
 
   puts "Creating locations..."
   LOCATIONS.each do |location|
@@ -79,7 +78,7 @@ require_relative 'data/restaurants'
 
     rest = Restaurant.create!(
       cuisine_id: Cuisine.find_by("lower(name) = ?", type).id,
-      user_id: User.all.sample.id,
+      user_id: 1,
       location_id: Location.where(name: "Rome").first.id,
       name: restaurant[:name],
       description: restaurant[:description],
@@ -92,7 +91,7 @@ require_relative 'data/restaurants'
 
     menu = Menu.create!(
       restaurant_id: rest.id,
-      user_id: User.all.sample.id,
+      user_id: 1,
       name: 'Main'
     )
 
@@ -115,7 +114,7 @@ require_relative 'data/restaurants'
 
       rest = Restaurant.create!(
         cuisine_id: Cuisine.where(name: 'Italian').first.id,
-        user_id: User.all.sample.id,
+        user_id: 1,
         location_id: Location.find_by("lower(name) = ?", city).id,
         name: r["name"],
         latitude: r["latitude"],
@@ -127,7 +126,7 @@ require_relative 'data/restaurants'
 
       menu = Menu.create!(
         restaurant_id: rest.id,
-        user_id: User.all.sample.id,
+        user_id: 1,
         name: 'Main'
       )
 
