@@ -40,7 +40,7 @@
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
     <%= stylesheet_pack_tag 'application' %>
-    <%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
+    <%= javascript_tag "window._token = '#{form_authenticity_token}'; window._title = '#{meta_title}'" %>
   </head>
 
   <body class="<%= controller_name %>-<%= action_name %>">
