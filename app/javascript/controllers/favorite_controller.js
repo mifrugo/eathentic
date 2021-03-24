@@ -25,10 +25,19 @@ export default class extends Controller {
       .then(data => {
         if( data.action == 'removed') {
           $(`.card-${type}[data-id="${id}"]`).removeClass(favorite)
-          $(`#favoriteModal .card-${type}[data-id="${id}"]`).slideUp(500, function () { $(this).remove()})
+          $(`#favoriteModal .card-${type}[data-id="${id}"]`).slideUp(500,
+            function () {
+              $(this).remove()
+              if ($(`#favoriteModal #pills-${type} .card`).length === 0) {
+                $(`#favoriteModal #pills-${type} .no-results`).slideDown()
+              }
+            }
+          )
+
         } else {
           $(`#favoriteModal #pills-${type}`).prepend(card.outerHTML)
           $(`.card-${type}[data-id="${id}"]`).addClass(favorite)
+          $(`#favoriteModal #pills-${type} .no-results`).slideUp()
         }
       })
   }
