@@ -35,3 +35,9 @@
 .card {
   transition: transform .3s ease;
 }
+
+.nav-pills {
+  .nav-link {
+    border-radius: 10rem;
+  }
+}
