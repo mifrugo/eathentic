@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_scope :user do
     put '/users/avatar', to: 'update_users#update_avatar'
     put '/users/email', to: 'update_users#update_email'

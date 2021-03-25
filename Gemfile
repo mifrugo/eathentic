@@ -23,6 +23,8 @@ gem 'redis', '~> 4.0'
 gem 'simple_token_authentication'
 
 gem 'cloudinary', '~> 1.16.0'
+gem 'rails_admin', '~> 2.0'
+
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'faker'
