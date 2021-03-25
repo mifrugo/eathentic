@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_23_111800) do
+ActiveRecord::Schema.define(version: 2021_03_25_081632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -237,6 +237,7 @@ ActiveRecord::Schema.define(version: 2021_03_23_111800) do
     t.bigint "cuisine_id", null: false
     t.string "nickname"
     t.string "authentication_token", limit: 30
+    t.boolean "admin", default: false
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["cuisine_id"], name: "index_users_on_cuisine_id"
     t.index ["email"], name: "index_users_on_email", unique: true
