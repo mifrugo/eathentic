@@ -22,7 +22,7 @@ export default class extends Controller {
         console.log(data.action)
       if (data.action == "saved" ) {
         document.querySelector(`.counter-${id} .badge`).innerHTML = data.counter
-        this.element.closest(".reactions-icons").remove()
+        $(this.element).closest(".reactions-icons").removeClass('d-flex').slideUp()
       }
     })
   }
