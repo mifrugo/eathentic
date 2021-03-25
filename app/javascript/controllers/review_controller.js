@@ -6,8 +6,6 @@ export default class extends Controller {
     const rating = this.element.getAttribute('data-star')
     document.querySelector('#review_rating').value = rating
 
-    window.navigator.vibrate(100);
-
     const class_add = ['text-warning', 'fas']
     const class_remove = ['far']
 

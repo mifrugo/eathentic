@@ -8,8 +8,6 @@ export default class extends Controller {
   toggle(e) {
     e.stopPropagation()
 
-    window.navigator.vibrate(100);
-
     const card = this.element.closest('.favorite-container')
     const id = Number(card.dataset['id'])
     const type = this.element.dataset['type']
