@@ -24,9 +24,14 @@
           <small class="d-block">Cuisine mastered</small> <span class="badge badge-primary"><%= current_user.cuisine.name %></span>
         </li>
 
-      <li>
-        <a href="#" data-toggle="modal" data-target="#favoriteModal" data-controller="sidebar" data-action="click->sidebar#click">Your favorites</a>
-      </li>
+        <% if current_user.admin? %>
+          <li><%= link_to 'Admin', rails_admin_path, class: 'font-weight-bold' %></li>
+        <% end %>
+
+        <li>
+          <a href="#" data-toggle="modal" data-target="#favoriteModal" data-controller="sidebar" data-action="click->sidebar#click">Your favorites</a>
+        </li>
+
       <% end %>
       <li>
         <a href="#nearSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Restaurants near you</a>
