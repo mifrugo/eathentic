@@ -1,4 +1,4 @@
-<% background = @location && @location.photos.attached? ? cl_image_path(@location.photos.first.key) : image_path("restaurants.jpg") %>
+<% background = @location && @location.photos.attached? ? cl_image_path(@location.photos.first.key, width: 400, height: 400, crop: :fill) : image_path("restaurants.jpg") %>
 
 <header class="d-flex justify-content-center align-items-center flex-column" style="background-image: url(<%= background %>)">
   <h1 class="mt-auto text-center">

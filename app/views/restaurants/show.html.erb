@@ -1,5 +1,5 @@
 <% favorite_class = (user_signed_in? && current_user.restaurant_favorite_ids.include?(@restaurant.id)) ? ' favorite' : '' %>
-<header class="d-flex justify-content-center align-items-center favorite-container favorite-container-restaurants flex-column<%= favorite_class %>" style="background-image: url(<%= cl_image_path(@restaurant.photos.first.key) %>)" data-id="<%= @restaurant.id %>">
+<header class="d-flex justify-content-center align-items-center favorite-container favorite-container-restaurants flex-column<%= favorite_class %>" style="background-image: url(<%= cl_image_path(@restaurant.photos.first.key, width: 400, height: 400, crop: :fill) %>)" data-id="<%= @restaurant.id %>">
   <h1 class="mt-auto text-center"><%= @restaurant.name %></h1>
   <span class="badge badge-pill badge-info"><%= @restaurant.cuisine.name %></span>
   <div class="form-search mt-auto d-flex align-items-center" style="width: 90%">
