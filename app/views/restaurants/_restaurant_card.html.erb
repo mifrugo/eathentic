@@ -15,7 +15,7 @@ background =
 <% favorite_class = (user_signed_in? && current_user.restaurant_favorite_ids.include?(restaurant.id)) ? ' favorite' : '' %>
 <div class="card favorite-container favorite-container-restaurants card-swipe mb-2 mx-auto text-center<%= favorite_class %>" <%= link %>>
   <div style="background-image: url(<%= background %>)" class="card-header d-flex align-items-center justify-content-center">
-    <% if restaurant.class.name == 'GooglePlaces::Spot' %>
+    <% if restaurant.class.name != 'GooglePlaces::Spot' %>
       <div class="badge badge-pill badge-info text-white cuisine-badge">
         <%= restaurant.cuisine.name %>
       </div>
