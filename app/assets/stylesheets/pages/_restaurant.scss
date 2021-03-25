@@ -25,6 +25,10 @@
   }
 }
 
+#reviews > div:last-child {
+  margin-bottom: 2rem;
+}
+
 .review_content {
   label {
     width: 100%;

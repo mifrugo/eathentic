@@ -1,16 +1,18 @@
 class ReactionsController < ApplicationController
   before_action :set_review
   def create
-    @reaction = Reaction.new(number: params[:value])
+    @reaction = Reaction.new(set_params)
     @reaction.review = @review
     @reaction.user = current_user
     authorize @reaction
     if @reaction.save!
-      redirect_to restaurant_path(@review.restaurant_id)
+      render json: { action: "saved", counter: @review.counter }.to_json
     else
-      flash.alert = "Reaction not submitted."  
+      render json: { action: "error", counter: @review.counter }.to_json  
     end
   end  
+
+
 
   private
 

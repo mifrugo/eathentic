@@ -22,6 +22,7 @@ import { cardSwipe, bodySwipe, homeSwipe } from '../components/init_swipe'
 import { restaurantMap } from '../components/init_restaurantMap'
 
 document.addEventListener('turbolinks:load', () => {
+  $('[data-toggle="popover"]').popover();
   setBodyClass();
 
   getLocation();
