@@ -129,13 +129,7 @@ class RestaurantsController < ApplicationController
   end
 
   def set_restaurants
-
-    if action_name == 'list'
-      @restaurants = Restaurant.near([@latitude, @longitude], 15).limit(15)
-    else
-      @restaurants = Restaurant.near([@latitude, @longitude], 15)
-    end
-
+    @restaurants = Restaurant.near([@latitude, @longitude], 15).limit(15)
     authorize @restaurants
   end
 
