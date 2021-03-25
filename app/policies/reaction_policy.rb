@@ -6,6 +6,6 @@ class ReactionPolicy < ApplicationPolicy
   end
 
   def create?
-    Reaction.where(user_id: user.id, review_id: record.review.id).empty?
+    record.review.user_id != user.id && Reaction.where(user_id: user.id, review_id: record.review.id).empty?
   end
 end

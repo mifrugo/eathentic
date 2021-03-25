@@ -3,6 +3,8 @@ import { Controller } from "stimulus";
 export default class extends Controller {
 
   count() {
+    window.navigator.vibrate(100);
+
     const aVote = this.element.getAttribute('data-value')
     const id = Number(this.element.closest("div").dataset["id"])
     fetch(`/reviews/${id}/reactions`, {
@@ -20,7 +22,7 @@ export default class extends Controller {
         console.log(data.action)
       if (data.action == "saved" ) {
         document.querySelector(`.counter-${id} .badge`).innerHTML = data.counter
-        this.element.closest(".reactions-icons").remove()
+        $(this.element).closest(".reactions-icons").removeClass('d-flex').slideUp()
       }
     })
   }
