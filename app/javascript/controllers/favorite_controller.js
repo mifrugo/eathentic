@@ -7,6 +7,7 @@ export default class extends Controller {
 
   toggle(e) {
     e.stopPropagation()
+    e.preventDefault()
 
     const card = this.element.closest('.favorite-container')
     const id = Number(card.dataset['id'])
