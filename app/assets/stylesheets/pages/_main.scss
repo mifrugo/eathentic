@@ -54,3 +54,8 @@ body {
   border-radius: 15px;
   transform: translate(-50%,-50%);
 }
+
+a.card, a.card * {
+  text-decoration: none!important;
+  color: inherit;
+}

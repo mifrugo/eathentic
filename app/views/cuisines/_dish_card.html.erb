@@ -1,7 +1,7 @@
 <% background = dish.photos.attached? ? cl_image_path(dish.photos.first.key) : image_path('dishes/margherita.jpg') %>
 <% favorite_class = (user_signed_in? && current_user.dishes_favorite_ids.include?(dish.id)) ? ' favorite' : '' %>
-<% onclick = controller_name != 'restaurants' ? "onclick=window.location=\"/restaurants/list/dish/#{dish.id}\"" : '' %>
-<div class="card card-swipe favorite-container favorite-container-dishes mb-2 mx-auto text-center<%= favorite_class %>" <%= onclick %> data-id="<%= dish.id %>">
+<% onclick = controller_name != 'restaurants' ? "href=/restaurants/list/dish/#{dish.id}" : '' %>
+<a class="card card-swipe favorite-container favorite-container-dishes mb-2 mx-auto text-center<%= favorite_class %>" href="/restaurants/list/dish/<%= dish.id %>" data-id="<%= dish.id %>">
   <div style="background-image: url(<%= background %>)" class="card-header d-flex align-items-center justify-content-center">
     <h3><%= dish.name %></h3>
   </div>
@@ -13,4 +13,4 @@
     <% end %>
     <p class="card-text"><%= dish.description %></p>
   </div>
-</div>
+</a>
