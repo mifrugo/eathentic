@@ -1,4 +1,6 @@
 class Review < ApplicationRecord
+  self.implicit_order_column = "created_at"
+
   belongs_to :restaurant
   belongs_to :user
   has_many :reactions, dependent: :destroy
@@ -8,7 +10,7 @@ class Review < ApplicationRecord
   validates :user_id, uniqueness: { scope: :restaurant_id }
 
   def compute
-    counter = self.reactions.sum { |reaction| reaction.number }
-    self.update(counter: counter)
-  end  
+    counter = reactions.sum(&:number)
+    update(counter: counter)
+  end
 end
