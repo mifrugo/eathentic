@@ -10,7 +10,7 @@ class Review < ApplicationRecord
   validates :user_id, uniqueness: { scope: :restaurant_id }
 
   def compute
-    counter = self.reactions.sum { |reaction| reaction.number }
-    self.update(counter: counter)
+    counter = reactions.sum(&:number)
+    update(counter: counter)
   end
 end
