@@ -1,4 +1,6 @@
 class Review < ApplicationRecord
+  self.implicit_order_column = "created_at"
+
   belongs_to :restaurant
   belongs_to :user
   has_many :reactions, dependent: :destroy
@@ -10,5 +12,5 @@ class Review < ApplicationRecord
   def compute
     counter = self.reactions.sum { |reaction| reaction.number }
     self.update(counter: counter)
-  end  
+  end
 end
