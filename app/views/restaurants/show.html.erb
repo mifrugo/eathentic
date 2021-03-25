@@ -91,16 +91,16 @@
   <% end %>
 
     <% @restaurant.reviews.each do |review| %>
-      <div class="row mt-3 comments-container mx-3">
-
-        <div class="col-12 content-comments d-flex flex-column pt-1" data-count="<%=@counter%>">
+      <div class="row mt-3 comments-container mx-3">     
+        <div class="col-12 content-comments d-flex flex-column pt-1">
           <div class="position-absolute" style="top: -1em; left: 5px">
             <div class="row avatar-comments">
               <%= review.user.navbar_avatar(size: 40) %>
             </div>
           </div>
           <div class="reactions-counter d-flex justify-content-center">
-            <p><%= pluralize(review.counter, "vote" ) %></p>
+            <p class="counter-<%= review.id %>" data-container="body" data-toggle="popover" data-placement="bottom" data-content="This score is computed based on users' reactions.">
+            Review score: <span class="badge badge-info badge-pill"> <%= review.counter %> </span></p>
           </div>
           <div class="position-absolute" style="right: 1em; top: 5%;  font-size: .9rem">
             <%= '<i class="fas fa-star text-warning"></i>'.html_safe * (review.rating || 0) %>
@@ -112,9 +112,9 @@
             </div>
             <div class="comments-date flex-grow-1 text-right">
               <time class="timeago d-none" datetime="<%= review.created_at.iso8601 %>"></time>
-
+               <% if policy(review).react?  %>
               <div class="reactions-icons d-flex justify-content-end badge badge-pill badge-secondary py-2">
-              <div class="justify-content-between" >
+              <div class="justify-content-between reaction-list" data-id=<%= review.id %> data-restaurant = <%= @restaurant.id %> >
                 <span class="heart p-1" data-value="2" data-controller="reaction" data-action="click->reaction#count">
                   <%= image_tag("icons/hearts.svg") %>
                 </span>
@@ -129,9 +129,8 @@
                 </span>
                 </div>
               </div>
-
+              <% end %>
             </div>
-
           </div>
         </div>
       </div>
