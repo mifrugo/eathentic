@@ -66,7 +66,7 @@ class RestaurantsController < ApplicationController
     if params[:gid].present?
       from_google
 
-      loc = Location.near([@scraped.lng, @scraped.lat], 20).first
+      loc = Location.near([ @scraped.lat, @scraped.lng], 20).first
 
       @restaurant = Restaurant.create(
         name: @scraped.name,
