@@ -8,6 +8,7 @@ class RestaurantsController < ApplicationController
   before_action :search_in_restaurant, only: :search
   before_action :geolocalize, only: %i[list map list_per_dish search_list search_dish]
   before_action :set_restaurants, only: %i[list map search_list location_list search_location]
+  before_action :count_visit, only: %i[list map search_list location_list search_location]
   before_action :restaurants_per_dish, only: %i[list_per_dish search_dish]
   before_action :restaurants_search, only: %i[search_list search_dish search_location]
   before_action :dish, only: %i[list_per_dish search_dish]
@@ -26,6 +27,7 @@ class RestaurantsController < ApplicationController
   end
 
   def show
+    @viewed = View.where(restaurant: @restaurant, created_at: Time.now.all_day).count
   end
 
   def search
@@ -183,7 +185,11 @@ class RestaurantsController < ApplicationController
     @longitude = cookies[:longitude] || 12.48278
   end
 
-  def count_reactions
+  def count_visit
+    return unless user_signed_in?
 
+    @restaurants.each do |restaurant|
+      View.create(user: current_user, restaurant: restaurant)
+    end
   end
 end

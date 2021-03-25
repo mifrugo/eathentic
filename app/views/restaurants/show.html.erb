@@ -28,6 +28,11 @@
     </div>
 </header>
 
+<% if @viewed.positive? %>
+  <div class="alert alert-success fade show m-1" role="alert">
+    <i class="far fa-eye"></i> Viewed <%= @viewed %> times today
+  </div>
+<% end %>
 
 <% content_for :meta_title, "#{@restaurant.name} | Eathentic" %>
 <% content_for :meta_description, @restaurant.description %>
@@ -91,9 +96,9 @@
   <% end %>
 
     <% @restaurant.reviews.each do |review| %>
-      <div class="row mt-3 comments-container mx-3">     
+      <div class="row mt-3 comments-container mx-3">
         <div class="col-12 content-comments d-flex flex-column pt-1">
-          <div class="position-absolute" style="top: -1em; left: 5px">
+          <div class="position-absolute" style="top: -.7em; left: 5px">
             <div class="row avatar-comments">
               <%= review.user.navbar_avatar(size: 40) %>
             </div>
