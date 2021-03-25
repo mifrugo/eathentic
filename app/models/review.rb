@@ -1,5 +1,5 @@
 class Review < ApplicationRecord
-  self.implicit_order_column = "created_at"
+  default_scope { order(created_at: :desc) }
 
   belongs_to :restaurant
   belongs_to :user
