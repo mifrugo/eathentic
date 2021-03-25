@@ -83,11 +83,15 @@
   right:0.5rem;
 }
 
-.add-to-favorite {
-  position: absolute;
-  top: -.5em;
-  left: -.5em;
-  padding: .3em .4em;
+.add-to-favorite, .restaurant-map {
+
+  &.positioned {
+    position: absolute;
+    top: -.5em;
+    left: -.5em;
+  }
+
+  padding: .3em .5em;
   background: #fff;
   border-radius: 100%;
 
@@ -97,7 +101,7 @@
   }
 }
 
-.card {
+.card, header {
   &:not(.favorite) {
     .add-to-favorite {
       img {

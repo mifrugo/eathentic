@@ -1,15 +1,30 @@
-<header class="d-flex justify-content-center align-items-center flex-column" style="background-image: url(<%= cl_image_path(@restaurant.photos.first.key) %>)">
+<% favorite_class = (user_signed_in? && current_user.restaurant_favorite_ids.include?(@restaurant.id)) ? ' favorite' : '' %>
+<header class="d-flex justify-content-center align-items-center favorite-container favorite-container-restaurants flex-column<%= favorite_class %>" style="background-image: url(<%= cl_image_path(@restaurant.photos.first.key) %>)" data-id="<%= @restaurant.id %>">
   <h1 class="mt-auto text-center"><%= @restaurant.name %></h1>
-  <%= form_tag restaurant_show_search_path, method: :get , class: 'form-inline form-search mt-auto w-100', data: {controller: 'search', action: 'submit->search#spinner'} do %>
-      <div class="form-group m-auto w-75">
-        <%= text_field_tag :query,
-          params[:query],
-          class: "form-control mx-sm-3 w-100",
-          placeholder: "Search in #{@restaurant.name}"
-        %>
-        <i class="fa fa-search"></i>
-      </div>
-    <% end %>
+  <div class="form-search mt-auto d-flex align-items-center" style="width: 90%">
+
+    <a class="restaurant-map" href="https://www.google.com/maps/search/?api=1&query=<%= @restaurant.latitude %>,<%= @restaurant.longitude %>">
+      <%= image_tag 'google-maps.svg' %>
+    </a>
+
+    <%= form_tag restaurant_show_search_path, method: :get , class: 'form-inline flex-grow-1', data: {controller: 'search', action: 'submit->search#spinner'}, style: 'width: 90%' do %>
+        <div class="form-group m-auto">
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control mx-sm-3 w-100",
+            placeholder: "Search in restaurant"
+          %>
+          <i class="fa fa-search"></i>
+        </div>
+      <% end %>
+
+      <% if user_signed_in? %>
+        <div class="add-to-favorite" data-controller="favorite" data-action="click->favorite#toggle" data-type="restaurants">
+          <%= image_tag 'icons/heart.svg' %>
+        </div>
+      <% end %>
+
+    </div>
 </header>
 
 
