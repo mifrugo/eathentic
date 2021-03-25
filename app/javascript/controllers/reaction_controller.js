@@ -3,7 +3,6 @@ import { Controller } from "stimulus";
 export default class extends Controller {
 
   count() {
-    window.navigator.vibrate(100);
 
     const aVote = this.element.getAttribute('data-value')
     const id = Number(this.element.closest("div").dataset["id"])
