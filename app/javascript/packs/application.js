@@ -20,10 +20,12 @@ import { alerts } from '../components/init_alerts'
 import { initTimeAgo } from '../components/init_timeago'
 import { cardSwipe, bodySwipe, homeSwipe } from '../components/init_swipe'
 import { restaurantMap } from '../components/init_restaurantMap'
+import { initActions } from '../components/init_actions'
 
 document.addEventListener('turbolinks:load', () => {
-  $('[data-toggle="popover"]').popover();
+
   setBodyClass();
+  initActions();
 
   getLocation();
   alerts();
@@ -42,11 +44,6 @@ document.addEventListener('turbolinks:load', () => {
   autoComplete();
   setVH();
 
-  if(window.location.hash == '#reviews') {
-    setTimeout(() => {
-      document.querySelector('.btn-reviews').click()
-    }, 0);
-  }
 });
 
 document.addEventListener('turbolinks:request-end', () => {
