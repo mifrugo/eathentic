@@ -65,6 +65,10 @@ const getNewRestaurants = ( {latitude, longitude} = {} ) => {
 
 const restaurantMap = () => {
 
+  if (document.querySelector('#restaurantMap') === null) {
+    return
+  }
+
   console.log('Map init');
 
   mapboxgl.accessToken = document.querySelector('#restaurantMap').dataset['apikey']
