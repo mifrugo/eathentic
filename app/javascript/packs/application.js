@@ -40,7 +40,10 @@ document.addEventListener('turbolinks:load', () => {
 
   document.querySelector('#userMap') && renderMap();
 
-  document.querySelector('#sidebar').classList.remove('d-none');
+  setTimeout(() => {
+    document.querySelector('#sidebar').classList.remove('d-none');
+  }, 0);
+
   autoComplete();
   setVH();
 
