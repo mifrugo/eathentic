@@ -1,37 +1,37 @@
 <% favorite_class = (user_signed_in? && current_user.restaurant_favorite_ids.include?(@restaurant.id)) ? ' favorite' : '' %>
 <header class="d-flex justify-content-center align-items-center favorite-container favorite-container-restaurants flex-column<%= favorite_class %>" style="background-image: url(<%= cl_image_path(@restaurant.photos.first.key, width: 400, height: 400, crop: :fill) %>)" data-id="<%= @restaurant.id %>">
-  <h1 class="mt-auto text-center"><%= @restaurant.name %></h1>
-  <span class="badge badge-pill badge-info"><%= @restaurant.cuisine.name %></span>
-  <div class="form-search mt-auto d-flex align-items-center" style="width: 90%">
+	<h1 class="mt-auto text-center"><%= @restaurant.name %></h1>
+	<span class="badge badge-pill badge-info"><%= @restaurant.cuisine.name %></span>
+	<div class="form-search mt-auto d-flex align-items-center" style="width: 90%">
 
-    <a class="restaurant-map" href="https://www.google.com/maps/search/?api=1&query=<%= @restaurant.latitude %>,<%= @restaurant.longitude %>">
-      <%= image_tag 'google-maps.svg' %>
-    </a>
+		<a class="restaurant-map" href="https://www.google.com/maps/search/?api=1&query=<%= @restaurant.latitude %>,<%= @restaurant.longitude %>">
+			<%= image_tag 'google-maps.svg' %>
+		</a>
 
-    <%= form_tag restaurant_show_search_path, method: :get , class: 'form-inline flex-grow-1', data: {controller: 'search', action: 'submit->search#spinner'}, style: 'width: 90%' do %>
-        <div class="form-group m-auto">
-          <%= text_field_tag :query,
-            params[:query],
-            class: "form-control mx-sm-3 w-100",
-            placeholder: "Search in restaurant"
-          %>
-          <i class="fa fa-search"></i>
-        </div>
-      <% end %>
+		<%= form_tag restaurant_show_search_path, method: :get , class: 'form-inline flex-grow-1', data: {controller: 'search', action: 'submit->search#spinner'}, style: 'width: 90%' do %>
+				<div class="form-group m-auto">
+					<%= text_field_tag :query,
+						params[:query],
+						class: "form-control mx-sm-3 w-100",
+						placeholder: "Search in restaurant"
+					%>
+					<i class="fa fa-search"></i>
+				</div>
+			<% end %>
 
-      <% if user_signed_in? %>
-        <div class="add-to-favorite" data-controller="favorite" data-action="click->favorite#toggle" data-type="restaurants">
-          <%= image_tag 'icons/heart.svg' %>
-        </div>
-      <% end %>
+			<% if user_signed_in? %>
+				<div class="add-to-favorite" data-controller="favorite" data-action="click->favorite#toggle" data-type="restaurants">
+					<%= image_tag 'icons/heart.svg' %>
+				</div>
+			<% end %>
 
-    </div>
+		</div>
 </header>
 
 <% if @viewed.positive? %>
-  <div class="alert alert-success fade show m-1" role="alert">
-    <i class="far fa-eye"></i> Viewed <%= @viewed %> times today
-  </div>
+	<div class="alert alert-success fade show m-1" role="alert">
+		<i class="far fa-eye"></i> Viewed <%= @viewed %> times today
+	</div>
 <% end %>
 
 <% content_for :meta_title, "#{@restaurant.name} | Eathentic" %>
@@ -39,105 +39,117 @@
 <% content_for :meta_image, cl_image_path(@restaurant.photos.first.key) %>
 
 <div class="mt-4 w-100">
-  <div class="m-auto w-100 text-center">
-    <div class="btn-group btn-group-toggle my-2 mx-auto" data-toggle="buttons">
-      <label data-controller="review" data-action="click->review#show_dishes" class="btn btn-primary text-white active" style="border-radius: 10px 0 0 10px">
-        <input type="radio" name="options" id="option1" autocomplete="off" checked> Dishes
-           <% unless @dishes.empty? %>
-            (<%= @dishes.count %>)
-          <% end %>
-      </label>
-      <label data-controller="review" data-action="click->review#show_reviews" class="btn btn-primary text-white btn-reviews" style="border-radius: 0 10px 10px 0">
-        <input type="radio" name="options" id="option2" autocomplete="off"> Reviews
-        <% unless @restaurant.reviews.empty? %>
-          (<%= @restaurant.reviews.count %>)
-        <% end %>
-      </label>
-    </div>
-  </div>
+	<div class="m-auto w-100 text-center">
+		<div class="btn-group btn-group-toggle my-2 mx-auto" data-toggle="buttons">
+			<label data-controller="review" data-action="click->review#show_dishes" class="btn btn-primary text-white active" style="border-radius: 10px 0 0 10px">
+				<input type="radio" name="options" id="option1" autocomplete="off" checked> Dishes
+					 <% unless @dishes.empty? %>
+						(<%= @dishes.count %>)
+					<% end %>
+			</label>
+			<label data-controller="review" data-action="click->review#show_reviews" class="btn btn-primary text-white btn-reviews" style="border-radius: 0 10px 10px 0">
+				<input type="radio" name="options" id="option2" autocomplete="off"> Reviews
+				<% unless @restaurant.reviews.empty? %>
+					(<%= @restaurant.reviews.count %>)
+				<% end %>
+			</label>
+		</div>
+	</div>
 
-  <div id="dishes">
-    <% if @restaurant.dishes.empty? %>
+	<div id="dishes">
+		<% if @restaurant.dishes.empty? %>
 
-      <h4 class="text-center mt-3">Ops!</h4>
-      <p class="text-center">No dishes for this restaurant are available 😢</p>
+			<h4 class="text-center mt-3">Ops!</h4>
+			<p class="text-center">No dishes for this restaurant are available 😢</p>
 
-    <% else %>
+		<% else %>
 
-      <% if action_name == 'search' && params[:query].present? %>
-        <h4 class="text-center mb-3"><span><%= pluralize(@dishes.count, 'result') %></span> for <span class="badge badge-primary align-middle"><%= params[:query] %></span></h4>
+			<% if action_name == 'search' && params[:query].present? %>
+				<h4 class="text-center mb-3"><span><%= pluralize(@dishes.count, 'result') %></span> for <span class="badge badge-primary align-middle"><%= params[:query] %></span></h4>
 
-        <% if @dishes.count === 0 %>
-          <p class="text-center">Try a more generic search 😉</p>
-        <% end %>
-      <% end %>
+				<% if @dishes.count === 0 %>
+					<p class="text-center">Try a more generic search 😉</p>
+				<% end %>
+			<% end %>
 
-    <% end %>
+		<% end %>
 
-    <% @dishes.each do |dish| %>
-      <%= render 'cuisines/dish_card', dish: dish %>
-    <% end %>
-    <% if policy(@restaurant).add_dish? %>
-      <%= render 'components/add-dish' %>
-      <%= link_to "Add a dish", "#", data: { toggle: "modal", target: "#addDishModal" }, class: "btn btn-primary btn-rounded d-block my-4 mx-auto w-50" %>
-   <% end %>
+		<% @dishes.each do |dish| %>
+			<%= render 'cuisines/dish_card', dish: dish %>
+		<% end %>
+		<% if policy(@restaurant).add_dish? %>
+			<%= render 'components/add-dish' %>
+			<%= link_to "Add a dish", "#", data: { toggle: "modal", target: "#addDishModal" }, class: "btn btn-primary btn-rounded d-block my-4 mx-auto w-50" %>
+	 <% end %>
 
-  </div>
+	</div>
 </div>
 
 <div id="reviews" style="display: none">
-  <% if @restaurant.reviews.empty? %>
-    <h4 class="text-center mt-3">Ops!</h4>
-    <p class="text-center">No authentic reviews yet 😢</p>
-  <% end %>
+	<% if @restaurant.reviews.empty? %>
+		<h4 class="text-center mt-3">Ops!</h4>
+		<p class="text-center">No authentic reviews yet 😢</p>
+	<% end %>
 
-  <% if policy(@restaurant).review? %>
-    <%= render 'components/leave-review' %>
-  <% end %>
+	<% if policy(@restaurant).review? %>
+		<%= render 'components/leave-review' %>
+	<% end %>
 
-    <% @restaurant.reviews.each do |review| %>
-      <div class="row mt-3 comments-container mx-3">
-        <div class="col-12 content-comments d-flex flex-column pt-1">
-          <div class="position-absolute" style="top: -.7em; left: 5px">
-            <div class="row avatar-comments">
-              <%= review.user.navbar_avatar(size: 40) %>
-            </div>
-          </div>
-          <div class="reactions-counter d-flex justify-content-center">
-            <p class="counter-<%= review.id %>" data-container="body" data-toggle="popover" data-placement="bottom" data-content="This score is computed based on users' reactions.">
-            Review score: <span class="badge badge-info badge-pill"> <%= review.counter %> </span></p>
-          </div>
-          <div class="position-absolute" style="right: 1em; top: 5%;  font-size: .9rem">
-            <%= '<i class="fas fa-star text-warning"></i>'.html_safe * (review.rating || 0) %>
-          </div>
-          <p class="mt-0 "><%= review.content %></p>
-          <div class="d-flex flex-row comment-bottom">
-            <div class="font-italic">
-              <%= review.user.nickname %>
-            </div>
-            <div class="comments-date flex-grow-1 text-right">
-              <time class="timeago d-none" datetime="<%= review.created_at.iso8601 %>"></time>
-               <% if policy(review).react?  %>
-              <div class="reactions-icons d-flex justify-content-end badge badge-pill badge-secondary py-2">
-              <div class="justify-content-between reaction-list" data-id=<%= review.id %> data-restaurant = <%= @restaurant.id %> >
-                <span class="heart p-1" data-value="2" data-controller="reaction" data-action="click->reaction#count">
-                  <%= image_tag("icons/hearts.svg") %>
-                </span>
-                <span class="like p-1" data-value="1" data-controller="reaction" data-action="click->reaction#count">
-                  <%= image_tag("icons/thumbup.svg") %>
-                </span>
-                <span class="dislike p-1" data-value="-1" data-controller="reaction" data-action="click->reaction#count">
-                  <%= image_tag("icons/thumbdown.svg") %>
-                </span>
-                <span class="angry p-1 mr-0" data-value="-2" data-controller="reaction" data-action="click->reaction#count">
-                  <%= image_tag("icons/mad.svg") %>
-                </span>
-                </div>
-              </div>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
+		<% @restaurant.reviews.each do |review| %>
+			<div class="row mt-3 comments-container mx-3">
+				<div class="col-12 content-comments d-flex flex-column pt-1">
+					<div class="position-absolute" style="top: -.7em; left: 5px">
+						<div class="row avatar-comments">
+							<%= review.user.navbar_avatar(size: 40) %>
+						</div>
+					</div>
+					<div class="reactions-counter d-flex justify-content-center">
+						<p class="counter-<%= review.id %>" data-container="body" data-toggle="popover" data-placement="bottom" data-content="This score is computed based on users' reactions.">
+						<% class_counter = review.counter == 0 ? 'badge-info' : ( review.counter > 0 ? 'badge-success' : 'badge-danger' )%>
+						Review score: <span class="badge <%= class_counter %> badge-pill"> <%= review.counter %> </span></p>
+					</div>
+					<div class="position-absolute" style="right: 1em; top: 5%;  font-size: .9rem">
+						<%= '<i class="fas fa-star text-warning"></i>'.html_safe * (review.rating || 0) %>
+					</div>
+					<p class="mt-0 "><%= review.content %></p>
+					<div class="d-flex flex-row comment-bottom">
+						<div class="font-italic">
+							<%= review.user.nickname %>
+						</div>
+						<div class="comments-date flex-grow-1 text-right">
+							<time class="timeago d-none" datetime="<%= review.created_at.iso8601 %>"></time>
+
+						<% if user_signed_in? && review.user_id != current_user.id %>
+							<div class="reactions-icons d-flex justify-content-end badge badge-pill badge-secondary py-2">
+							<div class="justify-content-between reaction-list" data-id=<%= review.id %> data-restaurant = <%= @restaurant.id %> >
+								<% if policy(review).react?  %>
+										<span class="heart p-1" data-value="2" data-controller="reaction" data-action="click->reaction#count">
+											<%= image_tag("icons/hearts.svg") %>
+										</span>
+										<span class="like p-1" data-value="1" data-controller="reaction" data-action="click->reaction#count">
+											<%= image_tag("icons/thumbup.svg") %>
+										</span>
+										<span class="dislike p-1" data-value="-1" data-controller="reaction" data-action="click->reaction#count">
+											<%= image_tag("icons/thumbdown.svg") %>
+										</span>
+										<span class="angry p-1 mr-0" data-value="-2" data-controller="reaction" data-action="click->reaction#count">
+											<%= image_tag("icons/mad.svg") %>
+										</span>
+								<% else %>
+									<% reaction = Reaction.select(:number).find_by(user_id: current_user.id , review_id: review.id) %>
+									<% if reaction %>
+										<span class="angry p-1 mr-0">
+											<%= image_tag("icons/#{Reaction::ICONS[reaction.number.to_s.to_sym]}") %>
+										</span>
+									<% end %>
+								<% end %>
+								</div>
+							</div>
+						<% end %>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		<% end %>
 </div>

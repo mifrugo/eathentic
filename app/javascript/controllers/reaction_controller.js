@@ -3,7 +3,7 @@ import { Controller } from "stimulus";
 export default class extends Controller {
 
   count() {
-
+    const classes = ['badge-info', 'badge-success', 'badge-warning']
     const aVote = this.element.getAttribute('data-value')
     const id = Number(this.element.closest("div").dataset["id"])
     fetch(`/reviews/${id}/reactions`, {
@@ -18,11 +18,17 @@ export default class extends Controller {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data.action)
-      if (data.action == "saved" ) {
-        document.querySelector(`.counter-${id} .badge`).innerHTML = data.counter
-        $(this.element).closest(".reactions-icons").removeClass('d-flex').slideUp()
-      }
+        if (data.action == "saved" ) {
+          let badge = document.querySelector(`.counter-${id} .badge`)
+          badge.innerHTML = data.counter
+          classes.forEach(c => badge.classList.remove(c))
+
+          badge.classList.add(
+            data.counter === 0 ? 'badge-warning' : ( data.counter > 0 ? 'badge-success' : 'badge-danger')
+          )
+
+          this.element.closest('.reaction-list').innerHTML = this.element.outerHTML
+        }
     })
   }
 }
