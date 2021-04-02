@@ -6,7 +6,9 @@ class ApplicationController < ActionController::Base
   include Pundit
 
   def redirect_subdomain
-    redirect_to "https://www.eathentic.app#{request.fullpath}", status: 301 if request.host == 'eathentic.app'
+    return unless request.host == 'eathentic.app' || request.host == 'eathentic.herokuapp.com'
+
+    redirect_to "https://www.eathentic.app#{request.fullpath}", status: 301
   end
 
   # Pundit: white-list approach.
